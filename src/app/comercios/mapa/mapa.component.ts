@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import * as Mapboxgl from 'mapbox-gl';
+import { Comercio } from 'src/app/entidades/comercio';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -9,6 +10,8 @@ import { environment } from 'src/environments/environment';
 })
 export class MapaComponent implements OnInit{
 
+  @Input() comercios!: Comercio[];
+
   mapa:Mapboxgl.Map;
   title = 'proyectomapa';
 
@@ -16,30 +19,21 @@ export class MapaComponent implements OnInit{
 
     (Mapboxgl as any).accessToken = environment.tokenmapa;
    this.mapa = new Mapboxgl.Map({
-    //container: 'contenedormapa',
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
     center:[-88.94,14.04 ],
-    //zoom:16.6
     zoom: 13
     });
 
-    ///
-    //consultar todos los comercios
-    var establecimientos=[
-          {lon:-88.93968893127821,lat:14.040098665086017,nombre:'Comercio 1',id:'id1'},
-          {lon:-88.9396001546189,lat:14.040006628328758,nombre:'Comercio 2',id:'id2'},
-          {lon:-88.93942044660623,lat:14.039866115824907,nombre:'Comercio 3',id:'id3'},
-          {lon:-88.93924140914588,lat:14.03985635800893,nombre:'Comercio 4',id:'id4'}
-    ]
-    establecimientos.forEach(comercio => {
-      this.marcador(comercio.lon,comercio.lat,comercio.nombre);
+    this.comercios.forEach(comercio => {
+      this.marcador(comercio);
     });
-
   }
+  
+  marcador(comercio: Comercio){
+  const {coordinates, nombre} = comercio;
+  const [lon, lat] = coordinates;
 
-  //Puede evaluar enviar el objeto comercio y no propiedades por separado
-  marcador(lon:number,lat:number,nombre:string){
 
     const globo= new Mapboxgl.Popup({className:'globito'})
                 .setHTML(`<p> ${nombre} </p>`)
@@ -53,6 +47,5 @@ export class MapaComponent implements OnInit{
     .addTo(this.mapa);
 
     marca.on;
-
   }
 }
