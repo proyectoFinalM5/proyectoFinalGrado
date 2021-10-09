@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { MapaComponent } from './mapa/mapa.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 import { MaterialModule } from '../material.module';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
   declarations: [
-    MapaComponent
+    UsuariosComponent
   ],
   imports: [
     CommonModule,
@@ -15,7 +15,7 @@ import { MaterialModule } from '../material.module';
     MaterialModule
   ],
   exports: [
-
-  ],
+    
+  ]
 })
-export class ComerciosModule { }
+export class UsuarioModule { }
