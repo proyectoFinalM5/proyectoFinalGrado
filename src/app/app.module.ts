@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ComerciosModule } from './comercios/comercios.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
+import { UsuarioModule } from './usuario/usuario.module';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { MaterialModule } from './material.module';
     BrowserModule,
     AppRoutingModule,
     ComerciosModule,
+    UsuarioModule,
     BrowserAnimationsModule,
     MaterialModule
 
