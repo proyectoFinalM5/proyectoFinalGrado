@@ -6,5 +6,5 @@ export interface Usuario {
   telefono: string;
   email: string;
   password: string;
-  rol: number;
+  rol: string;
 }
