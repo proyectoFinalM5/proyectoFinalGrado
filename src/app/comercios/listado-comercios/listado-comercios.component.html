@@ -3,68 +3,125 @@
     <h1>Comercios</h1>
   </div>
   <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
-    <mat-expansion-panel  *ngFor="let comercio of listado">
+    <mat-expansion-panel *ngFor="let comercio of listado">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <!-- <mat-icon>account_circle</mat-icon> -->
           <strong>{{ comercio.nombre }}</strong>
         </mat-panel-title>
-        <mat-panel-description>
-
-        </mat-panel-description>
+        <mat-panel-description> </mat-panel-description>
       </mat-expansion-panel-header>
       <mat-list>
         <dt class="example-dt">Categoria: {{ comercio.categoria }}</dt>
         <dt class="example-dt">Propietario: {{ comercio.propietario }}</dt>
-        <dt class="example-dt" *ngIf="comercio.redes_sociales">Redes sociales: {{ comercio.redes_sociales }}</dt>
+        <dt class="example-dt" *ngIf="comercio.redes_sociales">
+          Redes sociales: {{ comercio.redes_sociales }}
+        </dt>
         <dt class="example-dt">Teléfono: {{ comercio.telefono }}</dt>
         <dt class="example-dt">Descripcion: {{ comercio.descripcion }}</dt>
-        <button class="btn btn-primary" (click)="openTemplateSheetMenu()">Ver comentarios</button>
+        <button class="btn btn-primary" (click)="openTemplateSheetMenu()">
+          Ver comentarios
+        </button>
 
-        <!-- PARA COMENTARIOS -->
         <ng-template let-bottomSheetRef="bottomSheetRef" #templateBottomSheet>
           <mat-nav-list>
             <a href="" mat-list-item>
-              <span mat-line>No esta mal, ambiente tranquilo precios accesibles. No obstante falta mucho en la atencion amabilidad, prontitud, disponibilidad, etc son detalles q deberían valorar y analizar. No esta mal pero......</span>
+              <span mat-line
+                >No esta mal, ambiente tranquilo precios accesibles. No obstante
+                falta mucho en la atencion amabilidad, prontitud,
+                disponibilidad, etc son detalles q deberían valorar y analizar.
+                No esta mal pero......</span
+              >
               <span mat-line></span>
             </a>
-            <div class="star-rating-container star-rating-animation" fxLayout="row" fxLayoutAlign="start center" >
-              <div *ngFor="let star of stars" [ngClass]="[star.class]" (click)="selectStar(star.id)">
-                  <mat-icon>{{star.icon}}</mat-icon>
+            <div
+              class="star-rating-container star-rating-animation"
+              fxLayout="row"
+              fxLayoutAlign="start center"
+            >
+              <div
+                *ngFor="let star of stars"
+                [ngClass]="[star.class]"
+                (click)="selectStar(star.id)"
+              >
+                <mat-icon>{{ star.icon }}</mat-icon>
               </div>
             </div>
 
             <a href="" mat-list-item>
-              <span mat-line>No esta mal, ambiente tranquilo precios accesibles. No obstante falta mucho en la atencion amabilidad, prontitud, disponibilidad, etc son detalles q deberían valorar y analizar. No esta mal pero......</span>
+              <span mat-line
+                >No esta mal, ambiente tranquilo precios accesibles. No obstante
+                falta mucho en la atencion amabilidad, prontitud,
+                disponibilidad, etc son detalles q deberían valorar y analizar.
+                No esta mal pero......</span
+              >
               <span mat-line></span>
             </a>
-            <div class="star-rating-container star-rating-animation" fxLayout="row" fxLayoutAlign="start center" >
-              <div *ngFor="let star of stars" [ngClass]="[star.class]" (click)="selectStar(star.id)">
-                  <mat-icon>{{star.icon}}</mat-icon>
+            <div
+              class="star-rating-container star-rating-animation"
+              fxLayout="row"
+              fxLayoutAlign="start center"
+            >
+              <div
+                *ngFor="let star of stars"
+                [ngClass]="[star.class]"
+                (click)="selectStar(star.id)"
+              >
+                <mat-icon>{{ star.icon }}</mat-icon>
               </div>
             </div>
 
             <a href="" mat-list-item>
-              <span mat-line>No esta mal, ambiente tranquilo precios accesibles. No obstante falta mucho en la atencion amabilidad, prontitud, disponibilidad, etc son detalles q deberían valorar y analizar. No esta mal pero......</span>
+              <span mat-line
+                >No esta mal, ambiente tranquilo precios accesibles. No obstante
+                falta mucho en la atencion amabilidad, prontitud,
+                disponibilidad, etc son detalles q deberían valorar y analizar.
+                No esta mal pero......</span
+              >
               <span mat-line></span>
             </a>
-            <div class="star-rating-container star-rating-animation" fxLayout="row" fxLayoutAlign="start center" >
-              <div *ngFor="let star of stars" [ngClass]="[star.class]" (click)="selectStar(star.id)">
-                  <mat-icon>{{star.icon}}</mat-icon>
+            <div
+              class="star-rating-container star-rating-animation"
+              fxLayout="row"
+              fxLayoutAlign="start center"
+            >
+              <div
+                *ngFor="let star of stars"
+                [ngClass]="[star.class]"
+                (click)="selectStar(star.id)"
+              >
+                <mat-icon>{{ star.icon }}</mat-icon>
               </div>
             </div>
 
             <a href="" mat-list-item>
-              <span mat-line>No esta mal, ambiente tranquilo precios accesibles. No obstante falta mucho en la atencion amabilidad, prontitud, disponibilidad, etc son detalles q deberían valorar y analizar. No esta mal pero...... No esta mal, ambiente tranquilo precios accesibles. No obstante falta mucho en la atencion amabilidad, prontitud, disponibilidad, etc son detalles q deberían valorar y analizar. No esta mal pero......</span>
+              <span mat-line
+                >No esta mal, ambiente tranquilo precios accesibles. No obstante
+                falta mucho en la atencion amabilidad, prontitud,
+                disponibilidad, etc son detalles q deberían valorar y analizar.
+                No esta mal pero...... No esta mal, ambiente tranquilo precios
+                accesibles. No obstante falta mucho en la atencion amabilidad,
+                prontitud, disponibilidad, etc son detalles q deberían valorar y
+                analizar. No esta mal pero......</span
+              >
               <span mat-line></span>
             </a>
-            <div class="star-rating-container star-rating-animation" fxLayout="row" fxLayoutAlign="start center" >
-              <div *ngFor="let star of stars" [ngClass]="[star.class]" (click)="selectStar(star.id)">
-                  <mat-icon>{{star.icon}}</mat-icon>
+            <div
+              class="star-rating-container star-rating-animation"
+              fxLayout="row"
+              fxLayoutAlign="start center"
+            >
+              <div
+                *ngFor="let star of stars"
+                [ngClass]="[star.class]"
+                (click)="selectStar(star.id)"
+              >
+                <mat-icon>{{ star.icon }}</mat-icon>
               </div>
             </div>
           </mat-nav-list>
-          <button class="btn btn-danger" (click)="closeTemplateSheetMenu()">Cancelar</button>
+          <button class="btn btn-danger" (click)="closeTemplateSheetMenu()">
+            Cancelar
+          </button>
         </ng-template>
       </mat-list>
     </mat-expansion-panel>

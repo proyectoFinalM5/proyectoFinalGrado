@@ -1,5 +1,11 @@
 import { Mapa } from './../../generarMapa';
-import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { Comercio } from 'src/app/entidades/comercio';
 import { ComercioService } from 'src/app/services/comercio.service';
@@ -11,14 +17,12 @@ import * as Mapboxgl from 'mapbox-gl';
   styleUrls: ['./listado-comercios.component.scss'],
 })
 export class ListadoComerciosComponent implements OnInit {
-
   mapa: Mapboxgl.Map;
 
   listado: Comercio[] = [];
   listadoMapa: Comercio[] = [];
 
   @ViewChild('templateBottomSheet') TemplateBottomSheet: TemplateRef<any>;
-
 
   selectedRating = 0;
   stars = [
@@ -51,54 +55,43 @@ export class ListadoComerciosComponent implements OnInit {
 
   constructor(
     private comercioService: ComercioService,
-      private bottomSheet: MatBottomSheet
+    private bottomSheet: MatBottomSheet
   ) {}
 
   ngOnInit(): void {
     this.obtenerComercios();
-    this.mapa = new Mapa(this.listadoMapa).mapa;
+    this.mapa = new Mapa(this.listadoMapa);
   }
 
-  obtenerComercios(){
-    this.comercioService.getComercios().subscribe((resp:Comercio[]) => {
+  obtenerComercios() {
+    this.comercioService.getComercios().subscribe((resp: Comercio[]) => {
       this.listado = resp;
       this.listadoMapa = resp;
-
     });
   }
 
-  selectStar(value:any): void {
-
+  selectStar(value: any): void {
     // prevent multiple selection
-    if ( this.selectedRating === 0){
-      this.stars.filter( (star) => {
-        if ( star.id <= value){
+    if (this.selectedRating === 0) {
+      this.stars.filter((star) => {
+        if (star.id <= value) {
           star.class = 'star-gold star';
-        }else{
+        } else {
           star.class = 'star-gray star';
         }
         return star;
       });
     }
     this.selectedRating = value;
-
   }
-   /**
+  /**
    * Para parte de comentarios
    */
-    openTemplateSheetMenu() {
-      this.bottomSheet.open(this.TemplateBottomSheet);
-    }
+  openTemplateSheetMenu() {
+    this.bottomSheet.open(this.TemplateBottomSheet);
+  }
 
-    closeTemplateSheetMenu() {
-      this.bottomSheet.dismiss();
-    }
-
-
-
-
-
-
-
-
+  closeTemplateSheetMenu() {
+    this.bottomSheet.dismiss();
+  }
 }

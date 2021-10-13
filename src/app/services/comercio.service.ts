@@ -7,10 +7,12 @@ import { Comercio } from '../entidades/comercio';
   providedIn: 'root',
 })
 export class ComercioService {
-   //url = 'https://apicomercios.herokuapp.com';
-    url = 'http://localhost:3000';
+  //url = 'https://apicomercios.herokuapp.com';
+  url = 'http://apicomercios.herokuapp.com';
 
-  constructor(private http: HttpClient) { console.log('Entrooooo'); }
+  constructor(private http: HttpClient) {
+    console.log('Entrooooo');
+  }
 
   // getComercios() {
   //   let header = new HttpHeaders()
@@ -30,6 +32,5 @@ export class ComercioService {
     return this.http.get<Comercio[]>(this.url + '/comercio', {
       headers: header,
     });
-
   }
 }
