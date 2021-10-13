@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { MapaComponent } from './mapa/mapa.component';
+
 import { MaterialModule } from '../material.module';
+import { ListadoComerciosComponent } from './listado-comercios/listado-comercios.component';
 
 
 @NgModule({
   declarations: [
-    MapaComponent
+    ListadoComerciosComponent
   ],
   imports: [
     CommonModule,
