@@ -14,6 +14,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { MenuModule } from './menu/menu.module';
 import { RequestService } from './services/request.service';
 
+import { LoginModule } from './login/login.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptores/auth.interceptor';
+import { AuthService } from './services/auth.service';
+
 @NgModule({
   declarations: [AppComponent ],
   imports: [
@@ -25,8 +30,17 @@ import { RequestService } from './services/request.service';
     MenuModule,
     BrowserAnimationsModule,
     MaterialModule,
+    LoginModule,
   ],
-  providers: [RequestService],
+  providers: [
+    AuthService,
+    RequestService
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
