@@ -15,7 +15,7 @@ import { MenuModule } from './menu/menu.module';
 import { RequestService } from './services/request.service';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, SidenavComponent],
+  declarations: [AppComponent ],
   imports: [
     BrowserModule,
     HttpClientModule,
