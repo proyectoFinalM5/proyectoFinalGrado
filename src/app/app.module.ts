@@ -18,6 +18,8 @@ import { LoginModule } from './login/login.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptores/auth.interceptor';
 import { AuthService } from './services/auth.service';
+import { ComercioService } from './services/comercio.service';
+import { UsuarioService } from './services/usuario.service';
 
 @NgModule({
   declarations: [AppComponent ],
@@ -34,7 +36,9 @@ import { AuthService } from './services/auth.service';
   ],
   providers: [
     AuthService,
-    RequestService
+    RequestService,
+    ComercioService,
+    UsuarioService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

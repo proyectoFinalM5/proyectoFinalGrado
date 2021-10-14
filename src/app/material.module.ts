@@ -13,11 +13,12 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
-// import { MatIconModule } from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatBottomSheetModule, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
-// import { MatListModule } from '@angular/material/list';
-// import { UsuariosComponent } from './usuarios/usuarios.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { AvatarModule } from 'ngx-avatar';
+
 
 @NgModule({
   declarations: [],
@@ -40,7 +41,10 @@ import { MatBottomSheetModule, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '
     MatIconModule,
     MatDividerModule,
     MatListModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatFormFieldModule,
+    MatCardModule,
+    AvatarModule
   ],
   providers: [
     { provide: MatBottomSheetRef, useValue: {} },

@@ -15,7 +15,8 @@ NgxPermissionsModule.forRoot()
   declarations: [
     MenuComponent,
     HeaderComponent,
-    SidenavComponent
+    SidenavComponent,
+    
   ],
   imports: [
     CommonModule,

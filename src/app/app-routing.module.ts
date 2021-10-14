@@ -6,9 +6,7 @@ import { UsuariosComponent } from './usuario/usuarios/usuarios.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/menu', pathMatch: 'full' },
-  // { path: 'mapa', loadChildren: () => import('./comercios/comercios.module').then(m => m.ComerciosModule) },
-  // { path: 'usuario', loadChildren: () => import('./usuario/usuario.module').then(m => m.UsuarioModule) },
-  // { path: 'menu', loadChildren: () => import('./menu/menu.module').then(m => m.MenuModule) },
+  // { path: 'menu', loadChildren: () => import('./routes/menu-routing.module').then(m => m.MenuRoutingModule) },
 
   { path: 'menu',component: MenuComponent, children: [
     {

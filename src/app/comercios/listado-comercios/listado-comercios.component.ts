@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Comercio } from 'src/app/entidades/comercio';
 import * as Mapboxgl from 'mapbox-gl';
 import { RequestService } from 'src/app/services/request.service';
+import { ComercioService } from 'src/app/services/comercio.service';
 
 @Component({
   selector: 'app-listado-comercios',
@@ -15,7 +16,7 @@ export class ListadoComerciosComponent implements OnInit {
   listado: Comercio[] = [];
   listadoMapa: Comercio[] = [];
 
-  constructor(private service: RequestService) {}
+  constructor(private service: ComercioService) {}
 
   ngOnInit(): void {
     this.obtenerComercios();
@@ -23,7 +24,7 @@ export class ListadoComerciosComponent implements OnInit {
   }
 
   obtenerComercios() {
-    this.service.getData<Comercio>('/comercio').then((data) => {
+    this.service.getComercios().then((data) => {
       this.listado = data;
       this.listadoMapa = data;
     });
