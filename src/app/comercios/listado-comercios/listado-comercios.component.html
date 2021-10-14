@@ -1,0 +1,25 @@
+<div class="sidebar">
+  <div class="heading">
+    <h1>Comercios</h1>
+  </div>
+  <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+    <mat-expansion-panel *ngFor="let comercio of listado">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <strong>{{ comercio.nombre }}</strong>
+        </mat-panel-title>
+        <mat-panel-description> </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-list>
+        <dt class="example-dt">Categoria: {{ comercio.categoria }}</dt>
+        <dt class="example-dt">Propietario: {{ comercio.propietario }}</dt>
+        <dt class="example-dt" *ngIf="comercio.redes_sociales">
+          Redes sociales: {{ comercio.redes_sociales }}
+        </dt>
+        <dt class="example-dt">Teléfono: {{ comercio.telefono }}</dt>
+        <dt class="example-dt">Descripcion: {{ comercio.descripcion }}</dt>
+      </mat-list>
+    </mat-expansion-panel>
+  </cdk-virtual-scroll-viewport>
+</div>
+<div id="map" class="map"></div>

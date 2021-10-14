@@ -4,9 +4,21 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { MaterialModule } from '../material.module';
 import { RouterModule } from '@angular/router';
 
+import { NgxPermissionsModule } from 'ngx-permissions';
+
+NgxPermissionsModule.forRoot()
+
 @NgModule({
-  declarations: [UsuariosComponent],
-  imports: [CommonModule, RouterModule, MaterialModule],
-  exports: [],
+  declarations: [
+    UsuariosComponent
+  ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MaterialModule
+  ],
+  exports: [
+
+  ]
 })
-export class UsuarioModule {}
+export class UsuarioModule { }

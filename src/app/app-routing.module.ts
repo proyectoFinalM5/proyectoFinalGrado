@@ -1,20 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MapaComponent } from './comercios/mapa/mapa.component';
-import { SignInComponent } from './login/sign-in/sign-in.component';
-import { SignUpComponent } from './login/sign-up/sign-up.component';
+import { ListadoComerciosComponent } from './comercios/listado-comercios/listado-comercios.component';
+import { MenuComponent } from './menu/menu/menu.component';
 import { UsuariosComponent } from './usuario/usuarios/usuarios.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'mapa', component: MapaComponent },
-  { path: 'usuario', component: UsuariosComponent },
-  { path: 'login', component: SignInComponent },
-  { path: 'registro', component: SignUpComponent },
+  { path: '', redirectTo: '/menu', pathMatch: 'full' },
+  // { path: 'mapa', loadChildren: () => import('./comercios/comercios.module').then(m => m.ComerciosModule) },
+  // { path: 'usuario', loadChildren: () => import('./usuario/usuario.module').then(m => m.UsuarioModule) },
+  // { path: 'menu', loadChildren: () => import('./menu/menu.module').then(m => m.MenuModule) },
+
+  { path: 'menu',component: MenuComponent, children: [
+    {
+      path: 'mapa', component: ListadoComerciosComponent, outlet: 'menu'
+    }
+  ]}
+
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

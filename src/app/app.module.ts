@@ -7,24 +7,34 @@ import { ComerciosModule } from './comercios/comercios.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { UsuarioModule } from './usuario/usuario.module';
+
+import { HeaderComponent } from './menu/header/header.component';
+import { SidenavComponent } from './menu/sidenav/sidenav.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MenuModule } from './menu/menu.module';
+import { RequestService } from './services/request.service';
+
 import { LoginModule } from './login/login.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptores/auth.interceptor';
 import { AuthService } from './services/auth.service';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     ComerciosModule,
     UsuarioModule,
+    MenuModule,
     BrowserAnimationsModule,
     MaterialModule,
     LoginModule,
   ],
   providers: [
     AuthService,
+    RequestService
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
@@ -33,4 +43,4 @@ import { AuthService } from './services/auth.service';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
