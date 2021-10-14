@@ -8,30 +8,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { UsuarioModule } from './usuario/usuario.module';
 
-import { HeaderComponent } from './comercios/header/header.component';
-import { SidenavComponent } from './comercios/sidenav/sidenav.component';
+import { HeaderComponent } from './menu/header/header.component';
+import { SidenavComponent } from './menu/sidenav/sidenav.component';
 import { HttpClientModule } from '@angular/common/http';
-
-
+import { MenuModule } from './menu/menu.module';
+import { RequestService } from './services/request.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    SidenavComponent,
-
-  ],
+  declarations: [AppComponent, HeaderComponent, SidenavComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     ComerciosModule,
     UsuarioModule,
+    MenuModule,
     BrowserAnimationsModule,
-    MaterialModule
-
+    MaterialModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [RequestService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,15 +1,8 @@
 import { Mapa } from './../../generarMapa';
-import {
-  Component,
-  Input,
-  OnInit,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
-import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { Component, OnInit } from '@angular/core';
 import { Comercio } from 'src/app/entidades/comercio';
-import { ComercioService } from 'src/app/services/comercio.service';
 import * as Mapboxgl from 'mapbox-gl';
+import { RequestService } from 'src/app/services/request.service';
 
 @Component({
   selector: 'app-listado-comercios',
@@ -22,41 +15,7 @@ export class ListadoComerciosComponent implements OnInit {
   listado: Comercio[] = [];
   listadoMapa: Comercio[] = [];
 
-  @ViewChild('templateBottomSheet') TemplateBottomSheet: TemplateRef<any>;
-
-  selectedRating = 0;
-  stars = [
-    {
-      id: 1,
-      icon: 'star',
-      class: 'star-gray star-hover star',
-    },
-    {
-      id: 2,
-      icon: 'star',
-      class: 'star-gray star-hover star',
-    },
-    {
-      id: 3,
-      icon: 'star',
-      class: 'star-gray star-hover star',
-    },
-    {
-      id: 4,
-      icon: 'star',
-      class: 'star-gray star-hover star',
-    },
-    {
-      id: 5,
-      icon: 'star',
-      class: 'star-gray star-hover star',
-    },
-  ];
-
-  constructor(
-    private comercioService: ComercioService,
-    private bottomSheet: MatBottomSheet
-  ) {}
+  constructor(private service: RequestService) {}
 
   ngOnInit(): void {
     this.obtenerComercios();
@@ -64,34 +23,9 @@ export class ListadoComerciosComponent implements OnInit {
   }
 
   obtenerComercios() {
-    this.comercioService.getComercios().subscribe((resp: Comercio[]) => {
-      this.listado = resp;
-      this.listadoMapa = resp;
+    this.service.getData<Comercio>('/comercio').then((data) => {
+      this.listado = data;
+      this.listadoMapa = data;
     });
-  }
-
-  selectStar(value: any): void {
-    // prevent multiple selection
-    if (this.selectedRating === 0) {
-      this.stars.filter((star) => {
-        if (star.id <= value) {
-          star.class = 'star-gold star';
-        } else {
-          star.class = 'star-gray star';
-        }
-        return star;
-      });
-    }
-    this.selectedRating = value;
-  }
-  /**
-   * Para parte de comentarios
-   */
-  openTemplateSheetMenu() {
-    this.bottomSheet.open(this.TemplateBottomSheet);
-  }
-
-  closeTemplateSheetMenu() {
-    this.bottomSheet.dismiss();
   }
 }
