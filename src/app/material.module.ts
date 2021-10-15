@@ -35,7 +35,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
-
+import { AvatarModule } from 'ngx-avatar'
 import { MatDividerModule } from '@angular/material/divider';
 import { MatBottomSheetModule, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 
@@ -48,11 +48,13 @@ const materialModules = [
   MatCheckboxModule,
   MatChipsModule,
   MatDividerModule,
+
   MatExpansionModule,
   MatIconModule,
   MatInputModule,
   MatListModule,
   MatMenuModule,
+  AvatarModule,
   MatProgressSpinnerModule,
   MatPaginatorModule,
   MatRippleModule,

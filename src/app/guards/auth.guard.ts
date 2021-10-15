@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): boolean {
     const valido = this.service.tokenValido();
     if (!valido) {
-      this.router.navigate(['/login/login']);
+      this.router.navigate(['/login']);
     }
     return valido;
   }

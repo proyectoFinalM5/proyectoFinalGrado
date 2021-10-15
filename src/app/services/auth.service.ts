@@ -10,11 +10,12 @@ export class AuthService {
     localStorage.clear();
   }
   getToken(): String | null {
-    return localStorage.getItem('TOKEN_AUTH');
+    return localStorage.getItem('AUTH_TOKEN');
   }
   tokenValido(): boolean {
-    const expired =
-      parseInt(localStorage.getItem('EXP_IN') || '0') > new Date().getTime();
-    return Boolean(localStorage.getItem('TOKEN_AUTH')) && !expired;
+    const expIn = localStorage.getItem("EXP_IN");
+    const expired = expIn || parseInt(expIn || '0') > new Date().getTime()
+    console.log(this.getToken())
+    return Boolean(this.getToken());
   }
 }

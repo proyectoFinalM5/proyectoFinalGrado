@@ -5,15 +5,11 @@
     <mat-divider></mat-divider>
     <h2 matSubheader class="mt-2">OPCIONES</h2>
 
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/usuarios">
+    <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['/home/usuario']">
       <mat-icon>person_pin</mat-icon> Usuarios
     </a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/comercios">
+    <a mat-list-item routerLinkActive="list-item-active"[routerLink]="['/home/comercio']">
       <mat-icon>my_location</mat-icon> Comercios
-    </a>
-
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/mapa">
-      <mat-icon>map</mat-icon> Mapa
     </a>
 
   </mat-nav-list>
