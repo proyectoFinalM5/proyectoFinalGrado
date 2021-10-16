@@ -5,6 +5,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { SignInComponent } from './login/sign-in/sign-in.component';
 import { MenuComponent } from './menu/menu/menu.component';
 import { UsuariosComponent } from './usuario/usuarios/usuarios.component';
+import { RegistroComercioComponent } from './comercios/registro-comercio/registro-comercio.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -13,7 +14,8 @@ const routes: Routes = [
     path: 'home', component: MenuComponent, canActivate: [AuthGuard], children: [
       // { path: '*', redirectTo: 'comercio' },
       { path: 'comercio', component: ListadoComerciosComponent },
-      { path: 'usuario', component: UsuariosComponent }
+      { path: 'usuario', component: UsuariosComponent },
+      { path: 'registroComercio', component: RegistroComercioComponent}
     ]
   }
 ];

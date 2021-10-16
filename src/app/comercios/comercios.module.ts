@@ -9,11 +9,12 @@ import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
 import { RatingService } from '../services/rating.service';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { ComercioService } from '../services/comercio.service';
+import { RegistroComercioComponent } from './registro-comercio/registro-comercio.component';
 
 NgxPermissionsModule.forRoot()
 
 @NgModule({
-  declarations: [ListadoComerciosComponent, BottomSheetComponent],
+  declarations: [ListadoComerciosComponent, BottomSheetComponent, RegistroComercioComponent],
   imports: [CommonModule, RouterModule, MaterialModule],
   providers: [RequestService, RatingService, ComercioService],
   exports: [],
