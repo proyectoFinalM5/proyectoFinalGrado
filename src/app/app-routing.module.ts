@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'login', component: SignInComponent },
   {
     path: 'home', component: MenuComponent, canActivate: [AuthGuard], children: [
-      { path: '', redirectTo: 'comercio', pathMatch: 'full' },
+      // { path: '*', redirectTo: 'comercio' },
       { path: 'comercio', component: ListadoComerciosComponent },
       { path: 'usuario', component: UsuariosComponent }
     ]
