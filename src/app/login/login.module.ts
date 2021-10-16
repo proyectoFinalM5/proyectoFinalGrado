@@ -8,4 +8,4 @@ import { MaterialModule } from '../material.module';
   declarations: [SignInComponent, SignUpComponent],
   imports: [CommonModule, MaterialModule],
 })
-export class LoginModule {}
+export class LoginModule { }
