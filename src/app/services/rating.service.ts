@@ -7,13 +7,18 @@ import { RequestService } from './request.service';
   providedIn: 'root',
 })
 export class RatingService extends RequestService {
-  getComentarios(comercio: Comercio): Promise<any> {
+  getComentarios(comercio: Comercio) {
     const params = new HttpParams();
-    return this.getData(
-      '/comentarios',
-      params,
-      undefined,
-      'https://bruno.herokuapp.com'
-    );
+    return [
+      "Que bien",
+      "Que mal",
+      "Muy bien"
+    ];
+    // return this.getData(
+    //   '/comentarios',
+    //   params,
+    //   undefined,
+    //   'https://bruno.herokuapp.com'
+    // );
   }
 }
