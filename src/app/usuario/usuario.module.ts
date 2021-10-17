@@ -1,16 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UsuariosComponent } from './usuarios/usuarios.component';
+
 import { MaterialModule } from '../material.module';
 import { RouterModule } from '@angular/router';
 
 import { NgxPermissionsModule } from 'ngx-permissions';
+import { UsuariosComponent } from './listado-usuarios/usuarios.component';
+import { RegistroUsuariosComponent } from './registro-usuarios/registro-usuarios.component';
 
 NgxPermissionsModule.forRoot()
 
 @NgModule({
   declarations: [
-    UsuariosComponent
+    UsuariosComponent,
+    RegistroUsuariosComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,78 @@
+.container{
+    margin:1rem auto;
+    
+}
+
+.h1{
+    font-size: 32px;
+  }
+
+  .mat-grid-list{
+      width: 550px;
+      padding: 24px auto;
+      
+  }
+  .mat-form-field {
+    width: 85%;
+    
+  }
+  
+  .example-form {
+  min-width: 50px;
+  max-width: 320px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 60%;
+}
+
+.controles-container{
+  width: 100%;
+  padding: 6%;
+}
+
+.div.container{
+  margin: 0px 40px;
+
+}
+
+.normal-form{
+margin: 10px;
+}
+
+.mat-raised-button{
+  background-color: black;
+  color: white;
+  display: inline-block;
+  justify-content: flex-start;
+  
+}
+
+.close-button{
+  float: right;
+  top: -20px;
+  right: -5px;
+
+  
+}
+
+.close-icon{
+  transition: 1s ease-in-out;
+
+}
+
+::ng-deep .icon-outside .close-button{
+  float: right;
+  top:-52px;
+  right:-52px;
+}
+
+span{
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  margin-top: 2%;
+
+}
+
