@@ -12,6 +12,7 @@ import { AutenticationService } from 'src/app/services/autentication.service';
 })
 export class SignInComponent implements OnInit {
   group: FormGroup;
+  hide: boolean = true;
 
   constructor(private service: AutenticationService,
     private router: Router,
@@ -30,13 +31,17 @@ export class SignInComponent implements OnInit {
       horizontalPosition: 'end',
     })
   }
-  login() {
+  async login() {
     const { email, password } = this.group.value;
-    this.service.login(email, password).then(x => {
-      this.router.navigate(['/home']);
-    }).catch((error: HttpErrorResponse) => {
-      const message = error.error.message || error.message;
-      this.openSnackBar(message, "Error");
-    })
+    if (this.group.valid) {
+      try {
+        await this.service.login(email, password);
+        this.router.navigate(['/home']);
+      } catch (error: HttpErrorResponse | any) {
+        console.log(error);
+        // const message = error.error.message || error.message;
+        // this.openSnackBar(message, "Error");
+      }
+    }
   }
 }

@@ -8,15 +8,16 @@ import { UsuariosComponent } from './usuario/listado-usuarios/usuarios.component
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: SignInComponent },
   {
     path: 'home', component: MenuComponent, canActivate: [AuthGuard], children: [
-      // { path: '*', redirectTo: 'comercio' },
       { path: 'comercio', component: ListadoComerciosComponent },
-      { path: 'usuario', component: UsuariosComponent }
+      { path: 'usuario', component: UsuariosComponent },
+      { path: "", redirectTo: "/home/comercio", pathMatch: "full" },
+      { path: '**', redirectTo: "/home/comercio" },
     ]
-  }
+  },
+  { path: '**', redirectTo: "/home/comercio" },
 ];
 
 @NgModule({
