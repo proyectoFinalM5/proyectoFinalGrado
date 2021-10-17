@@ -22,7 +22,7 @@ import { ComercioService } from './services/comercio.service';
 import { UsuarioService } from './services/usuario.service';
 
 @NgModule({
-  declarations: [AppComponent ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -47,4 +47,4 @@ import { UsuarioService } from './services/usuario.service';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

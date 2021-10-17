@@ -15,6 +15,7 @@ export class AutenticationService {
 
   async login(email: string, password: string) {
     const response = await this.service.post<Login, LoginResponse>('/login', { email, password });
+    console.log(response)
     if ("token" in response) {
       this.authService.setToken(response.token);
     }
