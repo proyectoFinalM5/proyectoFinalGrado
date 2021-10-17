@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class RequestService {
-  private url = 'http://apicomercios.herokuapp.com';
+  private url = 'https://app-comercios.herokuapp.com';
+
 
   constructor(private http: HttpClient) { }
   private _ruta = (path: string) => this.url.concat(path);

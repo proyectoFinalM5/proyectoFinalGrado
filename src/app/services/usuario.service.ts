@@ -22,6 +22,7 @@ export class UsuarioService {
   }
 
   deleteUsuario(id: string) {
-    return this.http.delete('http://apicomercios.herokuapp.com/usuario/' + id).toPromise(); 
+    return this.http.delete('https://app-comercios.herokuapp.com/usuario/' + id).toPromise(); 
   }
+  
 }

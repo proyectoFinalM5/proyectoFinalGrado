@@ -66,6 +66,21 @@ constructor(
         })
       }
     }
+
+    obtenerRol(rol: number){
+      switch (rol) {
+        case 1: return "Administrador"    
+        case 2: return "Editor"
+        default: return "Usuario"
+          
+      }
+
+    }
+
+    filterData($event : any){
+      this.listadoU.filter = $event.target.value;
+    }
+  
   }
   
 
