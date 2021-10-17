@@ -21,8 +21,8 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
     this.group = this.form.group({
-      email: new FormControl("melvin@gmail.com", [Validators.required, Validators.email]),
-      password: new FormControl('Melvin123.', [Validators.required])
+      email: new FormControl("", [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required])
     });
   }
   openSnackBar(message: string, action: string) {

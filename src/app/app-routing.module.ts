@@ -4,7 +4,8 @@ import { ListadoComerciosComponent } from './comercios/listado-comercios/listado
 import { AuthGuard } from './guards/auth.guard';
 import { SignInComponent } from './login/sign-in/sign-in.component';
 import { MenuComponent } from './menu/menu/menu.component';
-import { UsuariosComponent } from './usuario/usuarios/usuarios.component';
+import { UsuariosComponent } from './usuario/listado-usuarios/usuarios.component';
+
 
 const routes: Routes = [
   { path: 'login', component: SignInComponent },
