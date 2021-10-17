@@ -14,19 +14,14 @@ import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet.component';
   styleUrls: ['./listado-comercios.component.scss'],
 })
 export class ListadoComerciosComponent implements OnInit {
+  
   mapa: Mapboxgl.Map;
-
   listado: Comercio[] = [];
   listadoMapa: Comercio[] = [];
 
-  comercio: Comercio
-
   constructor(private service: ComercioService, private _bottomSheet: MatBottomSheet) {}
 
-
   ngOnInit(): void {
-
-
     (Mapboxgl as any).accessToken = environment.tokenmapa;
     this.mapa = new Mapboxgl.Map({
      container: 'map',
@@ -35,26 +30,22 @@ export class ListadoComerciosComponent implements OnInit {
      zoom:15
     });
      this.obtenerComercios();
-    //  this.mapa = new Mapa(this.listadoMapa);
-
   }
 
-  seleccionarComercio(id: string) {
-    this.listadoMapa = this.listado.filter(x => x.id === id);
-    this.generarMarcadores();
-  }
+  seleccionarComercio(comercio: Comercio) {
+    // this.listadoMapa = this.listado.filter(x => x.id === comercio.id);
+    // this.service.getComercio(comercio.id).then((data) => {
+      // this.listado = data;
+      // this.listadoMapa = data;
+      // this.listadoMapa = this.listado.filter(x => x.id === comercio.id);
+      // });
 
-  generarMarcadores(){
-    const [lon, lat] = this.comercio.coordinates;
-    
-
-    // (Mapboxgl as any).accessToken = environment.tokenmapa;
-    // this.mapa = new Mapboxgl.Map({
-    //  container: 'map',
-    //  style: 'mapbox://styles/mapbox/streets-v11',
-    //  center:[-88.93871541135655, 14.042823502825044],
-    //  zoom:16
-    // });
+      const [lon,lat] = comercio.coordinates
+      this.mapa.flyTo({
+        center: [lon,lat],
+        zoom: 20
+      });
+      console.log('lon: ' + lon + ' ' + ' lat: ' + lat);
   }
 
   openBottomSheet(): void {
@@ -65,7 +56,6 @@ export class ListadoComerciosComponent implements OnInit {
     const [lon, lat] = comercio.coordinates;
     const globo= new Mapboxgl.Popup({className:'globito'})
                 .setHTML(`<p> ${comercio.nombre} </p>`)
-
     const marca=new Mapboxgl.Marker({
       draggable:false,
       color:"orange"
@@ -73,15 +63,12 @@ export class ListadoComerciosComponent implements OnInit {
     .setLngLat([lon,lat])
     .setPopup(globo)
     .addTo(this.mapa);
-
     marca.on;
   }
-
   obtenerComercios() {
     this.service.getComercios().then((data) => {
       this.listado = data;
       this.listadoMapa = data;
-      // this.generarMarcadores();
       this.listadoMapa.forEach(c => {
         this.crearMarcador(c);
       });

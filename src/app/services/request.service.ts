@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class RequestService {
-  url = 'http://apicomercios.herokuapp.com';
+  url = 'https://app-comercios.herokuapp.com';
+  // url = 'http://localhost:3000'
   constructor(private http: HttpClient) {}
   getData<T>(
     path: string,

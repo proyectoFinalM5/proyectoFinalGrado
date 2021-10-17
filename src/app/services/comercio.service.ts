@@ -16,9 +16,13 @@ export class ComercioService {
     return this.service.getData<Comercio>('/comercio');
   }
 
-  getComercio(id:number): Promise<Comercio[]> {
+  getComercio(id:string): Promise<Comercio[]> {
     const params = new HttpParams()
     params.set('id', id)
     return this.service.getData<Comercio>('/comercio', params);
   }
+
+  // deleteComercio(id:string) {
+  //     return this.service.delete<Comercio>('/comercio',id);
+  // }
 }

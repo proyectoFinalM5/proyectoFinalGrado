@@ -9,11 +9,19 @@ import { RequestService } from './request.service';
 export class RatingService extends RequestService {
   getComentarios(comercio: Comercio) {
     const params = new HttpParams();
-    return [
-      "Que bien",
-      "Que mal",
-      "Muy bien"
+    const coments = [
+      {name: 'Malo'},
+      {name: 'Bueno'},
+      {name: 'Excelente'},
+      {name: 'Malo'},
+      {name: 'Bueno'},
+      {name: 'Excelente'},
+      {name: 'Malo'},
+      {name: 'Bueno'},
+      {name: 'Excelente'},
+
     ];
+    return coments
     // return this.getData(
     //   '/comentarios',
     //   params,
