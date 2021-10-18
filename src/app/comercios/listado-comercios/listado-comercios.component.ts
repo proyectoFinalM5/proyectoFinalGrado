@@ -1,8 +1,8 @@
-import { Mapa } from './../../generarMapa';
+
 import { Component, OnInit } from '@angular/core';
-import { Comercio } from 'src/app/entidades/comercio';
 import * as Mapboxgl from 'mapbox-gl';
-import { RequestService } from 'src/app/services/request.service';
+
+import { Comercio } from './../../entidades/comercio';
 import { ComercioService } from 'src/app/services/comercio.service';
 import { environment } from 'src/environments/environment';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
@@ -14,10 +14,11 @@ import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet.component';
   styleUrls: ['./listado-comercios.component.scss'],
 })
 export class ListadoComerciosComponent implements OnInit {
-  
+
   mapa: Mapboxgl.Map;
   listado: Comercio[] = [];
   listadoMapa: Comercio[] = [];
+  listadoCategoria: Comercio[] = [];
 
   constructor(private service: ComercioService, private _bottomSheet: MatBottomSheet) {}
 
@@ -30,26 +31,6 @@ export class ListadoComerciosComponent implements OnInit {
      zoom:15
     });
      this.obtenerComercios();
-  }
-
-  seleccionarComercio(comercio: Comercio) {
-    // this.listadoMapa = this.listado.filter(x => x.id === comercio.id);
-    // this.service.getComercio(comercio.id).then((data) => {
-      // this.listado = data;
-      // this.listadoMapa = data;
-      // this.listadoMapa = this.listado.filter(x => x.id === comercio.id);
-      // });
-
-      const [lon,lat] = comercio.coordinates
-      this.mapa.flyTo({
-        center: [lon,lat],
-        zoom: 20
-      });
-      console.log('lon: ' + lon + ' ' + ' lat: ' + lat);
-  }
-
-  openBottomSheet(): void {
-    this._bottomSheet.open(BottomSheetComponent);
   }
 
   crearMarcador(comercio: Comercio){
@@ -69,9 +50,53 @@ export class ListadoComerciosComponent implements OnInit {
     this.service.getComercios().then((data) => {
       this.listado = data;
       this.listadoMapa = data;
+
       this.listadoMapa.forEach(c => {
         this.crearMarcador(c);
+
       });
     });
   }
+
+  seleccionarComercio(comercio: Comercio) {
+      const [lon,lat] = comercio.coordinates
+      this.mapa.flyTo({
+        center: [lon,lat],
+        zoom: 20
+      });
+      // console.log('lon: ' + lon + ' ' + ' lat: ' + lat);
+  }
+
+  buscarNombreComercio(event: Event) {
+    console.log('nombre: ' + (event.target as HTMLInputElement).value);
+
+    this.service.getComercioNombre((event.target as HTMLInputElement).value).then((data) => {
+        this.listado = data;
+    });
+
+  }
+
+  openBottomSheet(): void {
+    this._bottomSheet.open(BottomSheetComponent);
+  }
+
+  //  this.listadoMapa = this.listado.filter(x => x.id === comercio.id);
+
+
+  // onSelect(event: Event) {
+  //   console.log('Trae: ' + (event.target as HTMLInputElement).value);
+
+  //     this.service.getComercioNombre((event.target as HTMLInputElement).value).then((data) => {
+  //       this.listadoCategoria = data;
+
+  //       this.listadoCategoria.forEach(c => {
+
+  //       });
+  //     });
+  // }
+
+
+
+
+
 }

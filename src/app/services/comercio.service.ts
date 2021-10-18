@@ -22,6 +22,11 @@ export class ComercioService {
     return this.service.getData<Comercio>('/comercio', params);
   }
 
+  getComercioNombre(nombre:string): Promise<Comercio[]> {
+    const params = new HttpParams()
+    params.set('nombre', nombre)
+    return this.service.getData<Comercio>('/comercio', params);
+  }
   // deleteComercio(id:string) {
   //     return this.service.delete<Comercio>('/comercio',id);
   // }
