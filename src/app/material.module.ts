@@ -95,6 +95,9 @@ const materialModules = [
   MatDividerModule,
   MatListModule,
   MatBottomSheetModule,
+  FormsModule,
+  ReactiveFormsModule,
+  MatDialogModule
 ];
 
 @NgModule({
