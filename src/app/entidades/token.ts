@@ -1,10 +1,10 @@
 export interface TokenResponse {
     auth: {
-        token: String,
-        expiredIn: Number
+        token: string,
+        expIn: number
     },
     refresh: {
-        token: String,
-        expiredIn: Number
+        token: string,
+        expIn: number
     }
 }

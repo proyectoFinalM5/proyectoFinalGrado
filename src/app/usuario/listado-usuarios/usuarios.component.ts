@@ -17,12 +17,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 
 export class UsuariosComponent implements OnInit {
-  
-  title:string= 'LISTADO USUARIOS';
 
+  title:string= 'LISTADO USUARIOS';
   listadoU: Usuario[] = [];
   
- 
 
  
   displayedColumns: string[] = ['id', 'nombre', 'apellido', 'telefono', 'email',  'rol', 'acciones'];
@@ -31,8 +29,10 @@ export class UsuariosComponent implements OnInit {
 constructor(
   private dialog: MatDialog,
   private _snackBar: MatSnackBar,
+
   private service:UsuarioService,
   ){
+
 
   
   }
@@ -79,7 +79,6 @@ constructor(
       this.listadoU.filter = $event.target.value;
     }
 
-    
   }
   
 

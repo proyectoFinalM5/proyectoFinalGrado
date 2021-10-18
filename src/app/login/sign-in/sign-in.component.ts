@@ -1,7 +1,5 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AutenticationService } from 'src/app/services/autentication.service';
 
@@ -12,11 +10,9 @@ import { AutenticationService } from 'src/app/services/autentication.service';
 })
 export class SignInComponent implements OnInit {
   group: FormGroup;
+  hide: boolean = true;
 
-  constructor(private service: AutenticationService,
-    private router: Router,
-    private form: FormBuilder,
-    private snackbar: MatSnackBar) { }
+  constructor(private service: AutenticationService, private router: Router, private form: FormBuilder) { }
 
   ngOnInit(): void {
     this.group = this.form.group({
@@ -24,19 +20,13 @@ export class SignInComponent implements OnInit {
       password: new FormControl('', [Validators.required])
     });
   }
-  openSnackBar(message: string, action: string) {
-    this.snackbar.open(message, action, {
-      verticalPosition: 'top',
-      horizontalPosition: 'end',
-    })
-  }
   login() {
     const { email, password } = this.group.value;
-    this.service.login(email, password).then(x => {
-      this.router.navigate(['/home']);
-    }).catch((error: HttpErrorResponse) => {
-      const message = error.error.message || error.message;
-      this.openSnackBar(message, "Error");
-    })
+    if (this.group.valid) {
+
+      this.service.login(email, password).then(x => {
+        this.router.navigate(['/home']);
+      })
+    }
   }
 }

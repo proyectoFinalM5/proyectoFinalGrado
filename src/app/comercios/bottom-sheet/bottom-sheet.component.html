@@ -1,9 +1,7 @@
-<mat-nav-list>
+<mat-nav-list *ngFor="let item of comentarios">
   <a href="" mat-list-item>
     <span mat-line>
-      No esta mal, ambiente tranquilo precios accesibles. No obstante falta
-      mucho en la atencion amabilidad, prontitud, disponibilidad, etc son
-      detalles q deberían valorar y analizar. No esta mal pero......
+      {{item.name}}
     </span>
     <span mat-line></span>
   </a>

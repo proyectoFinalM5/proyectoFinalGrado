@@ -5,7 +5,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class RequestService {
-  private url = 'https://app-comercios.herokuapp.com';
+
+
+  private url = 'http://app-comercios.herokuapp.com';
 
 
   constructor(private http: HttpClient) { }
@@ -15,7 +17,7 @@ export class RequestService {
     return this.http.get<T[]>(this._ruta(path), { params, headers, }).toPromise();
   }
   post<P, A>(path: string, entidad: P): Promise<P | A> {
-    return this.http.post<P>(this._ruta(path), entidad).toPromise();
+    return this.http.post<P | A>(this._ruta(path), entidad).toPromise();
   }
   put<P>(path: string, entidad: P, id: string): Promise<P> {
     const params = new HttpParams().set("id", id);
@@ -23,6 +25,6 @@ export class RequestService {
   }
   delete<D>(path: string, id: string) {
     const params = new HttpParams().set("id", id);
-    return this.http.delete<D>(this._ruta(path), { params }).toPromise();
+    return this.http.delete<D>(this._ruta(path), { params: params }).toPromise();
   }
 }

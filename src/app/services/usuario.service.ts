@@ -10,13 +10,10 @@ import { Usuario } from '../entidades/usuario';
 export class UsuarioService {
 
 
-
   constructor(private service: RequestService,
     private http: HttpClient) { }
 
 
-
-    
   getUsuarios(): Promise<Usuario[]>  {
     return this.service.getData<Usuario>('/usuario');
   }
@@ -28,6 +25,7 @@ export class UsuarioService {
   }
 
   deleteUsuario(id: string) {
+
     return this.http.delete('https://app-comercios.herokuapp.com/usuario/' + id).toPromise(); 
   }
   
@@ -38,5 +36,5 @@ export class UsuarioService {
   agregarUsuario(usuario: Usuario ){
     return this.http.post('https://app-comercios.herokuapp.com/usuario' , usuario);
   }
-
+   
 }

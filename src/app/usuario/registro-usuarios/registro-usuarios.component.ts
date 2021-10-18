@@ -1,5 +1,5 @@
+
 import { HttpClient } from '@angular/common/http';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit, Inject } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -17,6 +17,7 @@ export class RegistroUsuariosComponent implements OnInit {
   title= 'NUEVO USUARIO';
   hide = true;
   email = new FormControl('', [Validators.required, Validators.email]);
+
  
   usuario:Usuario = {} as Usuario;
   usuarios:any;
@@ -25,12 +26,14 @@ export class RegistroUsuariosComponent implements OnInit {
 
   roles:string[]=['administrador', 'editor', 'usuario']
 
+
   getErrorMessage() {
     if (this.email.hasError('required')) {
       return 'You must enter a value';
     }
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
+
 
 
   constructor(
@@ -77,4 +80,5 @@ export class RegistroUsuariosComponent implements OnInit {
  
 
   
+
 }

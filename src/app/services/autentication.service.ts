@@ -16,12 +16,12 @@ export class AutenticationService {
   async login(email: string, password: string) {
     const response = await this.service.post<Login, LoginResponse>('/login', { email, password });
     if ("token" in response) {
-      this.authService.setToken(response.token);
+      this.authService.setToken(response);
     }
     return response;
   }
 }
-type LoginResponse = {
-  usuario: Usuario,
+export type LoginResponse = {
+  user: Usuario,
   token: TokenResponse
 }
