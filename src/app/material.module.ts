@@ -41,6 +41,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatBottomSheetModule, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import {MatDialogModule} from '@angular/material/dialog';
 
+
+
 const materialModules = [
   CdkTreeModule,
   MatAutocompleteModule,
@@ -93,9 +95,6 @@ const materialModules = [
   MatDividerModule,
   MatListModule,
   MatBottomSheetModule,
-  FormsModule,
-  ReactiveFormsModule,
-  MatDialogModule
 ];
 
 @NgModule({

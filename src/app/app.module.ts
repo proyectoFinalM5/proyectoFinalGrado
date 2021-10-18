@@ -20,13 +20,12 @@ import { AuthInterceptor } from './interceptores/auth.interceptor';
 import { AuthService } from './services/auth.service';
 import { ComercioService } from './services/comercio.service';
 import { UsuarioService } from './services/usuario.service';
-import { DialogErrorService } from './services/dialog-error.service';
-import { AutenticationService } from './services/autentication.service';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     AppRoutingModule,
     ComerciosModule,
@@ -34,7 +33,7 @@ import { AutenticationService } from './services/autentication.service';
     MenuModule,
     BrowserAnimationsModule,
     MaterialModule,
-    LoginModule,
+    LoginModule
   ],
   providers: [
     AuthService,

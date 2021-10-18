@@ -5,6 +5,23 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class RequestService {
+
+  url = 'https://app-comercios.herokuapp.com';
+  // url = 'http://localhost:3000'
+  constructor(private http: HttpClient) {}
+  getData<T>(
+    path: string,
+    params?: HttpParams,
+    headers?: HttpHeaders,
+    url?: string
+  ): Promise<T[]> {
+    return this.http
+      .get<T[]>((url || this.url).concat(path), {
+        params,
+        headers,
+      })
+      .toPromise();
+
   private url = 'http://app-comercios.herokuapp.com';
 
   constructor(private http: HttpClient) { }
@@ -23,5 +40,6 @@ export class RequestService {
   delete<D>(path: string, id: string) {
     const params = new HttpParams().set("id", id);
     return this.http.delete<D>(this._ruta(path), { params: params }).toPromise();
+
   }
 }
