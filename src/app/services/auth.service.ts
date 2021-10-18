@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { TokenResponse } from '../entidades/token';
 
 @Injectable({
@@ -6,11 +7,24 @@ import { TokenResponse } from '../entidades/token';
 })
 
 export class AuthService {
-  constructor() { }
+  constructor(private router: Router) { }
 
   logout(): void {
-    localStorage.clear();
+    // localStorage.clear();
+    localStorage.removeItem('AUTH_TOKEN');
+    this.router.navigate(['login'])
   }
+
+  verifyLogged(): boolean {
+    const token = localStorage.getItem('AUTH_TOKEN');
+    // return token ? true : false;
+    return !!token;
+  }
+
+
+
+
+
   getToken(): String | null {
     return localStorage.getItem('AUTH_TOKEN');
   }

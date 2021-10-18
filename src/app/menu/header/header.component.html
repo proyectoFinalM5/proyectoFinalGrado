@@ -1,38 +1,38 @@
 <mat-toolbar>
-    <mat-toolbar-row class="justify-content-between">
-      <button mat-icon-button (click)="toggleSidebar()">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <div class="row mr-2 ml-auto">
-        <ul class="row m-0 align-items-center">
-          <li>
-            <button
-              mat-button
-              [matMenuTriggerFor]="menu"
-              class="user mt-2 d-flex align-items-center"
-            >
+  <mat-toolbar-row class="justify-content-between">
+    <button mat-icon-button (click)="toggleSidebar()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="row mr-2 ml-auto">
+      <ul class="row m-0 align-items-center">
+        <li>
+          <button
+            mat-button
+            [matMenuTriggerFor]="menu"
+            class="user mt-2 d-flex align-items-center"
+          >
             <ngx-avatar name="John Doe"></ngx-avatar>
-              User Name
-              <mat-icon class="user-image-icon ml-1"
-                >keyboard_arrow_down</mat-icon
-              >
+            User Name
+            <mat-icon class="user-image-icon ml-1"
+              >keyboard_arrow_down</mat-icon
+            >
+          </button>
+          <mat-menu #menu="matMenu">
+            <button (click)="onLogout()" mat-menu-item>
+              <mat-icon>exit_to_app</mat-icon>
+              Cerrar Sesión
             </button>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item>
-                <mat-icon>exit_to_app</mat-icon>
-                Cerrar Sesión
-              </button>
-              <button mat-menu-item>
-                <mat-icon>create</mat-icon>
-                Editar Cuenta
-              </button>
-              <button mat-menu-item>
-                <mat-icon>clear</mat-icon>
-                Eliminar Cuenta
-              </button>
-            </mat-menu>
-          </li>
-        </ul>
-      </div>
-    </mat-toolbar-row>
-  </mat-toolbar>
+            <button mat-menu-item>
+              <mat-icon>create</mat-icon>
+              Editar Cuenta
+            </button>
+            <button mat-menu-item>
+              <mat-icon>clear</mat-icon>
+              Eliminar Cuenta
+            </button>
+          </mat-menu>
+        </li>
+      </ul>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
