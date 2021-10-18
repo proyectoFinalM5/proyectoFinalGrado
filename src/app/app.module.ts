@@ -20,6 +20,7 @@ import { AuthInterceptor } from './interceptores/auth.interceptor';
 import { AuthService } from './services/auth.service';
 import { ComercioService } from './services/comercio.service';
 import { UsuarioService } from './services/usuario.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent ],
@@ -33,6 +34,7 @@ import { UsuarioService } from './services/usuario.service';
     BrowserAnimationsModule,
     MaterialModule,
     LoginModule,
+    FormsModule
   ],
   providers: [
     AuthService,

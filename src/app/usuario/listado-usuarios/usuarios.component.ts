@@ -8,7 +8,7 @@ import { RequestService } from 'src/app/services/request.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
 
 @Component({
   selector: 'app-usuarios',
@@ -17,7 +17,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 
 export class UsuariosComponent implements OnInit {
-  usuarioForm: FormGroup;
+  
   title:string= 'LISTADO USUARIOS';
 
   listadoU: Usuario[] = [];
@@ -31,7 +31,8 @@ export class UsuariosComponent implements OnInit {
 constructor(
   private dialog: MatDialog,
   private _snackBar: MatSnackBar,
-  private service:UsuarioService){
+  private service:UsuarioService,
+  ){
 
   
   }
@@ -58,7 +59,6 @@ constructor(
   }
     eliminarUsuario(id: string){
       console.log(id);
-      
       if(confirm("estas seguro de eliminar este usuario?")){
         this.service.deleteUsuario(id).then(()=>{
           this.obtenerUsuarios();
@@ -66,7 +66,6 @@ constructor(
         })
       }
     }
-
     obtenerRol(rol: number){
       switch (rol) {
         case 1: return "Administrador"    
@@ -74,13 +73,13 @@ constructor(
         default: return "Usuario"
           
       }
-
     }
 
     filterData($event : any){
       this.listadoU.filter = $event.target.value;
     }
-  
+
+    
   }
   
 
