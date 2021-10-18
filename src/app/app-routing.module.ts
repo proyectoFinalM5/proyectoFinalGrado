@@ -10,7 +10,9 @@ import { UsuariosComponent } from './usuario/listado-usuarios/usuarios.component
 const routes: Routes = [
   { path: 'login', component: SignInComponent },
   {
+
     path: 'home', component: MenuComponent, canActivate: [AuthGuard], children: [
+
       { path: 'comercio', component: ListadoComerciosComponent },
       { path: 'usuario', component: UsuariosComponent },
       { path: "", redirectTo: "/home/comercio", pathMatch: "full" },

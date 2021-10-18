@@ -20,6 +20,7 @@ import { AuthInterceptor } from './interceptores/auth.interceptor';
 import { AuthService } from './services/auth.service';
 import { ComercioService } from './services/comercio.service';
 import { UsuarioService } from './services/usuario.service';
+import { FormsModule } from '@angular/forms';
 
 import { FormsModule } from '@angular/forms';
 
@@ -38,7 +39,11 @@ import { AutenticationService } from './services/autentication.service';
     MenuModule,
     BrowserAnimationsModule,
     MaterialModule,
+
+    FormsModule
+
     LoginModule
+
   ],
   providers: [
     AuthService,
