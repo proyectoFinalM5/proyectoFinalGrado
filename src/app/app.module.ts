@@ -22,7 +22,6 @@ import { ComercioService } from './services/comercio.service';
 import { UsuarioService } from './services/usuario.service';
 import { FormsModule } from '@angular/forms';
 
-import { FormsModule } from '@angular/forms';
 
 import { DialogErrorService } from './services/dialog-error.service';
 import { AutenticationService } from './services/autentication.service';
@@ -39,10 +38,8 @@ import { AutenticationService } from './services/autentication.service';
     MenuModule,
     BrowserAnimationsModule,
     MaterialModule,
-
-    FormsModule
-
-    LoginModule
+    FormsModule,
+    LoginModule,
 
   ],
   providers: [
