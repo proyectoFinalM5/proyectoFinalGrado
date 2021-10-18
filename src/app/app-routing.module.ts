@@ -4,18 +4,20 @@ import { ListadoComerciosComponent } from './comercios/listado-comercios/listado
 import { AuthGuard } from './guards/auth.guard';
 import { SignInComponent } from './login/sign-in/sign-in.component';
 import { MenuComponent } from './menu/menu/menu.component';
-import { UsuariosComponent } from './usuario/usuarios/usuarios.component';
+import { UsuariosComponent } from './usuario/listado-usuarios/usuarios.component';
+
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: SignInComponent },
   {
     path: 'home', component: MenuComponent, canActivate: [AuthGuard], children: [
-      { path: '', redirectTo: 'comercio', pathMatch: 'full' },
       { path: 'comercio', component: ListadoComerciosComponent },
-      { path: 'usuario', component: UsuariosComponent }
+      { path: 'usuario', component: UsuariosComponent },
+      { path: "", redirectTo: "/home/comercio", pathMatch: "full" },
+      { path: '**', redirectTo: "/home/comercio" },
     ]
-  }
+  },
+  { path: '**', redirectTo: "/home/comercio" },
 ];
 
 @NgModule({

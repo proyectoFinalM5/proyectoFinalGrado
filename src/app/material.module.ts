@@ -26,6 +26,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
@@ -38,7 +39,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { AvatarModule } from 'ngx-avatar'
 import { MatDividerModule } from '@angular/material/divider';
 import { MatBottomSheetModule, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
-
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 
@@ -94,7 +95,6 @@ const materialModules = [
   MatDividerModule,
   MatListModule,
   MatBottomSheetModule,
-
 ];
 
 @NgModule({
