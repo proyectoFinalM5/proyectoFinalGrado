@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AutenticationService } from 'src/app/services/autentication.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -16,13 +17,17 @@ export class SignInComponent implements OnInit {
   constructor(private service: AutenticationService,
     private router: Router,
     private form: FormBuilder,
-    private snackbar: MatSnackBar) { }
+    private snackbar: MatSnackBar,
+    private authService: AuthService) { }
 
-  ngOnInit(): void {
-    this.group = this.form.group({
-      email: new FormControl("", [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required])
-    });
+    ngOnInit(): void {
+    if (this.authService.verifyLogged()) {
+      this.group = this.form.group({
+        email: new FormControl("", [Validators.required, Validators.email]),
+        password: new FormControl('', [Validators.required])
+      });
+      this.router.navigate(['home']);
+    }
   }
   openSnackBar(message: string, action: string) {
     this.snackbar.open(message, action, {
