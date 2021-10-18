@@ -23,7 +23,9 @@ export class AuthService {
 
 
 
-
+  getUsuario() {
+    return JSON.parse(localStorage.getItem("usuario") || "{}");
+  }
 
   getToken(): String | null {
     return localStorage.getItem('AUTH_TOKEN');
