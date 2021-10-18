@@ -28,11 +28,12 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(clonedReq).pipe(tap(e => {
       if (req.method == "POST" || req.method == "PUT")
         if (e instanceof HttpResponse && e.status == 200) {
-          this.snackBar.openSnackBarSuccess("Guardado correctamente");
+          const path = req.url.split('/')[3];
+          this.snackBar.openSnackBarSuccess(path === "login" ? "Bienvenido a BUSCA_RUMBO" : "Guardado correctamente");
         }
     }),
       catchError((error: HttpErrorResponse) => {
-        if (error.status == 401) {
+        if (error.status == 401 && error.error?.expired) {
           this.authService.logout();
           this.router.navigate(['/login']);
         }
