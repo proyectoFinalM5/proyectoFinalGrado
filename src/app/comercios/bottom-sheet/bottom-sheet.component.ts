@@ -16,15 +16,16 @@ import { RatingService } from 'src/app/services/rating.service';
 })
 export class BottomSheetComponent implements OnInit {
   @Input() comercio: Comercio;
-  comentarios: [];
+  comentarios: any[];
   constructor(
     private _bottomSheetRef: MatBottomSheetRef<BottomSheetComponent>,
     private service: RatingService
   ) {}
 
   ngOnInit(): void {
-    this.service.getComentarios(this.comercio).then((x) => {
-      this.comentarios = this.comentarios;
-    });
+    this.comentarios = this.service.getComentarios(this.comercio);
+    // this.service.getComentarios(this.comercio).then((x) => {
+    //   this.comentarios = this.comentarios;
+    // });
   }
 }

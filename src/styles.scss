@@ -1,6 +1,7 @@
 html,
 body {
   height: 100%;
+
 }
 
 body {
@@ -9,3 +10,21 @@ body {
   min-height: 100vh;
   background: #e2e2e2;
 }
+
+
+.mat-drawer {
+  width: 20vh;
+}
+
+.success-snackbar{
+ background: rgb(22, 83, 10);
+ color:rgb(255, 255, 255)
+}
+.error-snackbar{
+ background: rgb(199, 30, 15);
+ color: rgb(255, 255, 255)
+}
+.mat-simple-snackbar-action {
+  color:rgb(227, 238, 14)
+}
+

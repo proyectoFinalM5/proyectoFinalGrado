@@ -1,5 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+
+import { HttpClient, HttpParams } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RequestService } from 'src/app/services/request.service';
 import { Usuario } from '../entidades/usuario';
 
@@ -8,12 +11,36 @@ import { Usuario } from '../entidades/usuario';
 })
 export class UsuarioService {
 
+
   constructor(private service: RequestService, private http: HttpClient) { }
 
-  getComercios(): Promise<Usuario[]>  {
+
+  constructor(private service: RequestService,
+    private http: HttpClient) { }
+
+
+  getUsuarios(): Promise<Usuario[]>  {
     return this.service.getData<Usuario>('/usuario');
   }
-  deleteUsuario(id: string) {
-    return this.http.delete('https://app-comercios.herokuapp.com/usuario/' + id).toPromise();
+
+
+  getUsuario(id:string): Promise<Usuario[]> {
+    const params = new HttpParams()
+    params.set('id', id)
+    return this.service.getData<Usuario>('/usuario', params);
   }
+
+  deleteUsuario(id: string) {
+
+    return this.http.delete('https://app-comercios.herokuapp.com/usuario/' + id).toPromise(); 
+  }
+  
+  // guardarProducto(usuario: Usuario) {
+  //   return this.http.post('https://app-comercios.herokuapp.com/usuario/' , usuario);
+  // }
+
+  agregarUsuario(usuario: Usuario ){
+    return this.http.post('https://app-comercios.herokuapp.com/usuario' , usuario);
+  }
+   
 }
