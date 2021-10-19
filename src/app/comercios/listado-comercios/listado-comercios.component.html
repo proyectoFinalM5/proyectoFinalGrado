@@ -1,26 +1,89 @@
+<div class="container m-3" fxLayout>
 
-<div class="sidebar">
-  <div class="heading">
-    <h1>Comercios</h1>
+  <div id="listado">
+    <mat-form-field appearance="legacy" >
+      <!-- <mat-icon matSuffix>shop</mat-icon> -->
+      <mat-label>Nombre del comercio</mat-label>
+      <input (keyup)="buscarNombreComercio($event)" matInput placeholder="Nombre del comercio" />
+    </mat-form-field>
+
+
+    <!-- <mat-form-field appearance="fill" >
+      <mat-label>Categorias</mat-label>
+      <mat-select (change)="onSelect($event)" name="categoria">
+        <mat-option *ngFor="let c of listadoCategoria" [value]="c">
+          {{ c.categoria }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> -->
+
+    <mat-accordion>
+      <mat-expansion-panel class="mb-2" *ngFor="let comercio of listado">
+        <mat-expansion-panel-header style="background-color: #d6dbdf">
+          <mat-panel-title>
+            <ngx-avatar
+              class=""
+              size="40"
+              [src]="comercio.logo"
+              fxLayoutAlign="flex-start"
+            >
+            </ngx-avatar>
+            {{ comercio.nombre }}
+          </mat-panel-title>
+          <mat-panel-description fxLayoutAlign="flex-end">
+            {{ comercio.categoria }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-list>
+          <mat-list-item>
+            Propietario: {{ comercio.propietario }}
+          </mat-list-item>
+          <mat-list-item> Teléfono: {{ comercio.telefono }} </mat-list-item>
+          <mat-list-item *ngIf="comercio.redes_sociales">
+            Red social: <a href=""> {{ comercio.redes_sociales }}</a>
+          </mat-list-item>
+          <mat-list-item>
+            Descripción: {{ comercio.descripcion }}
+          </mat-list-item>
+        </mat-list>
+
+        <div>
+          <button
+            (click)="openBottomSheet()"
+            mat-icon-button
+            aria-label="Eliminar"
+            matTooltip="Eliminar"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button
+            (click)="seleccionarComercio(comercio)"
+            mat-icon-button
+            aria-label="Editar"
+            matTooltip="Editar"
+          >
+            <mat-icon>note_add</mat-icon>
+          </button>
+
+          <button
+            (click)="openBottomSheet()"
+            mat-icon-button
+            aria-label="Comentarios"
+            matTooltip="Comentarios"
+          >
+            <mat-icon>question_answer</mat-icon>
+          </button>
+          <button
+            (click)="seleccionarComercio(comercio)"
+            mat-icon-button
+            aria-label="Mapa"
+            matTooltip="Ver en mapa"
+          >
+            <mat-icon>room</mat-icon>
+          </button>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
   </div>
-  <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
-    <mat-expansion-panel *ngFor="let comercio of listado">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <strong>{{ comercio.nombre }}</strong>
-        </mat-panel-title>
-        <mat-panel-description> </mat-panel-description>
-      </mat-expansion-panel-header>
-      <mat-list>
-        <dt class="example-dt">Categoria: {{ comercio.categoria }}</dt>
-        <dt class="example-dt">Propietario: {{ comercio.propietario }}</dt>
-        <dt class="example-dt" *ngIf="comercio.redes_sociales">
-          Redes sociales: {{ comercio.redes_sociales }}
-        </dt>
-        <dt class="example-dt">Teléfono: {{ comercio.telefono }}</dt>
-        <dt class="example-dt">Descripcion: {{ comercio.descripcion }}</dt>
-      </mat-list>
-    </mat-expansion-panel>
-  </cdk-virtual-scroll-viewport>
+  <div id="map"></div>
 </div>
-<div id="map" class="map"></div>

@@ -1,5 +1,5 @@
 <div class="container">
-  <form [formGroup]="group">
+  <form [formGroup]="group" (ngSubmit)="enviarPost()">
     <mat-grid-list cols="1" rowHeight="350px" >
       <mat-grid-tile>
 
@@ -8,27 +8,27 @@
             <div class="col-6">
               <mat-form-field appearance="fill">
                 <mat-label required>Nombre</mat-label>
-                <input matInput type="text" formControlName="nombre">
+                <input [(ngModel)]="comercio.nombre" name="nombre" matInput type="text" formControlName="nombre">
               </mat-form-field>
 
               <mat-form-field appearance="fill">
                 <mat-label>Longitud</mat-label>
-                <input matInput placeholder="14.014281232591852">
+                <input  name="longitud" matInput placeholder="14.014281232591852">
               </mat-form-field>
 
               <mat-form-field appearance="fill">
                 <mat-label>Latitud</mat-label>
-                <input matInput type="text" placeholder="-88.7682016610587">
-              </mat-form-field>
+                <input  name="latitud" matInput type="text" placeholder="-88.7682016610587">
+              </mat-form-field> 
 
               <mat-form-field appearance="fill">
                 <mat-label>Propietario</mat-label>
-                <input matInput type="text">
+                <input [(ngModel)]="comercio.propietario" name="propietario" matInput type="text">
               </mat-form-field>
 
               <mat-form-field appearance="fill">
                 <mat-label>Redes sociales</mat-label>
-                <input matInput type="url" placeholder="https://facebook.com">
+                <input [(ngModel)]="comercio.redes_sociales" name="redes_sociales" matInput type="url" placeholder="https://facebook.com">
               </mat-form-field>
             </div>
           </div>
@@ -39,12 +39,12 @@
               
               <mat-form-field appearance="fill">
                 <mat-label>Teléfono</mat-label>
-                <input type="tel" matInput placeholder="5555-1234">
+                <input [(ngModel)]="comercio.telefono" name="telefono" type="tel" matInput placeholder="5555-1234">
               </mat-form-field>
               
               <mat-form-field appearance="fill">
                 <mat-label>Descripción</mat-label>
-                <textarea matInput></textarea>
+                <textarea [(ngModel)]="comercio.descripcion" name="descripcion" matInput></textarea>
               </mat-form-field>
 
               <mat-form-field appearance="fill">
@@ -69,8 +69,7 @@
     </mat-grid-list>
 
     <div fxLayoutAlign="center center">
-      <button mat-stroked-button>Guardar</button>
+      <button type="submit" mat-stroked-button>Guardar</button>
     </div>
-
   </form> 
 </div>

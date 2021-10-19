@@ -6,10 +6,27 @@ import { RequestService } from './request.service';
 @Injectable({
   providedIn: 'root',
 })
-export class RatingService {
-  constructor(private http: HttpClient) { }
-  getComentarios(comercio: Comercio): Promise<any> {
+export class RatingService extends RequestService {
+
+
+
+  getComentarios() {
     const params = new HttpParams();
-    return this.http.get('https://bruno.herokuapp.com/comentarios', { params }).toPromise();
+    // const coments = [
+    //   {name: 'Malo'},
+    //   {name: 'Bueno'},
+    //   {name: 'Excelente'},
+
+    // ];
+    // return coments
+    // return this.getData(
+    //   '/comentario',
+    //   params,
+    //   undefined,
+    //   'https://comentario-random.herokuapp.com/', params
+    // );
   }
+
 }
+
+

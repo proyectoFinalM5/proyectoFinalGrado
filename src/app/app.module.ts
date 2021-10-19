@@ -20,11 +20,17 @@ import { AuthInterceptor } from './interceptores/auth.interceptor';
 import { AuthService } from './services/auth.service';
 import { ComercioService } from './services/comercio.service';
 import { UsuarioService } from './services/usuario.service';
+import { FormsModule } from '@angular/forms';
+
+
+import { DialogErrorService } from './services/dialog-error.service';
+import { AutenticationService } from './services/autentication.service';
 
 @NgModule({
-  declarations: [AppComponent ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     AppRoutingModule,
     ComerciosModule,
@@ -32,13 +38,17 @@ import { UsuarioService } from './services/usuario.service';
     MenuModule,
     BrowserAnimationsModule,
     MaterialModule,
+    FormsModule,
     LoginModule,
+
   ],
   providers: [
     AuthService,
     RequestService,
     ComercioService,
     UsuarioService,
+    DialogErrorService,
+    AutenticationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
@@ -47,4 +57,4 @@ import { UsuarioService } from './services/usuario.service';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

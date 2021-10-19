@@ -1,6 +1,30 @@
 <mat-nav-list>
-    <div class="logo py-4">
-      <!-- <img src="./assets/LogoL.png" alt="Company Logo" /> -->
+    <div class="row ml-auto">
+      <ul class="row align-items-center">
+        <li>
+          <button mat-button [matMenuTriggerFor]="menu" class="user mt-1 d-flex align-items-center" style="color: white;">
+            <ngx-avatar [name]="nombreU"></ngx-avatar>
+            {{nombreU}}
+            <mat-icon class="user-image-icon ml-1"
+              >keyboard_arrow_down</mat-icon
+            >
+          </button>
+          <mat-menu #menu="matMenu">
+            <button (click)="onLogout()" mat-menu-item>
+              <mat-icon>exit_to_app</mat-icon>
+              Cerrar Sesión
+            </button>
+            <!-- <button mat-menu-item>
+              <mat-icon>create</mat-icon>
+              Editar Cuenta
+            </button> -->
+            <button (click)="deleteCuenta()" mat-menu-item>
+              <mat-icon>clear</mat-icon>
+              Eliminar Cuenta
+            </button>
+          </mat-menu>
+        </li>
+      </ul>
     </div>
     <mat-divider></mat-divider>
     <h2 matSubheader class="mt-2">OPCIONES</h2>
