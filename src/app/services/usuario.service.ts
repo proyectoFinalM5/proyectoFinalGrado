@@ -1,4 +1,6 @@
+
 import { HttpClient, HttpParams } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RequestService } from 'src/app/services/request.service';
@@ -10,6 +12,9 @@ import { Usuario } from '../entidades/usuario';
 export class UsuarioService {
 
 
+  constructor(private service: RequestService, private http: HttpClient) { }
+
+
   constructor(private service: RequestService,
     private http: HttpClient) { }
 
@@ -17,6 +22,7 @@ export class UsuarioService {
   getUsuarios(): Promise<Usuario[]>  {
     return this.service.getData<Usuario>('/usuario');
   }
+
 
   getUsuario(id:string): Promise<Usuario[]> {
     const params = new HttpParams()
