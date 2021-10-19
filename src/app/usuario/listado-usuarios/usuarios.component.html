@@ -78,7 +78,7 @@
     <button mat-icon-button class="pointer"     style="color: #1f516f" matTooltip="Editar usuario" >
       <mat-icon (click)="openDialog(element)">edit</mat-icon>
     </button>
-    <button mat-icon-button  (click)="eliminarUsuario(element._id)"  class="pointer" style="color: #e15639" matTooltip="Eliminar Usuario" >
+    <button mat-icon-button *ngIf="element.rol!==1" (click)="eliminarUsuario(element._id)"  class="pointer" style="color: #e15639" matTooltip="Eliminar Usuario" >
 
 
       <mat-icon>delete</mat-icon>

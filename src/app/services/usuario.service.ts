@@ -15,21 +15,21 @@ export class UsuarioService {
 
 
   getUsuarios(): Promise<Usuario[]> {
-    return this.service.getData<Usuario>('/usuario');
+    return this.service.getData<Usuario>('usuario');
   }
 
   getUsuario(id: string): Promise<Usuario[]> {
     const params = new HttpParams()
     params.set('id', id)
-    return this.service.getData<Usuario>('/usuario', params);
+    return this.service.getData<Usuario>('usuario', params);
   }
 
   deleteUsuario(id: string) {
-    return this.service.delete<Usuario>('/usuario', id);
+    return this.service.delete<Usuario>('usuario', id);
   }
 
   agregarUsuario(usuario: Usuario) {
-    return this.service.post('/usuario', usuario);
+    return this.service.post('usuario', usuario);
   }
 
   actualizarUsuario(id: string, usuario: Usuario) {

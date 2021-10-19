@@ -9,11 +9,11 @@
     
 </div>
 
-<form [formGroup]="myGroup" class="normal-form" (ngSubmit)="usuario.id===undefined ? enviarPost(): editarUsuario()">
+<form [formGroup]="myGroup" class="normal-form" (ngSubmit)="usuario._id===undefined ? enviarPost(): editarUsuario()">
 <mat-grid-list cols="1" rowHeight="250px" >
     <mat-grid-tile>
         <div class="controles-container">
-            <input type="hidden" formControlName="id"> 
+           
             <mat-form-field appearance="fill" >
                 <mat-label  >Nombre</mat-label>
                 <input [(ngModel)]="usuario.nombre " matInput name="nombre" formControlName="nombre">
@@ -67,7 +67,7 @@
 <div>
     <mat-dialog-actions align="center">
 
-      <button type="submit" class="btn btn-dark btn-lg">Agregar</button>
+      <button type="submit" class="btn btn-dark btn-lg">{{usuario._id==undefined?"Agregar":"Editar"}}</button>
 
   </mat-dialog-actions>
 </div>

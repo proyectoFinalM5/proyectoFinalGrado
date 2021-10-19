@@ -4,6 +4,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { Usuario } from 'src/app/entidades/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
@@ -21,7 +22,7 @@ export class RegistroUsuariosComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<RegistroUsuariosComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { usuario: Usuario },
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private aRoute: ActivatedRoute,
     private service: UsuarioService,
   ) {
@@ -39,10 +40,13 @@ export class RegistroUsuariosComponent implements OnInit {
       password: new FormControl('', [Validators.required]),
       rol: new FormControl('', [Validators.required]),
     });
-    this.usuario = this.data['usuario']
+
+    this.usuario = this.data['usuario']||{}
+   
   }
 
   enviarPost() {
+    this.usuario.password = this.myGroup.get('password')?.value
     this.service.agregarUsuario(this.usuario)
       .then(() => {
         this.dialogRef.close()
@@ -50,7 +54,8 @@ export class RegistroUsuariosComponent implements OnInit {
   }
 
   editarUsuario() {
-    this.service.actualizarUsuario(this.usuario.id, this.usuario)
+    this.usuario.password = this.myGroup.get('password')?.value
+    this.service.actualizarUsuario(this.usuario._id, this.usuario)
       .then(() => {
         this.dialogRef.close()
       })
