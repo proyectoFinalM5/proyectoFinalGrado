@@ -25,6 +25,7 @@
     "mapbox-gl": "^2.5.0",
     "ng-starrating": "^1.0.20",
     "ngx-avatar": "^4.1.0",
+    "ngx-material-file-input": "^2.1.1",
     "ngx-permissions": "^8.1.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",

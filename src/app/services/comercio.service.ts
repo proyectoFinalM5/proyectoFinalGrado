@@ -51,7 +51,7 @@ export class ComercioService {
   //     return this.service.delete<Comercio>('/comercio',id);
   // }
 
-  deleteComercio(id: string) {
+  deleteComercioMapa(id: string) {
     return this.request.delete<Comercio>('comercio',id);
   }
 

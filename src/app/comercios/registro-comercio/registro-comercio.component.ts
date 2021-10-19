@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./registro-comercio.component.scss']
 })
 export class RegistroComercioComponent implements OnInit {
-  
+
   group: FormGroup;
   comercio: Comercio = {} as Comercio;
   data : any;
@@ -20,7 +20,7 @@ export class RegistroComercioComponent implements OnInit {
 
 
   constructor(private service: ComercioService,
-    private http: HttpClient, 
+    private http: HttpClient,
     private activatedRoiuter:ActivatedRoute,
     private router: Router,
     private form: FormBuilder) { }
@@ -35,21 +35,21 @@ export class RegistroComercioComponent implements OnInit {
       telefono: new FormControl('', [Validators.required]),
       descripcion: new FormControl('', [Validators.required]),
       categoria: new FormControl('', [Validators.required]),
-      logo: new FormControl('', [Validators.required]),  
+      logo: new FormControl('', [Validators.required]),
     });
-    this.comercio = this.data['comercio']||{} 
+    this.comercio = this.data['comercio']||{}
   }
 
   enviarPost() {
     console.log(this.comercio);
     this.service.NuevoComercio(this.comercio)
-      
+
   }
 
   editarComercio() {
-    this.service.actualizarComercio(this.comercio.id, this.comercio)
+    this.service.actualizarComercio(this.comercio._id, this.comercio)
       .then(() => {
       })
   }
-  
+
 }
