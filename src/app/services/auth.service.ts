@@ -1,4 +1,10 @@
 import { Injectable } from '@angular/core';
+
+
+import { Router } from '@angular/router';
+import { TokenResponse } from '../entidades/token';
+
+
 import { LoginResponse } from './autentication.service';
 import { DialogErrorService } from './dialog-error.service';
 
@@ -7,13 +13,28 @@ import { DialogErrorService } from './dialog-error.service';
 })
 
 export class AuthService {
-  constructor(private service: DialogErrorService) { }
+
+  constructor(private service: DialogErrorService, private router: Router) { }
 
   logout(): void {
-    localStorage.clear();
+    // localStorage.clear();
+    localStorage.removeItem('AUTH_TOKEN');
+    this.router.navigate(['login'])
   }
-  getToken(): String | null {
-    return localStorage.getItem('AUTH_TOKEN');
+
+
+  verifyLogged(): boolean {
+    const token = localStorage.getItem('AUTH_TOKEN');
+    return token ? true : false;
+    // return !!token;
+  }
+
+
+
+  getToken(tag: string = "AUTH_"): String | null {
+    return localStorage.getItem(tag + 'TOKEN');
+
+
   }
   getUsuario() {
     return JSON.parse(localStorage.getItem("usuario") || "{}");
