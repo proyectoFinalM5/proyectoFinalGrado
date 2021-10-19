@@ -29,7 +29,7 @@ export class AuthInterceptor implements HttpInterceptor {
       if (req.method == "POST" || req.method == "PUT")
         if (e instanceof HttpResponse && e.status == 200) {
           const path = req.url.split('/')[3];
-          this.snackBar.openSnackBarSuccess(path === "login" ? "Bienvenido a BUSCA_RUMBO" : "Guardado correctamente");
+          this.snackBar.openSnackBarSuccess(path === "login" ? "Bienvenido a YouMap" : "Guardado correctamente");
         }
     }),
       catchError((error: HttpErrorResponse) => {
