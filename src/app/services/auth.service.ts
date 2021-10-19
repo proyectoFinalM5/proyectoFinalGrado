@@ -10,7 +10,7 @@ import { DialogErrorService } from './dialog-error.service';
 
 export class AuthService {
 
-  constructor(private service: DialogErrorService) { }
+  constructor(private service: DialogErrorService, private router: Router) { }
 
   logout(): void {
     // localStorage.clear();
@@ -21,16 +21,9 @@ export class AuthService {
 
   verifyLogged(): boolean {
     const token = localStorage.getItem('AUTH_TOKEN');
-    // return token ? true : false;
-    return !!token;
+    return token ? true : false;
+    // return !!token;
   }
-
-
-
-  getUsuario() {
-    return JSON.parse(localStorage.getItem("usuario") || "{}");
-  }
-
 
   getToken(tag: string = "AUTH_"): String | null {
     return localStorage.getItem(tag + 'TOKEN');

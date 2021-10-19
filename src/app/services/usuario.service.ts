@@ -15,10 +15,6 @@ export class UsuarioService {
   constructor(private service: RequestService, private http: HttpClient) { }
 
 
-  constructor(private service: RequestService,
-    private http: HttpClient) { }
-
-
   getUsuarios(): Promise<Usuario[]>  {
     return this.service.getData<Usuario>('/usuario');
   }
@@ -32,9 +28,9 @@ export class UsuarioService {
 
   deleteUsuario(id: string) {
 
-    return this.http.delete('https://app-comercios.herokuapp.com/usuario/' + id).toPromise(); 
+    return this.http.delete('https://app-comercios.herokuapp.com/usuario/' + id).toPromise();
   }
-  
+
   // guardarProducto(usuario: Usuario) {
   //   return this.http.post('https://app-comercios.herokuapp.com/usuario/' , usuario);
   // }
@@ -42,5 +38,5 @@ export class UsuarioService {
   agregarUsuario(usuario: Usuario ){
     return this.http.post('https://app-comercios.herokuapp.com/usuario' , usuario);
   }
-   
+
 }

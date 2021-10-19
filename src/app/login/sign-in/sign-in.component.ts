@@ -14,17 +14,17 @@ export class SignInComponent implements OnInit {
   hide: boolean = true;
 
 
-  constructor(private service: AutenticationService, private router: Router, private form: FormBuilder) { }
+  constructor(private service: AutenticationService, private router: Router, private form: FormBuilder, private authService: AuthService) { }
 
 
     ngOnInit(): void {
-    if (this.authService.verifyLogged()) {
       this.group = this.form.group({
         email: new FormControl("", [Validators.required, Validators.email]),
         password: new FormControl('', [Validators.required])
       });
-      this.router.navigate(['home']);
-    }
+    // if (this.authService.verifyLogged()) {
+    //    this.router.navigate(['/home']);
+    // }
   }
   login() {
     const { email, password } = this.group.value;
