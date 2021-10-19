@@ -7,28 +7,26 @@ import { RequestService } from './request.service';
   providedIn: 'root',
 })
 export class RatingService extends RequestService {
-  getComentarios(comercio: Comercio) {
-    const params = new HttpParams();
-    const coments = [
-      {name: 'Malo'},
-      {name: 'Bueno'},
-      {name: 'Excelente'},
-      {name: 'Malo'},
-      {name: 'Bueno'},
-      {name: 'Excelente'},
-      {name: 'Malo'},
-      {name: 'Bueno'},
-      {name: 'Excelente'},
 
-    ];
-    return coments
+
+
+  getComentarios() {
+    const params = new HttpParams();
+    // const coments = [
+    //   {name: 'Malo'},
+    //   {name: 'Bueno'},
+    //   {name: 'Excelente'},
+
+    // ];
+    // return coments
     // return this.getData(
-    //   '/comentarios',
+    //   '/comentario',
     //   params,
     //   undefined,
-    //   'https://bruno.herokuapp.com'
+    //   'https://comentario-random.herokuapp.com/', params
     // );
   }
+
 }
 
 
