@@ -9,6 +9,9 @@ import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
 import { RatingService } from '../services/rating.service';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { ComercioService } from '../services/comercio.service';
+
+import { RegistroComercioComponent } from './registro-comercio/registro-comercio.component';
+
 import { FormsModule } from '@angular/forms';
 import { MapaInicioComponent } from './mapa-inicio/mapa-inicio.component';
 import { RatingModule } from 'ng-starrating';
@@ -16,8 +19,10 @@ import { RatingModule } from 'ng-starrating';
 NgxPermissionsModule.forRoot()
 
 @NgModule({
-  declarations: [ListadoComerciosComponent, BottomSheetComponent, MapaInicioComponent],
+
+  declarations: [ListadoComerciosComponent, BottomSheetComponent, MapaInicioComponent, RegistroComercioComponent],
   imports: [CommonModule, FormsModule ,RouterModule, MaterialModule, RatingModule],
+
   providers: [RequestService, RatingService, ComercioService],
   exports: [],
 })

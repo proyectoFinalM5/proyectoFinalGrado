@@ -1,0 +1,75 @@
+<div class="container">
+  <form [formGroup]="group" (ngSubmit)="enviarPost()">
+    <mat-grid-list cols="1" rowHeight="350px" >
+      <mat-grid-tile>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-6">
+              <mat-form-field appearance="fill">
+                <mat-label required>Nombre</mat-label>
+                <input [(ngModel)]="comercio.nombre" name="nombre" matInput type="text" formControlName="nombre">
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Longitud</mat-label>
+                <input  name="longitud" matInput placeholder="14.014281232591852">
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Latitud</mat-label>
+                <input  name="latitud" matInput type="text" placeholder="-88.7682016610587">
+              </mat-form-field> 
+
+              <mat-form-field appearance="fill">
+                <mat-label>Propietario</mat-label>
+                <input [(ngModel)]="comercio.propietario" name="propietario" matInput type="text">
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Redes sociales</mat-label>
+                <input [(ngModel)]="comercio.redes_sociales" name="redes_sociales" matInput type="url" placeholder="https://facebook.com">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-6">
+              
+              <mat-form-field appearance="fill">
+                <mat-label>Teléfono</mat-label>
+                <input [(ngModel)]="comercio.telefono" name="telefono" type="tel" matInput placeholder="5555-1234">
+              </mat-form-field>
+              
+              <mat-form-field appearance="fill">
+                <mat-label>Descripción</mat-label>
+                <textarea [(ngModel)]="comercio.descripcion" name="descripcion" matInput></textarea>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Categoría</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let categoria of categoria" [value]="categoria">
+                    {{categoria}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field>
+                <ngx-mat-file-input #removableInput formControlName="removablefile" placeholder="Elegir imagen"></ngx-mat-file-input>
+                <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
+                  <mat-icon>clear</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <div fxLayoutAlign="center center">
+      <button type="submit" mat-stroked-button>Guardar</button>
+    </div>
+  </form> 
+</div>
