@@ -1,7 +1,14 @@
 <mat-nav-list *ngFor="let item of comentarios">
-  <a href="" mat-list-item>
+  <a  mat-list-item>
     <span mat-line>
-      {{item.name}}
+      {{item.comentario}}
+      <star-rating
+        [value]="item.valoracion"
+        [totalstars]="5"
+        checkedcolor="yellow"
+        uncheckedcolor="black"
+        [readonly]="true"
+      ></star-rating>
     </span>
     <span mat-line></span>
   </a>

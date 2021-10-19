@@ -1,3 +1,4 @@
+
 import { RequestService } from 'src/app/services/request.service';
 import { Injectable } from '@angular/core';
 import { Comercio } from '../entidades/comercio';
@@ -8,7 +9,7 @@ import { HttpParams } from '@angular/common/http';
 })
 export class ComercioService {
 
-  constructor(private service: RequestService) {
+  constructor(private service: RequestService, private  request: RequestService) {
 
   }
 
@@ -30,4 +31,8 @@ export class ComercioService {
   // deleteComercio(id:string) {
   //     return this.service.delete<Comercio>('/comercio',id);
   // }
+  deleteComercio(id: string) {
+    return this.request.delete<Comercio>('comercio',id);
+  }
+
 }

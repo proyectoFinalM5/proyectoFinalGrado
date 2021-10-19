@@ -96,6 +96,15 @@ export class ListadoComerciosComponent implements OnInit {
   // }
 
 
+  eliminar(id:string) {
+    console.log(id);
+    if (confirm("estas seguro de eliminar este comercio?")) {
+      this.service.deleteComercio(id).then(() => {
+        this.obtenerComercios();
+      })
+    }
+  }
+
 
 
 
