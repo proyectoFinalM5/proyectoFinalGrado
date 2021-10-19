@@ -25,16 +25,19 @@ export class UsuarioService {
   }
 
   deleteUsuario(id: string) {
-
     return this.http.delete('https://app-comercios.herokuapp.com/usuario/' + id).toPromise(); 
   }
   
-  // guardarProducto(usuario: Usuario) {
-  //   return this.http.post('https://app-comercios.herokuapp.com/usuario/' , usuario);
-  // }
 
   agregarUsuario(usuario: Usuario ){
     return this.http.post('https://app-comercios.herokuapp.com/usuario' , usuario);
   }
    
+  actualizarUsuario(id:string,usuario: Usuario ){
+  return this.http.put('https://app-comercios.herokuapp.com/usuario' + id ,usuario)
+  }
+
+  ObtenerUsuario(id: string) {
+    return this.http.get('https://app-comercios.herokuapp.com/usuario' + id);  
+  }
 }

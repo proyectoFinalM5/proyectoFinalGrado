@@ -48,9 +48,12 @@ constructor(
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  openDialog(){
-    this.dialog.open(RegistroUsuariosComponent)
+  openDialog(usuario: any){
+    this.dialog.open(RegistroUsuariosComponent ,{data: {usuario}} )
+
+
   }
+
 
   obtenerUsuarios() {
     this.service.getUsuarios().then((data) => {

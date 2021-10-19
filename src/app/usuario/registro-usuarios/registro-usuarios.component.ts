@@ -14,11 +14,12 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   styleUrls: ['./registro-usuarios.component.scss']
 })
 export class RegistroUsuariosComponent implements OnInit {
-  title= 'NUEVO USUARIO';
   hide = true;
   email = new FormControl('', [Validators.required, Validators.email]);
 
- 
+  id:string|null;
+  editar='Nuevo Usuario'
+
   usuario:Usuario = {} as Usuario;
   usuarios:any;
 
@@ -43,7 +44,10 @@ export class RegistroUsuariosComponent implements OnInit {
     private http: HttpClient,
     private aRoute: ActivatedRoute,
     private router: Router,
-    private service:UsuarioService ){
+    private service:UsuarioService,
+     ){
+
+      this.id= this.aRoute.snapshot.paramMap.get('id');
 
       
   this.myGroup = new FormGroup({
@@ -60,7 +64,9 @@ export class RegistroUsuariosComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    
+    //this.editarUsuario();
+    this.usuario=this.data['usuario']
+    console.log(this.usuario);
    
   }
 
@@ -78,6 +84,14 @@ export class RegistroUsuariosComponent implements OnInit {
    // this.router.navigate(['/usuario']);
   }
  
+  editarUsuario() {
+    if (this.id === null){
+      this.editar='Nuevo Usuario'
+    }else{
+      this.editar='Editar Usuario'
+    }
+      
+  }
 
   
 
