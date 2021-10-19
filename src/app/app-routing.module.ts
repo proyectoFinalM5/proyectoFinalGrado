@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListadoComerciosComponent } from './comercios/listado-comercios/listado-comercios.component';
+import { MapaInicioComponent } from './comercios/mapa-inicio/mapa-inicio.component';
 import { AuthGuard } from './guards/auth.guard';
 import { SignInComponent } from './login/sign-in/sign-in.component';
 import { MenuComponent } from './menu/menu/menu.component';
@@ -16,8 +17,14 @@ const routes: Routes = [
 
       { path: 'comercio', component: ListadoComerciosComponent },
       { path: 'usuario', component: UsuariosComponent },
+
       { path: 'registroComercio', component: RegistroComercioComponent},
       { path: 'editarComercio/:id', component: ListadoComerciosComponent},
+
+      { path: "", redirectTo: "/home/comercio", pathMatch: "full" },
+      { path: '**', redirectTo: "/home/comercio" },
+      { path: 'inicio', component: MapaInicioComponent },
+
     ]
   },
   { path: '**', redirectTo: "/home/comercio" },

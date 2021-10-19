@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
+
+
 import { Router } from '@angular/router';
 import { TokenResponse } from '../entidades/token';
+
+
 import { LoginResponse } from './autentication.service';
 import { DialogErrorService } from './dialog-error.service';
 
@@ -25,8 +29,11 @@ export class AuthService {
     // return !!token;
   }
 
+
+
   getToken(tag: string = "AUTH_"): String | null {
     return localStorage.getItem(tag + 'TOKEN');
+
 
   }
   getUsuario() {
@@ -35,12 +42,11 @@ export class AuthService {
   setToken(token: LoginResponse): void {
     const { user, token: { token: authToken, expIn } } = token;
     localStorage.setItem("AUTH_TOKEN", authToken);
-    localStorage.setItem("AUTH_EXP_IN", expIn.toString());
+    localStorage.setItem("EXP_IN", expIn.toString());
     localStorage.setItem("usuario", JSON.stringify(user));
   }
-  tokenValido(auth: boolean = true): boolean {
-    const tag = auth ? "AUTH_" : "REFRESH_";
-    const expIn = parseInt(localStorage.getItem(tag + "EXP_IN") || "0") * 1000;
+  tokenValido(): boolean {
+    const expIn = parseInt(localStorage.getItem("EXP_IN") || "0") * 1000;
     const expired = expIn < new Date().getTime()
     if (expired) {
       this.service.openSnackBarError("Su token ha vencido")
