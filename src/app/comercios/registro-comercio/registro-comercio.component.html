@@ -8,22 +8,22 @@
             <div class="col-6">
               <mat-form-field appearance="fill">
                 <mat-label required>Nombre</mat-label>
-                <input matInput type="text" formControlName="nombre" required>
+                <input matInput type="text" formControlName="nombre">
               </mat-form-field>
 
               <mat-form-field appearance="fill">
                 <mat-label>Longitud</mat-label>
-                <input matInput placeholder="14.014281232591852" required>
+                <input matInput placeholder="14.014281232591852">
               </mat-form-field>
 
               <mat-form-field appearance="fill">
                 <mat-label>Latitud</mat-label>
-                <input matInput type="text" placeholder="-88.7682016610587" required>
+                <input matInput type="text" placeholder="-88.7682016610587">
               </mat-form-field>
 
               <mat-form-field appearance="fill">
                 <mat-label>Propietario</mat-label>
-                <input matInput type="text" required>
+                <input matInput type="text">
               </mat-form-field>
 
               <mat-form-field appearance="fill">
@@ -39,7 +39,7 @@
               
               <mat-form-field appearance="fill">
                 <mat-label>Teléfono</mat-label>
-                <input type="tel" matInput placeholder="5555-1234" required>
+                <input type="tel" matInput placeholder="5555-1234">
               </mat-form-field>
               
               <mat-form-field appearance="fill">
@@ -49,34 +49,28 @@
 
               <mat-form-field appearance="fill">
                 <mat-label>Categoría</mat-label>
-                <select matNativeControl required>
-                  <option value="restaurante">Comerdor/Restaurante</option>
-                  <option value="banco">Banco</option>
-                  <option value="ropa">Ropa</option>
-                  <option value="zapateria">Zapatería</option>
-                  <option value="jugueteria">Juguetería</option>
-                  <option value="panaderia">Panadería</option>
-                  <option value="bazar">Bazar</option>
-                  <option value="ferreteria">Ferretería</option>
-                  <option value="farmacia">Farmacia</option>
-                  <option value="electronica">Electrónica</option>
-                  <option value="comercil">Comercial</option>
-                  <option value="otro">Otro</option>
-                </select>
+                <mat-select>
+                  <mat-option *ngFor="let categoria of categoria" [value]="categoria">
+                    {{categoria}}
+                  </mat-option>
+                </mat-select>
               </mat-form-field>
 
-              <mat-form-field appearance="fill">
-                <mat-label>Logo</mat-label>
-                <input type="url" matInput placeholder="https://conceptodefinicion.de/wp-content/uploads/2020/01/comercio.jpg">
+              <mat-form-field>
+                <ngx-mat-file-input #removableInput formControlName="removablefile" placeholder="Elegir imagen"></ngx-mat-file-input>
+                <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
+                  <mat-icon>clear</mat-icon>
+                </button>
               </mat-form-field>
             </div>
           </div>
         </div>
       </mat-grid-tile>
     </mat-grid-list>
+
     <div fxLayoutAlign="center center">
       <button mat-stroked-button>Guardar</button>
     </div>
-        
+
   </form> 
 </div>
