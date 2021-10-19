@@ -57,10 +57,11 @@
             <mat-icon>delete</mat-icon>
           </button>
           <button
-            (click)="seleccionarComercio(comercio)"
+            [routerLink]="['/editarComercio/:id']"
             mat-icon-button
             aria-label="Editar"
             matTooltip="Editar"
+
           >
             <mat-icon>note_add</mat-icon>
           </button>
