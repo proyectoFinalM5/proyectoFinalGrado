@@ -27,6 +27,6 @@ export class RequestService {
   }
   delete<D>(path: string, id: string) {
     const params = new HttpParams().set("id", id);
-    return this.http.delete<D>(this._ruta(path), { params: params }).toPromise();
+    return this.http.delete<D>(`${this.url}/${path}/${id}`).toPromise();
   }
 }

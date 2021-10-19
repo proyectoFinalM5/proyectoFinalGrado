@@ -1,5 +1,5 @@
 export interface Comercio {
-  id: string;
+  _id: string;
   nombre: string;
   coordinates: Array<number>;
   propietario: string;

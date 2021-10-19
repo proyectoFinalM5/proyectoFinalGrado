@@ -17,24 +17,27 @@ import { RatingService } from 'src/app/services/rating.service';
 export class BottomSheetComponent implements OnInit {
   @Input() comercio: Comercio;
   comentarios: any[];
+
   constructor(
     private _bottomSheetRef: MatBottomSheetRef<BottomSheetComponent>,
     private service: RatingService
   ) {}
-
   ngOnInit(): void  {
-    // this.comentarios = this.service.getComentarios();
-    // this.service.getComentarios().then((x) => {
-    //   this.comentarios = this.comentarios;
-    // });
-
       this.mostrar();
   }
 
-  async mostrar() {
-    const response = await fetch('https://comentario-random.herokuapp.com');
-    const data = await response.json();
+  //para mostrar comentarios
+  mostrar() {
+    fetch('https://comentario-random.herokuapp.com')
+    .then(response => response.json())
 
-    console.log('Obtiene ' + data);
+    .then(data => {
+      this.comentarios = data;
+      console.log(this.comentarios);
+    });
+  }
+
+  estrellas(score: number): number {
+    return Math.round(score / 20);
   }
 }
