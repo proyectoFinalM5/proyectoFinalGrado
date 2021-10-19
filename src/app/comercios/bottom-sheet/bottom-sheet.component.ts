@@ -22,10 +22,19 @@ export class BottomSheetComponent implements OnInit {
     private service: RatingService
   ) {}
 
-  ngOnInit(): void {
-    this.comentarios = this.service.getComentarios(this.comercio);
-    // this.service.getComentarios(this.comercio).then((x) => {
+  ngOnInit(): void  {
+    // this.comentarios = this.service.getComentarios();
+    // this.service.getComentarios().then((x) => {
     //   this.comentarios = this.comentarios;
     // });
+
+      this.mostrar();
+  }
+
+  async mostrar() {
+    const response = await fetch('https://comentario-random.herokuapp.com');
+    const data = await response.json();
+
+    console.log('Obtiene ' + data);
   }
 }

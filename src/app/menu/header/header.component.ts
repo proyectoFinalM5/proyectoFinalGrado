@@ -9,16 +9,27 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
   @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter();
+  nombreU: string;
+  public show: boolean = false;
 
   constructor(private router: Router, private authService: AuthService, private userService: UsuarioService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.obtenerNU();
+  }
 
   toggleSidebar() {
     this.toggleSidebarForMe.emit();
+    this.show = !this.show;
   }
 
+  obtenerNU() {
+    const name = this.authService.getUsuario();
+    this.nombreU = name.nombre
+    // console.log('devuelve: ' + name.nombre);
+  }
 
   onLogout(): void {
     this.authService.logout();
@@ -29,6 +40,8 @@ export class HeaderComponent implements OnInit {
 
     const ID = this.authService.getUsuario();
     this.userService.deleteUsuario(ID._id);
+    console.log('devuelve: ' + ID._id);
+
     this.onLogout();
   }
 }

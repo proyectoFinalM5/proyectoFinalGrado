@@ -3,16 +3,24 @@
       <ul class="row align-items-center">
         <li>
           <button mat-button [matMenuTriggerFor]="menu" class="user mt-1 d-flex align-items-center" style="color: white;">
-          <ngx-avatar name="John Doe"></ngx-avatar>
-            Nombre usuario
-            <mat-icon class="user-image-icon">
-              keyboard_arrow_down
-            </mat-icon>
+            <ngx-avatar [name]="nombreU"></ngx-avatar>
+            {{nombreU}}
+            <mat-icon class="user-image-icon ml-1"
+              >keyboard_arrow_down</mat-icon
+            >
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item>
+            <button (click)="onLogout()" mat-menu-item>
               <mat-icon>exit_to_app</mat-icon>
-              Logout
+              Cerrar Sesión
+            </button>
+            <!-- <button mat-menu-item>
+              <mat-icon>create</mat-icon>
+              Editar Cuenta
+            </button> -->
+            <button (click)="deleteCuenta()" mat-menu-item>
+              <mat-icon>clear</mat-icon>
+              Eliminar Cuenta
             </button>
           </mat-menu>
         </li>
