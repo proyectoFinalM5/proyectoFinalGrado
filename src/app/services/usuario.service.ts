@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RequestService } from 'src/app/services/request.service';
@@ -14,30 +14,29 @@ export class UsuarioService {
     private http: HttpClient) { }
 
 
-  getUsuarios(): Promise<Usuario[]>  {
+  getUsuarios(): Promise<Usuario[]> {
     return this.service.getData<Usuario>('/usuario');
   }
 
-  getUsuario(id:string): Promise<Usuario[]> {
+  getUsuario(id: string): Promise<Usuario[]> {
     const params = new HttpParams()
     params.set('id', id)
     return this.service.getData<Usuario>('/usuario', params);
   }
 
   deleteUsuario(id: string) {
-    return this.http.delete('https://app-comercios.herokuapp.com/usuario/' + id).toPromise(); 
+    return this.service.delete<Usuario>('/usuario', id);
   }
-  
 
-  agregarUsuario(usuario: Usuario ){
-    return this.http.post('https://app-comercios.herokuapp.com/usuario' , usuario);
+  agregarUsuario(usuario: Usuario) {
+    return this.service.post('/usuario', usuario);
   }
-   
-  actualizarUsuario(id:string,usuario: Usuario ){
-  return this.http.put('https://app-comercios.herokuapp.com/usuario' + id ,usuario)
+
+  actualizarUsuario(id: string, usuario: Usuario) {
+    return this.service.put('usuario', usuario, id);
   }
 
   ObtenerUsuario(id: string) {
-    return this.http.get('https://app-comercios.herokuapp.com/usuario' + id);  
+    return this.http.get('https://app-comercios.herokuapp.com/usuario' + id);
   }
 }

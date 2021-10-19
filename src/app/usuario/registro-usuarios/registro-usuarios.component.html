@@ -9,7 +9,7 @@
     
 </div>
 
-<form [formGroup]="myGroup" class="normal-form" (ngSubmit)="enviarPost()">
+<form [formGroup]="myGroup" class="normal-form" (ngSubmit)="usuario.id===undefined ? enviarPost(): editarUsuario()">
 <mat-grid-list cols="1" rowHeight="250px" >
     <mat-grid-tile>
         <div class="controles-container">
@@ -46,15 +46,14 @@
 
                <mat-form-field appearance="fill">
                 <mat-label >Enter your email</mat-label>
-                <input  [(ngModel)]="usuario.email"  name="email" formControlName="email" matInput placeholder="pat@example.com" [formControl]="email" required>
-
-                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                <input  [(ngModel)]="usuario.email"  name="email" formControlName="email" matInput placeholder="pat@example.com" required>
+                <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
               </mat-form-field>
 
               <mat-form-field appearance="fill">
                 <mat-label>Enter your password</mat-label>
 
-                <input  [(ngModel)]="usuario.password"  name="password" formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+                <input  name="password" formControlName="password" matInput [type]="hide ? 'password' : 'text'">
 
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                   <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
