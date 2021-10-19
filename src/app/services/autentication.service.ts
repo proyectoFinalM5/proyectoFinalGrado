@@ -14,7 +14,7 @@ export class AutenticationService {
   constructor(private service: RequestService, private authService: AuthService) { }
 
   async login(email: string, password: string) {
-    const response = await this.service.post<Login, LoginResponse>('/login', { email, password });
+    const response = await this.service.post<Login, LoginResponse>('login', { email, password });
     if ("token" in response) {
       this.authService.setToken(response);
     }

@@ -26,6 +26,8 @@ import { FormsModule } from '@angular/forms';
 import { DialogErrorService } from './services/dialog-error.service';
 import { AutenticationService } from './services/autentication.service';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -40,6 +42,7 @@ import { AutenticationService } from './services/autentication.service';
     MaterialModule,
     FormsModule,
     LoginModule,
+    ReactiveFormsModule,
 
   ],
   providers: [
