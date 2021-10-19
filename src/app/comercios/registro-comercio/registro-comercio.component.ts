@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ComercioService } from 'src/app/services/comercio.service';
+import { Comercio } from 'src/app/entidades/comercio';
 
 @Component({
   selector: 'app-registro-comercio',
@@ -7,12 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistroComercioComponent implements OnInit {
 
-  title = 'NUEVO COMERCIO';
-  hide = true;
+ /* com: Comercio[] = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'}
+  ];*/
 
-  constructor() { }
+  com : Comercio;
+
+  group: FormGroup;
+
+  constructor(private service: ComercioService,
+    private router: Router,
+    private form: FormBuilder) { }
 
   ngOnInit(): void {
+    this.group = this.form.group({
+
+    });
   }
 
 }

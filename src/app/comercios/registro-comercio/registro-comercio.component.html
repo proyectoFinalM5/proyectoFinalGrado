@@ -1,80 +1,82 @@
-<div class="ng-container">
-    <div class="row">
-      <div class="col-6">
-        <a mat-stroked-button href="http://localhost:4200/home" target="_self">Cancelar</a>
-    </div>
-    </div>
-  </div>
-  
-  <div class="container" style="text-align: center;">
-    <span style="font-weight: bold; font-family: 'Courier New', Courier, monospace;" class="h1">{{title}}</span>
-  </div>
-    <form class="normal-form">
-      <mat-grid-list cols="1" rowHeight="250px" >
+<div class="container">
+  <form [formGroup]="group">
+    <mat-grid-list cols="1" rowHeight="350px" >
       <mat-grid-tile>
-        <div class="controles-container">
+
+        <div class="container">
           <div class="row">
             <div class="col-6">
-          <input type="hidden" formControlName="$key"> 
-  
-            <mat-form-field appearance="fill">
-              <mat-label>Nombre</mat-label>
-              <input matInput>
-            </mat-form-field>
-  
-            <mat-form-field appearance="fill">
-              <mat-label>Coordenadas</mat-label>
-              <input matInput placeholder="14.014281232591852, -88.7682016610587">
-            </mat-form-field>
-  
-            <mat-form-field appearance="fill">
-              <mat-label>Propietario</mat-label>
-              <input matInput>
-            </mat-form-field>
-          </div>
-        </div>
-          </div>
+              <mat-form-field appearance="fill">
+                <mat-label required>Nombre</mat-label>
+                <input matInput type="text" formControlName="nombre" required>
+              </mat-form-field>
 
-          <div class="container">
-            <div class="row">
-              <div class="col-6 margin-top: 1%;">
-            <mat-form-field appearance="fill">
-              <mat-label>Redes sociales</mat-label>
-              <input matInput placeholder="https://facebook.com">
-            </mat-form-field>
-  
-            <mat-form-field appearance="fill">
-              <mat-label>Descripción</mat-label>
-              <textarea matInput></textarea>
-            </mat-form-field>
-  
-            <mat-form-field appearance="fill">
-              <mat-label>Teléfono</mat-label>
-       <!--       <span matPrefix>+503 &nbsp;</span> -->
-              <input type="tel" matInput placeholder="5555-1234">
-              <mat-icon matSuffix>phone</mat-icon>
-            </mat-form-field>
-  
-            <mat-form-field appearance="fill">
-              <mat-label>Categoría</mat-label>
-              <mat-select>
-                <mat-option value="one">Ropa</mat-option>
-                <mat-option value="two">Comedor</mat-option>
-                <mat-option value="three">Restaurante</mat-option>
-                <mat-option value="four">Banco</mat-option>
-                <mat-option value="five">Zapatería</mat-option>
-                <mat-option value="six">Carpinteria</mat-option>
-              </mat-select>
-            </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Longitud</mat-label>
+                <input matInput placeholder="14.014281232591852" required>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Latitud</mat-label>
+                <input matInput type="text" placeholder="-88.7682016610587" required>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Propietario</mat-label>
+                <input matInput type="text" required>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Redes sociales</mat-label>
+                <input matInput type="url" placeholder="https://facebook.com">
+              </mat-form-field>
+            </div>
           </div>
         </div>
-      </div>
-        </mat-grid-tile>
-        </mat-grid-list>
-      <div>
-        <mat-dialog-actions>
-          <button mat-raised-button  button="primary" >Guardar</button>
-        </mat-dialog-actions>
-      </div>
-    </form>
-  
+        <div class="container">
+          <div class="row">
+            <div class="col-6">
+              
+              <mat-form-field appearance="fill">
+                <mat-label>Teléfono</mat-label>
+                <input type="tel" matInput placeholder="5555-1234" required>
+              </mat-form-field>
+              
+              <mat-form-field appearance="fill">
+                <mat-label>Descripción</mat-label>
+                <textarea matInput></textarea>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Categoría</mat-label>
+                <select matNativeControl required>
+                  <option value="restaurante">Comerdor/Restaurante</option>
+                  <option value="banco">Banco</option>
+                  <option value="ropa">Ropa</option>
+                  <option value="zapateria">Zapatería</option>
+                  <option value="jugueteria">Juguetería</option>
+                  <option value="panaderia">Panadería</option>
+                  <option value="bazar">Bazar</option>
+                  <option value="ferreteria">Ferretería</option>
+                  <option value="farmacia">Farmacia</option>
+                  <option value="electronica">Electrónica</option>
+                  <option value="comercil">Comercial</option>
+                  <option value="otro">Otro</option>
+                </select>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Logo</mat-label>
+                <input type="url" matInput placeholder="https://conceptodefinicion.de/wp-content/uploads/2020/01/comercio.jpg">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <div fxLayoutAlign="center center">
+      <button mat-stroked-button>Guardar</button>
+    </div>
+        
+  </form> 
+</div>
