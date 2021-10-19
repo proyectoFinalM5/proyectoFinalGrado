@@ -33,7 +33,7 @@ export class AuthInterceptor implements HttpInterceptor {
         }
     }),
       catchError((error: HttpErrorResponse) => {
-        if (error.status == 401 && error.error?.expired) {
+        if (error.status == 401 && error.error.expired) {
           this.authService.logout();
           this.router.navigate(['/login']);
         }

@@ -20,11 +20,9 @@ export class AuthService {
     return JSON.parse(localStorage.getItem("usuario") || "{}");
   }
   setToken(token: LoginResponse): void {
-    const { user, token: { auth: { token: authToken, expIn }, refresh: { token: refreshToken, expIn: expiredInR } } } = token;
+    const { user, token: { token: authToken, expIn } } = token;
     localStorage.setItem("AUTH_TOKEN", authToken);
     localStorage.setItem("AUTH_EXP_IN", expIn.toString());
-    localStorage.setItem("REFRESH_TOKEN", refreshToken);
-    localStorage.setItem("REFRESH_EXP_IN", expiredInR.toString());
     localStorage.setItem("usuario", JSON.stringify(user));
   }
   tokenValido(auth: boolean = true): boolean {
