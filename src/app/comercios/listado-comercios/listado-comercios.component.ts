@@ -1,12 +1,10 @@
-
 import { Component, OnInit } from '@angular/core';
-import * as Mapboxgl from 'mapbox-gl';
-
 import { Comercio } from './../../entidades/comercio';
 import { ComercioService } from 'src/app/services/comercio.service';
-import { environment } from 'src/environments/environment';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet.component';
+import { Mapa } from 'src/app/generarMapa';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listado-comercios',
@@ -15,97 +13,49 @@ import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet.component';
 })
 export class ListadoComerciosComponent implements OnInit {
 
-  mapa: Mapboxgl.Map;
+  mapa: Mapa;
   listado: Comercio[] = [];
-  listadoMapa: Comercio[] = [];
-  listadoCategoria: Comercio[] = [];
 
-  constructor(private service: ComercioService, private _bottomSheet: MatBottomSheet) {}
+  constructor(private service: ComercioService, private _bottomSheet: MatBottomSheet, private router: Router) { }
 
   ngOnInit(): void {
-    (Mapboxgl as any).accessToken = environment.tokenmapa;
-    this.mapa = new Mapboxgl.Map({
-     container: 'map',
-     style: 'mapbox://styles/mapbox/streets-v11',
-     center:[-88.9368898, 14.0423539],
-     zoom:15
-    });
-     this.obtenerComercios();
+    this.mapa = new Mapa();
+    this.obtenerComercios();
   }
 
-  crearMarcador(comercio: Comercio){
-    const [lon, lat] = comercio.coordinates;
-    const globo= new Mapboxgl.Popup({className:'globito'})
-                .setHTML(`<p> ${comercio.nombre} </p>`)
-    const marca=new Mapboxgl.Marker({
-      draggable:false,
-      color:"orange"
-    })
-    .setLngLat([lon,lat])
-    .setPopup(globo)
-    .addTo(this.mapa);
-    marca.on;
-  }
   obtenerComercios() {
     this.service.getComercios().then((data) => {
       this.listado = data;
-      this.listadoMapa = data;
-
-      this.listadoMapa.forEach(c => {
-        this.crearMarcador(c);
-
+      this.listado.forEach(c => {
+        this.mapa.addMarcador(c);
       });
     });
   }
 
   seleccionarComercio(comercio: Comercio) {
-      const [lon,lat] = comercio.coordinates
-      this.mapa.flyTo({
-        center: [lon,lat],
-        zoom: 20
-      });
-      // console.log('lon: ' + lon + ' ' + ' lat: ' + lat);
+    this.mapa.seleccionar(comercio);
   }
 
-  buscarNombreComercio(event: Event) {
-    console.log('nombre: ' + (event.target as HTMLInputElement).value);
-
-    this.service.getComercioNombre((event.target as HTMLInputElement).value).then((data) => {
+  search(event: KeyboardEvent) {
+    if (event.key === "Enter") {
+      const nombre = (event.target as HTMLInputElement).value
+      this.service.getComercioNombre(nombre).then((data) => {
         this.listado = data;
-    });
-
+      });
+    }
   }
 
   openBottomSheet(): void {
     this._bottomSheet.open(BottomSheetComponent);
   }
-
-  //  this.listadoMapa = this.listado.filter(x => x.id === comercio.id);
-
-
-  // onSelect(event: Event) {
-  //   console.log('Trae: ' + (event.target as HTMLInputElement).value);
-
-  //     this.service.getComercioNombre((event.target as HTMLInputElement).value).then((data) => {
-  //       this.listadoCategoria = data;
-
-  //       this.listadoCategoria.forEach(c => {
-
-  //       });
-  //     });
-  // }
-
-
-  eliminar(id:string) {
-    console.log(id);
+  agregarUsuario() {
+    this.router.navigateByUrl('/comercio/registro');
+  }
+  eliminar(id: string) {
     if (confirm("estas seguro de eliminar este comercio?")) {
-      this.service.deleteComercioMapa(id).then(() => {
+      this.service.deleteComercio(id).then(() => {
         this.obtenerComercios();
       })
     }
   }
-
-
-
-
 }

@@ -1,9 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { ComercioService } from 'src/app/services/comercio.service';
 import { Comercio } from 'src/app/entidades/comercio';
-import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -15,35 +14,31 @@ export class RegistroComercioComponent implements OnInit {
 
   group: FormGroup;
   comercio: Comercio = {} as Comercio;
-  data : any;
-  categoria: string[] = ['Comedor/Restaurante', 'Banco', 'Ropa', 'Zapatería', 'Juguetería', 'Panadería', 'Bazar', 'Ferretería', 'Farmacia', 'Electrónica', 'Comercial', 'Otro']
+  categorias: string[];
 
-
-  constructor(private service: ComercioService,
-    private http: HttpClient,
-    private activatedRoiuter:ActivatedRoute,
-    private router: Router,
-    private form: FormBuilder) { }
+  constructor(private service: ComercioService, private activatedRouter: ActivatedRoute, private form: FormBuilder) { }
 
   ngOnInit(): void {
-    this.group = new FormGroup({
-      nombre: new FormControl('', [Validators.required]),
-      longitud: new FormControl('', [Validators.required]),
-      latitud: new FormControl('', [Validators.required]),
-      propietario: new FormControl('', [Validators.required]),
-      redes_sociales: new FormControl('', [Validators.required]),
-      telefono: new FormControl('', [Validators.required]),
-      descripcion: new FormControl('', [Validators.required]),
-      categoria: new FormControl('', [Validators.required]),
-      logo: new FormControl('', [Validators.required]),
+    this.categorias = this.service.getCategorias()
+    this.group = this.form.group({
+      nombre: ['', [Validators.required]],
+      longitud: ['', [Validators.required]],
+      latitud: ['', [Validators.required]],
+      propietario: ['', [Validators.required]],
+      redes_sociales: '',
+      telefono: ['', [Validators.required]],
+      descripcion: '',
+      categoria: '',
+      logo: '',
     });
-    this.comercio = this.data['comercio']||{}
+    // this.comercio = this.data['comercio'] || {}
   }
 
   enviarPost() {
-    console.log(this.comercio);
-    this.service.NuevoComercio(this.comercio)
-
+    const latitud = this.group.get('latitud')?.value;
+    const longitud = this.group.get('longitud')?.value;
+    this.comercio.coordinates = [longitud, latitud];
+    this.service.agregarComercio(this.comercio);
   }
 
   editarComercio() {
@@ -51,5 +46,7 @@ export class RegistroComercioComponent implements OnInit {
       .then(() => {
       })
   }
-
+  comercioExist() {
+    return this.comercio._id === undefined;
+  }
 }

@@ -1,17 +1,10 @@
-:host {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
 mat-drawer {
   width: 260px;
-}
-mat-drawer-container {
-  height: 100%;
+  background: #31263c;
 }
 
-mat-drawer {
-  //fondo sidenav
-  background: #31263c;
+mat-drawer-content {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
 }

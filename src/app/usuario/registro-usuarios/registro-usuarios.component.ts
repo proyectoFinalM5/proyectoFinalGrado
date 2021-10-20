@@ -1,9 +1,6 @@
-
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { Usuario } from 'src/app/entidades/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -23,26 +20,20 @@ export class RegistroUsuariosComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<RegistroUsuariosComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private aRoute: ActivatedRoute,
     private service: UsuarioService,
-  ) {
-
-
-
-  }
+    private form: FormBuilder
+  ) { }
 
   ngOnInit(): void {
-    this.myGroup = new FormGroup({
-      nombre: new FormControl('', [Validators.required]),
-      apellido: new FormControl('', [Validators.required]),
-      telefono: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required]),
-      rol: new FormControl('', [Validators.required]),
+    this.myGroup = this.form.group({
+      nombre: ['', [Validators.required]],
+      apellido: ['', [Validators.required]],
+      telefono: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+      rol: ['', [Validators.required]],
     });
-
-    this.usuario = this.data['usuario']||{}
-   
+    this.usuario = this.data['usuario'] || {}
   }
 
   enviarPost() {
@@ -60,7 +51,7 @@ export class RegistroUsuariosComponent implements OnInit {
         this.dialogRef.close()
       })
   }
-
-
-
+  usuarioExist() {
+    return this.usuario._id === undefined;
+  }
 }

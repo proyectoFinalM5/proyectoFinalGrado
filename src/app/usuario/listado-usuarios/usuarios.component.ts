@@ -15,20 +15,18 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class UsuariosComponent implements OnInit {
 
   title: string = 'LISTADO USUARIOS';
-  listadoU: Usuario[] = [];
+  listado: Usuario[] = [];
+  listaCompleta: Usuario[] = [];
 
   displayedColumns: string[] = ['id', 'nombre', 'apellido', 'telefono', 'email', 'rol', 'acciones'];
-  dataSource = new MatTableDataSource(this.listadoU);
+  columns: string[] = ['nombre', 'apellido', 'telefono', 'email', 'rol'];
+  dataSource: MatTableDataSource<Usuario>;
 
   constructor(private dialog: MatDialog, private service: UsuarioService) { }
 
   ngOnInit(): void {
     this.obtenerUsuarios();
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSource = new MatTableDataSource(this.listado);
   }
 
   openDialog(usuario?: Usuario) {
@@ -37,12 +35,12 @@ export class UsuariosComponent implements OnInit {
 
   obtenerUsuarios() {
     this.service.getUsuarios().then((data) => {
-      this.listadoU = data;
+      this.listado = data;
+      this.listaCompleta = data;
     });
 
   }
   eliminarUsuario(id: string) {
-    console.log(id);
     if (confirm("estas seguro de eliminar este usuario?")) {
       this.service.deleteUsuario(id).then(() => {
         this.obtenerUsuarios();
@@ -58,16 +56,9 @@ export class UsuariosComponent implements OnInit {
     }
   }
 
-  filterData($event: any) {
-    this.listadoU.filter = $event.target.value;
+  filterData(event: KeyboardEvent) {
+    const value = (event.target as HTMLInputElement).value
+    this.listado = this.listaCompleta.filter(x => x.nombre.toLocaleLowerCase().includes(value.toLocaleLowerCase()))
   }
 
 }
-
-
-
-
-
-
-
-

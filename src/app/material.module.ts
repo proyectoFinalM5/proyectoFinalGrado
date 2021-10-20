@@ -1,9 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { OverlayModule } from '@angular/cdk/overlay';
-import { CdkTreeModule } from '@angular/cdk/tree';
-import { PortalModule } from '@angular/cdk/portal';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
@@ -39,20 +35,17 @@ import { MatMenuModule } from '@angular/material/menu';
 import { AvatarModule } from 'ngx-avatar'
 import { MatDividerModule } from '@angular/material/divider';
 import { MatBottomSheetModule, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
-import {MatDialogModule} from '@angular/material/dialog';
-
+import { MatDialogModule } from '@angular/material/dialog';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 
 const materialModules = [
-  CdkTreeModule,
   MatAutocompleteModule,
   MatButtonModule,
   MatCardModule,
   MatCheckboxModule,
   MatChipsModule,
   MatDividerModule,
-
   MatExpansionModule,
   MatIconModule,
   MatInputModule,
@@ -72,8 +65,6 @@ const materialModules = [
   MatFormFieldModule,
   MatButtonToggleModule,
   MatTreeModule,
-  OverlayModule,
-  PortalModule,
   MatBadgeModule,
   MatGridListModule,
   MatRadioModule,
