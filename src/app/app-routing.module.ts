@@ -5,29 +5,23 @@ import { MapaInicioComponent } from './comercios/mapa-inicio/mapa-inicio.compone
 import { AuthGuard } from './guards/auth.guard';
 import { SignInComponent } from './login/sign-in/sign-in.component';
 import { MenuComponent } from './menu/menu/menu.component';
-
 import { RegistroComercioComponent } from './comercios/registro-comercio/registro-comercio.component';
 import { UsuariosComponent } from './usuario/listado-usuarios/usuarios.component';
 
 const routes: Routes = [
   { path: 'login', component: SignInComponent },
   {
-
-    path: 'home', component: MenuComponent, canActivate: [AuthGuard], children: [
-
+    path: '', component: MenuComponent, canActivate: [AuthGuard], children: [
       { path: 'comercio', component: ListadoComerciosComponent },
       { path: 'usuario', component: UsuariosComponent },
-
-      { path: 'registroComercio', component: RegistroComercioComponent},
-      { path: 'editarComercio/:id', component: ListadoComerciosComponent},
-
-      { path: "", redirectTo: "/home/comercio", pathMatch: "full" },
-      { path: '**', redirectTo: "/home/comercio" },
+      { path: 'comercio/registro', component: RegistroComercioComponent },
+      { path: 'comercio/editar/:id', component: RegistroComercioComponent },
+      { path: "", redirectTo: "/comercio", pathMatch: "full" },
+      { path: '**', redirectTo: "/comercio" },
       { path: 'inicio', component: MapaInicioComponent },
-
     ]
   },
-  { path: '**', redirectTo: "/home/comercio" },
+  { path: '**', redirectTo: "/comercio" },
 ];
 
 @NgModule({

@@ -3,33 +3,33 @@ import * as Mapboxgl from 'mapbox-gl';
 import { environment } from 'src/environments/environment';
 (Mapboxgl as any).accessToken = environment.tokenmapa;
 export class Mapa extends Mapboxgl.Map {
-  constructor(private comercios: Comercio[]) {
+  constructor() {
     super({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-88.94, 14.04],
-      zoom: 13,
-    });
-    this.comercios?.forEach((c) => {
-      this.marcador(c);
+      center: [-88.9368898, 14.0423539],
+      zoom: 15
     });
   }
 
-  marcador(comercio: Comercio) {
-    const { coordinates, nombre, categoria, id } = comercio;
-    const [lon, lat] = coordinates;
-
-    const globo = new Mapboxgl.Popup({ className: 'globito' }).setHTML(
-      `<p>Comercio: ${nombre} <br> Categoria: ${categoria} </p>`
-    );
-
+  addMarcador(comercio: Comercio) {
+    const [lon, lat] = comercio.coordinates;
+    const globo = new Mapboxgl.Popup({ className: 'globito' })
+      .setHTML(`<p> ${comercio.nombre} </p>`)
     const marca = new Mapboxgl.Marker({
       draggable: false,
-      color: 'orange',
+      color: "orange"
     })
       .setLngLat([lon, lat])
       .setPopup(globo)
       .addTo(this);
     marca.on;
+  }
+  seleccionar(comercio: Comercio) {
+    const [lon, lat] = comercio.coordinates;
+    this.flyTo({
+      center: [lon, lat],
+      zoom: 20
+    });
   }
 }

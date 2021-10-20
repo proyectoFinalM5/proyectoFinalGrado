@@ -9,25 +9,19 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 })
 export class ComercioService {
 
+  constructor(private service: RequestService) { }
 
-  constructor(private service: RequestService, private http: HttpClient, private  request: RequestService) {
-
-
-  }
-
-  getComercios(): Promise<Comercio[]>  {
+  getComercios(): Promise<Comercio[]> {
     return this.service.getData<Comercio>('comercio');
   }
 
-  getComercio(id:string): Promise<Comercio[]> {
-    const params = new HttpParams()
-    params.set('id', id)
-    return this.service.getData<Comercio>('comercio', params);
+  getComercioNombre(nombre: string): Promise<Comercio[]> {
+    const params = new HttpParams().set('nombre', nombre);
+    return this.service.getData<Comercio>('comercio/search', params);
   }
 
-
-  deleteComercio(id: string) {
-    return this.service.delete<Comercio>('comercio', id);
+  getComercio(id: string): Promise<Comercio[]> {
+    return this.service.getData<Comercio>(`comercio/${id}`);
   }
 
   agregarComercio(comercio: Comercio) {
@@ -38,21 +32,10 @@ export class ComercioService {
     return this.service.put('comercio', comercio, id);
   }
 
-  getComercioNombre(nombre:string): Promise<Comercio[]> {
-    const params = new HttpParams()
-    params.set('nombre', nombre)
-    return this.service.getData<Comercio>('comercio', params);
+  deleteComercio(id: string) {
+    return this.service.delete<Comercio>('comercio', id);
   }
-
-  NuevoComercio(comercio: Comercio) {
-    return this.service.post('comercio', comercio);
+  getCategorias(): string[] {
+    return ['Comedor/Restaurante', 'Banco', 'Ropa', 'Zapatería', 'Juguetería', 'Panadería', 'Bazar', 'Ferretería', 'Farmacia', 'Electrónica', 'Comercial', 'Otro']
   }
-  // deleteComercio(id:string) {
-  //     return this.service.delete<Comercio>('/comercio',id);
-  // }
-
-  deleteComercioMapa(id: string) {
-    return this.request.delete<Comercio>('comercio',id);
-  }
-
 }

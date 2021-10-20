@@ -20,19 +20,15 @@ import { AuthInterceptor } from './interceptores/auth.interceptor';
 import { AuthService } from './services/auth.service';
 import { ComercioService } from './services/comercio.service';
 import { UsuarioService } from './services/usuario.service';
-import { FormsModule } from '@angular/forms';
-
 
 import { DialogErrorService } from './services/dialog-error.service';
 import { AutenticationService } from './services/autentication.service';
 
-import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpClientModule,
     AppRoutingModule,
     ComerciosModule,
@@ -40,11 +36,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MenuModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule,
     LoginModule,
-    ReactiveFormsModule,
-    
-
   ],
   providers: [
     AuthService,

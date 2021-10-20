@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material.module';
 import { HeaderComponent } from './header/header.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
-import { MenuRoutingModule } from '../routes/menu-routing.module';
 
 NgxPermissionsModule.forRoot()
 
@@ -16,13 +15,11 @@ NgxPermissionsModule.forRoot()
     MenuComponent,
     HeaderComponent,
     SidenavComponent,
-    
   ],
   imports: [
     CommonModule,
     RouterModule,
     MaterialModule,
-    MenuRoutingModule
   ]
 })
 export class MenuModule { }

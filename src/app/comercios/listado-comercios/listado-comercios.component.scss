@@ -1,60 +1,13 @@
-
 #map {
   width: 100%;
   height: 100%;
 }
 
-div {
-  height: 100%;
+#datos {
+  height: 84vh;
 }
 
 #listado {
   margin-right: 1%;
-  margin-left: 0;
-  width: 65vh;
-  height: 85vh;
   overflow: auto;
 }
-
-.container {
-  height: 85vh;
-  width: 153vh;
-}
-
-.example-container {
-  width: 400px;
-  height: 200px;
-  margin: 10px;
-  border: 1px solid #555;
-}
-
-/* avatar */
-ngx-avatar{
-  display:inline-block;
-}
-
-div{
-  text-align: center;
-}
-
-.clickable{
-cursor: pointer;
-}
-.center{
-text-align:center;
-}
-
-.mat-list .mat-list-item{
-  font-size: small;
-  text-align: start;
-}
-
-.btn-buscar {
-  // display: flex;
-  justify-content: center;
-  width: 15%;
-  height: 9%;
-  margin-left: 20%;
-  margin-bottom: 10%;
-}
-

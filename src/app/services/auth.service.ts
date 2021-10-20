@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { TokenResponse } from '../entidades/token';
+import { Usuario } from '../entidades/usuario';
 
 
 import { LoginResponse } from './autentication.service';
@@ -36,7 +37,7 @@ export class AuthService {
 
 
   }
-  getUsuario() {
+  getUsuario(): Usuario | any {
     return JSON.parse(localStorage.getItem("usuario") || "{}");
   }
   setToken(token: LoginResponse): void {

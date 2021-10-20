@@ -13,24 +13,10 @@ import { Usuario } from '../entidades/usuario';
 })
 export class UsuarioService {
 
-
-  constructor(private service: RequestService, private http: HttpClient) { }
-
+  constructor(private service: RequestService) { }
 
   getUsuarios(): Promise<Usuario[]> {
     return this.service.getData<Usuario>('usuario');
-  }
-
-
-  getUsuario(id: string): Promise<Usuario[]> {
-
-    const params = new HttpParams()
-    params.set('id', id)
-    return this.service.getData<Usuario>('usuario', params);
-  }
-
-  deleteUsuario(id: string) {
-    return this.service.delete<Usuario>('usuario', id);
   }
 
   agregarUsuario(usuario: Usuario) {
@@ -41,13 +27,9 @@ export class UsuarioService {
     return this.service.put('usuario', usuario, id);
   }
 
-
-  
-
-  ObtenerUsuario(id: string) {
-    return this.http.get('https://app-comercios.herokuapp.com/usuario' + id);
+  deleteUsuario(id: string) {
+    return this.service.delete<Usuario>('usuario', id);
   }
-
 }
 
 

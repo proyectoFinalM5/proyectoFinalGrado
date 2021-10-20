@@ -1,39 +1,28 @@
 <mat-nav-list>
-    <div class="row ml-auto">
-      <ul class="row align-items-center">
-        <li>
-          <button mat-button [matMenuTriggerFor]="menu" class="user mt-1 d-flex align-items-center" style="color: white;">
-            <ngx-avatar [name]="nombreU"></ngx-avatar>
-            {{nombreU}}
-            <mat-icon class="user-image-icon ml-1"
-              >keyboard_arrow_down</mat-icon
-            >
-          </button>
-          <mat-menu #menu="matMenu">
-            <button (click)="onLogout()" mat-menu-item>
-              <mat-icon>exit_to_app</mat-icon>
-              Cerrar Sesión
-            </button>
-            <!-- <button mat-menu-item>
-              <mat-icon>create</mat-icon>
-              Editar Cuenta
-            </button> -->
-            <button (click)="deleteCuenta()" mat-menu-item>
-              <mat-icon>clear</mat-icon>
-              Eliminar Cuenta
-            </button>
-          </mat-menu>
-        </li>
-      </ul>
-    </div>
-    <mat-divider></mat-divider>
-    <h2 matSubheader class="mt-2">OPCIONES</h2>
-
-    <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['/home/usuario']">
-      <mat-icon>person_pin</mat-icon> Usuarios
-    </a>
-    <a mat-list-item routerLinkActive="list-item-active"[routerLink]="['/home/comercio']">
-      <mat-icon>my_location</mat-icon> Comercios
-    </a>
-
-  </mat-nav-list>
+  <div fxLayoutAlign="center flex-end" class="mb-2">
+    <ngx-avatar size="75" [name]="usuario.nombre"></ngx-avatar>
+    <button mat-button [matMenuTriggerFor]="menu" style=" color: white; font-size: large;">
+      {{usuario.nombre}}
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #menu>
+      <button (click)="onLogout()" mat-menu-item>
+        <mat-icon>exit_to_app</mat-icon>
+        Cerrar Sesión
+      </button>
+      <button *ngIf="usuario.rol!==1" (click)="deleteCuenta()" mat-menu-item>
+        <mat-icon>clear</mat-icon>
+        Eliminar Cuenta
+      </button>
+    </mat-menu>
+  </div>
+  <mat-divider></mat-divider>
+  <h2 matSubheader class="mt-2">OPCIONES</h2>
+  <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['/usuario']">
+    <mat-icon>person_pin</mat-icon>
+    Usuarios
+  </a>
+  <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['/comercio']">
+    <mat-icon>my_location</mat-icon> Comercios
+  </a>
+</mat-nav-list>

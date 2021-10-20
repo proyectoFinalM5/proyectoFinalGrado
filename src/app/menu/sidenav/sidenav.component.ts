@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Usuario } from 'src/app/entidades/usuario';
 import { AuthService } from 'src/app/services/auth.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
@@ -8,34 +9,19 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit {
+  @Input() usuario: Usuario;
 
-  nombreU: string;
-  constructor(private userService: UsuarioService,  private authService: AuthService) { }
-
+  constructor(private userService: UsuarioService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.obtenerNU();
-  }
-
-
-  obtenerNU() {
-    const name = this.authService.getUsuario();
-    this.nombreU = name.nombre
-    // console.log('devuelve: ' + name.nombre);
+    this.usuario = this.authService.getUsuario();
   }
 
   onLogout(): void {
     this.authService.logout();
   }
-
   deleteCuenta() {
-    // const _id = localStorage.getItem('usuario._id');
-
-    const ID = this.authService.getUsuario();
-    this.userService.deleteUsuario(ID._id);
-    console.log('devuelve: ' + ID._id);
-
+    this.userService.deleteUsuario(this.usuario._id);
     this.onLogout();
   }
-
 }

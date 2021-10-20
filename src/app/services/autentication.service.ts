@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Login } from '../entidades/login';
 import { TokenResponse } from '../entidades/token';
 import { Usuario } from '../entidades/usuario';
-import { LoginModule } from '../login/login.module';
 import { AuthService } from './auth.service';
 import { RequestService } from './request.service';
 
