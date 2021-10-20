@@ -40,7 +40,8 @@
             <button (click)="eliminar(comercio._id)" mat-icon-button aria-label="Eliminar" matTooltip="Eliminar">
               <mat-icon>delete</mat-icon>
             </button>
-            <button [routerLink]="['/editarComercio/:id']" mat-icon-button aria-label="Editar" matTooltip="Editar">
+            <button [routerLink]="['/comercio/editar', comercio._id]" mat-icon-button aria-label="Editar"
+              matTooltip="Editar">
               <mat-icon>note_add</mat-icon>
             </button>
 
@@ -54,6 +55,6 @@
         </mat-expansion-panel>
       </mat-accordion>
     </div>
-    <div id="map"></div>
+    <div id="mapa"></div>
   </div>
 </div>
