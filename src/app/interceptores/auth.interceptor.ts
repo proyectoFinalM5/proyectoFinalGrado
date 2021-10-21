@@ -25,12 +25,18 @@ export class AuthInterceptor implements HttpInterceptor {
       }),
     });
 
-    return next.handle(clonedReq).pipe(tap(e => {
-      if (req.method == "POST" || req.method == "PUT")
-        if (e instanceof HttpResponse && e.status == 200) {
+    return next.handle(clonedReq).pipe(map((event: HttpEvent<any>) => {
+      if (event instanceof HttpResponse && event.status == 200) {
+        if (req.method == "POST" || req.method == "PUT") {
           const path = req.url.split('/')[3];
           this.snackBar.openSnackBarSuccess(path === "login" ? "Bienvenido a YouMap" : "Guardado correctamente");
         }
+        const { body } = event;
+        if ("comercio" in body && body.comercio instanceof Array && body.comercio.length <= 1) {
+          event = event.clone({ body: body.comercio[0] });
+        }
+      }
+      return event;
     }),
       catchError((error: HttpErrorResponse) => {
         if (error.status == 401 && error.error.expired) {

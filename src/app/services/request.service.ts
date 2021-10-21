@@ -11,6 +11,9 @@ export class RequestService {
   getData<T>(path: string, params?: HttpParams): Promise<T[]> {
     return this.http.get<T[]>(`${this.url}/${path}`, { params: params }).toPromise();
   }
+  getElement<T>(path: string): Promise<T> {
+    return this.http.get<T>(`${this.url}/${path}`).toPromise();
+  }
   post<P, A>(path: string, entidad: P): Promise<P | A> {
     return this.http.post<P | A>(`${this.url}/${path}`, entidad).toPromise();
   }

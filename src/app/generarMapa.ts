@@ -6,8 +6,9 @@ export class Mapa extends Mapboxgl.Map {
   opcion: string
   constructor() {
     super({
-      container: 'map',
-      // style: 'mapbox://styles/mapbox/' + this.opcion,
+
+      container: 'mapa',
+
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [-88.9368898, 14.0423539],
       zoom: 15,
@@ -26,6 +27,8 @@ export class Mapa extends Mapboxgl.Map {
     );
   }
 
+
+  }
   addMarcador(comercio: Comercio) {
     const [lon, lat] = comercio.coordinates;
     const globo = new Mapboxgl.Popup({ className: 'globito' }).setHTML(

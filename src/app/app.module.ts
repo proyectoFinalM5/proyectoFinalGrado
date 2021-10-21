@@ -8,8 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { UsuarioModule } from './usuario/usuario.module';
 
-import { HeaderComponent } from './menu/header/header.component';
-import { SidenavComponent } from './menu/sidenav/sidenav.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuModule } from './menu/menu.module';
 import { RequestService } from './services/request.service';
@@ -23,7 +21,9 @@ import { UsuarioService } from './services/usuario.service';
 
 import { DialogErrorService } from './services/dialog-error.service';
 import { AutenticationService } from './services/autentication.service';
-
+import { environment } from '../environments/environment';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireModule } from '@angular/fire';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,6 +37,8 @@ import { AutenticationService } from './services/autentication.service';
     BrowserAnimationsModule,
     MaterialModule,
     LoginModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
   ],
   providers: [
     AuthService,
