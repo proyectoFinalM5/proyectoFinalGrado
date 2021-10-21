@@ -28,7 +28,7 @@ export class Mapa extends Mapboxgl.Map {
   }
 
 
-  }
+  
   addMarcador(comercio: Comercio) {
     const [lon, lat] = comercio.coordinates;
     const globo = new Mapboxgl.Popup({ className: 'globito' }).setHTML(
