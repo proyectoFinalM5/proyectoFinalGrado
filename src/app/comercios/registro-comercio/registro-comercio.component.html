@@ -1,73 +1,67 @@
 <div fxLayoutAlign="center">
-  <mat-card>
-    <mat-card-header class="m-3" fxLayoutAlign="center">
-      <mat-spinner *ngIf="loading" [diameter]="30"></mat-spinner>
-      <mat-card-title>Comercio</mat-card-title>
-    </mat-card-header>
-    <form [formGroup]="group" (ngSubmit)="comercioExist()? enviarPost(): editarComercio()">
-      <mat-card-content fxLayout="row">
-        <div fxLayout="column" class="size">
-          <mat-form-field appearance="fill">
-            <mat-label required>Nombre</mat-label>
-            <input [(ngModel)]="comercio.nombre" matInput formControlName="nombre">
-          </mat-form-field>
-          <mat-form-field appearance="fill">
-            <mat-label>Longitud</mat-label>
-            <input matInput placeholder="14.014281232591852" formControlName="longitud">
-          </mat-form-field>
+  <div>
+    <mat-card>
+      <mat-card-header class="m-3" fxLayoutAlign="center">
+        <mat-spinner *ngIf="loading" [diameter]="30"></mat-spinner>
+        <mat-card-title>Comercio</mat-card-title>
+      </mat-card-header>
+      <form [formGroup]="group" (ngSubmit)="comercioExist()? enviarPost(): editarComercio()">
+        <mat-card-content fxLayout="row">
+          <div fxLayout="column" class="size">
+            <mat-form-field appearance="fill">
+              <mat-label required>Nombre</mat-label>
+              <input [(ngModel)]="comercio.nombre" matInput formControlName="nombre">
+            </mat-form-field>
+            <mat-form-field appearance="fill" (click)="hide=!hide">
+              <mat-label>Coordenadas</mat-label>
+              <input matInput formControlName="coordinates" [value]="comercio?.coordinates?.join(', ')|| ''">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Propietario</mat-label>
+              <input [(ngModel)]="comercio.propietario" name="propietario" matInput formControlName="propietario">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Logo</mat-label>
+              <ngx-mat-file-input #removableInput formControlName="logo" accept=".jpg, .png">
+              </ngx-mat-file-input>
+              <mat-icon matPrefix>folder</mat-icon>
+              <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
+                <mat-icon>clear</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <div fxLayout="column" class="size">
+            <mat-form-field appearance="fill">
+              <mat-label>Redes sociales</mat-label>
+              <input [(ngModel)]="comercio.redes_sociales" matInput formControlName="redes_sociales"
+                placeholder="https://facebook.com">
+            </mat-form-field>
 
-          <mat-form-field appearance="fill">
-            <mat-label>Latitud</mat-label>
-            <input matInput placeholder="-88.7682016610587" formControlName="latitud">
-          </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Teléfono</mat-label>
+              <input [(ngModel)]="comercio.telefono" type="tel" matInput formControlName="telefono">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Descripción</mat-label>
+              <textarea [(ngModel)]="comercio.descripcion" [rows]="4" matInput formControlName="descripcion"></textarea>
+            </mat-form-field>
 
-          <mat-form-field appearance="fill">
-            <mat-label>Propietario</mat-label>
-            <input [(ngModel)]="comercio.propietario" name="propietario" matInput formControlName="propietario">
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>Logo</mat-label>
-            <ngx-mat-file-input #removableInput formControlName="logo" accept=".jpg, .png">
-            </ngx-mat-file-input>
-            <mat-icon matPrefix>folder</mat-icon>
-            <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
-              <mat-icon>clear</mat-icon>
-            </button>
-          </mat-form-field>
-        </div>
-        <div fxLayout="column" class="size">
-          <mat-form-field appearance="fill">
-            <mat-label>Redes sociales</mat-label>
-            <input [(ngModel)]="comercio.redes_sociales" matInput formControlName="redes_sociales"
-              placeholder="https://facebook.com">
-          </mat-form-field>
-
-          <mat-form-field appearance="fill">
-            <mat-label>Teléfono</mat-label>
-            <input [(ngModel)]="comercio.telefono" name="telefono" type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-              matInput placeholder="5555-1234" formControlName="telefono">
-          </mat-form-field>
-
-
-          <mat-form-field appearance="fill">
-            <mat-label>Descripción</mat-label>
-            <textarea [(ngModel)]="comercio.descripcion" [rows]="4" matInput formControlName="descripcion"></textarea>
-          </mat-form-field>
-
-          <mat-form-field appearance="fill">
-            <mat-label>Categoría</mat-label>
-            <mat-select [(ngModel)]="comercio.categoria" formControlName="categoria">
-              <mat-option *ngFor="let categoria of categorias" [value]="categoria">
-                {{categoria}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </mat-card-content>
-      <mat-dialog-actions fxLayoutAlign="center">
-        <button mat-raised-button color="primary" [disabled]="loading">{{comercioExist() ?"Agregar":"Editar"}}</button>
-      </mat-dialog-actions>
-    </form>
-  </mat-card>
-  <div id="mapa"></div>
+            <mat-form-field appearance="fill">
+              <mat-label>Categoría</mat-label>
+              <mat-select [(ngModel)]="comercio.categoria" formControlName="categoria">
+                <mat-option *ngFor="let categoria of categorias" [value]="categoria">
+                  {{categoria}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+        <mat-dialog-actions fxLayoutAlign="center">
+          <button mat-raised-button color="primary"
+            [disabled]="loading">{{comercioExist() ?"Agregar":"Editar"}}</button>
+        </mat-dialog-actions>
+      </form>
+    </mat-card>
+  </div>
+  <div [fxHide]="hide" id="mapa"></div>
 </div>

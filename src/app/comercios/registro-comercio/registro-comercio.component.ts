@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ComercioService } from 'src/app/services/comercio.service';
 import { Comercio } from 'src/app/entidades/comercio';
 import { Mapa } from 'src/app/generarMapa';
 import { FirebaseStorageService } from 'src/app/services/firebase-storage.service';
-import { finalize } from 'rxjs/operators';
 
 
 @Component({
@@ -16,6 +15,7 @@ import { finalize } from 'rxjs/operators';
 export class RegistroComercioComponent implements OnInit {
 
   group: FormGroup;
+  hide: boolean = true;
   comercio: Comercio = {} as Comercio;
   categorias: string[];
   loading: boolean = false;
@@ -24,6 +24,7 @@ export class RegistroComercioComponent implements OnInit {
   constructor(private service: ComercioService,
     private activatedRouter: ActivatedRoute,
     private form: FormBuilder,
+    private router: Router,
     private firebaseStorage: FirebaseStorageService) { }
 
   ngOnInit(): void {
@@ -31,6 +32,10 @@ export class RegistroComercioComponent implements OnInit {
     this.mapa = new Mapa();
     this.getComercio();
     this.iniciarForm();
+    this.mapa.on("click", (event) => {
+      const { lng, lat } = event.lngLat;
+      this.comercio.coordinates = [lng, lat]
+    })
   }
   async getComercio() {
     const id = this.activatedRouter.snapshot.params.id;
@@ -44,9 +49,8 @@ export class RegistroComercioComponent implements OnInit {
   iniciarForm() {
     this.group = this.form.group({
       nombre: ['', [Validators.required]],
-      longitud: ['', [Validators.required]],
-      latitud: ['', [Validators.required]],
       propietario: ['', [Validators.required]],
+      coordinates: [{ value: [], disabled: true }],
       redes_sociales: '',
       telefono: ['', [Validators.required]],
       descripcion: '',
@@ -60,35 +64,32 @@ export class RegistroComercioComponent implements OnInit {
       this.group.controls[x].setValue(values.find(col => col[0] === x)?.[1] || "")
     })
   }
-  enviarPost() {
+  async enviarPost() {
     if (this.group.valid) {
-      const latitud = this.group.get('latitud')?.value;
-      const longitud = this.group.get('longitud')?.value;
-      this.comercio.coordinates = [longitud, latitud];
+      await this.subirLogo()
       this.service.agregarComercio(this.comercio);
+      this.router.navigateByUrl('/comercio');
     }
   }
-  editarComercio() {
+  async editarComercio() {
     if (this.group.valid) {
-
-      this.service.actualizarComercio(this.comercio._id, this.comercio)
-        .then(() => {
-        })
+      await this.subirLogo()
+      this.service.actualizarComercio(this.comercio._id, this.comercio);
+      this.router.navigateByUrl('/comercio');
     }
   }
   comercioExist() {
     return this.comercio._id === undefined;
   }
-  subirLogo() {
+  async subirLogo() {
     const { files, fileNames } = this.group.get('logo')?.value;
-    const ref = this.firebaseStorage.referenciaCloudStorage(fileNames);
-    let task = this.firebaseStorage.tareaCloudStorage(fileNames, files[0]);
-    task.snapshotChanges().pipe(
-      finalize(() => {
-        ref.getDownloadURL().subscribe(url => {
-          this.comercio.logo = url;
-        })
-      })
-    ).subscribe();
+    console.log(files)
+    if (files?.length > 0) {
+      const ref = this.firebaseStorage.referenciaCloudStorage(fileNames);
+      let task = this.firebaseStorage.tareaCloudStorage(fileNames, files[0]);
+      await task.snapshotChanges().toPromise()
+      const url = await ref.getDownloadURL().toPromise()
+      this.comercio.logo = url
+    }
   }
 }
