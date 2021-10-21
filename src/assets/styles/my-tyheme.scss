@@ -1,0 +1,99 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+
+// GAMA COLORES
+$my-primary-color: (
+  700 : #6f5d7b,
+  800 : #4f3e5a,
+  900 : #2c1d37,
+  contrast: (
+    200 : #000000,
+    500 : #ffffff,
+    700 : #ffffff,
+  )
+);
+
+$my-secondary-color: (
+  700 : #773e7b,
+  800 : #693871,
+  900 : #4f2f5c,
+  contrast: (
+    200 : #000000,
+    500 : #ffffff,
+    700 : #ffffff,
+  )
+);
+
+$my-tertiary-color: (
+  100 : #d7b8d6,
+  200 : #be89bc,
+  300 : #a65ba4,
+  contrast: (
+    200 : #000000,
+    500 : #ffffff,
+    700 : #ffffff,
+  )
+);
+$my-accent-color: (
+  700 : #69715d,
+  800 : #49513e,
+  900 : #272f1d,
+  contrast: (
+    200 : #000000,
+    500 : #ffffff,
+    700 : #ffffff,
+  )
+);
+
+$my-warn-color: (
+  200 : #feba80,
+  500 : #fd7400,
+  700 : #fc6100,
+  contrast: (
+    200 : #000000,
+    500 : #000000,
+    700 : #000000,
+  )
+);
+
+$my-error-color: (
+  200 : #ff5131,
+  500 : #d50000,
+  700 : #9b0000,
+  contrast: (
+    200 : #000000,
+    500 : #000000,
+    700 : #000000,
+  )
+);
+
+// PALETA DE COLORES
+$my-palette-primary: mat-palette($my-primary-color);
+$my-palette-secondary: mat-palette($my-secondary-color);
+$my-palette-tertiary: mat-palette($my-tertiary-color);
+$my-palette-accent: mat-palette($my-accent-color);
+$my-palette-warn: mat-palette($my-warn-color);
+$my-palette-error: mat-palette($my-erorr-color);
+
+// TEMA PROPIO
+$my-theme: mat-light-theme((
+ color: (
+   primary: $my-palette-primary,
+   secondary: $my-secondary-color,
+   tertiary: $my-tertiary-color,
+   accent: $my-palette-accent,
+   warn: $my-palette-warn,
+   error: $my-palette-error
+ )
+));
+
+// APLICAR NUESTRO TEMA A ANGULAR
+@include angular-material-theme($my-theme);
+
+
+// REEMPLAZA EN ANGULAR.JSON -> STYLES
+// "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+// POR LA RUTA DEL CUSTOM THEME
+// "src/assets/styles/my-theme.scss",
