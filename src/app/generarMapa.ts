@@ -3,22 +3,25 @@ import * as Mapboxgl from 'mapbox-gl';
 import { environment } from 'src/environments/environment';
 (Mapboxgl as any).accessToken = environment.tokenmapa;
 export class Mapa extends Mapboxgl.Map {
+  opcion: string
   constructor() {
     super({
       container: 'map',
+      // style: 'mapbox://styles/mapbox/' + this.opcion,
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [-88.9368898, 14.0423539],
-      zoom: 15
+      zoom: 15,
     });
   }
 
   addMarcador(comercio: Comercio) {
     const [lon, lat] = comercio.coordinates;
-    const globo = new Mapboxgl.Popup({ className: 'globito' })
-      .setHTML(`<p> ${comercio.nombre} </p>`)
+    const globo = new Mapboxgl.Popup({ className: 'globito' }).setHTML(
+      `<p> ${comercio.nombre} </p>`
+    );
     const marca = new Mapboxgl.Marker({
       draggable: false,
-      color: "orange"
+      color: 'orange',
     })
       .setLngLat([lon, lat])
       .setPopup(globo)
@@ -29,7 +32,14 @@ export class Mapa extends Mapboxgl.Map {
     const [lon, lat] = comercio.coordinates;
     this.flyTo({
       center: [lon, lat],
-      zoom: 20
+      zoom: 20,
     });
+  }
+
+  changeTema(opcion: string) {
+
+    this.setStyle('mapbox://styles/mapbox/' + opcion);
+    console.log('optiene: ' + opcion);
+
   }
 }

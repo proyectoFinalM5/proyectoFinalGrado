@@ -1,6 +1,6 @@
 #map {
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
 }
 
 #datos {
@@ -10,4 +10,29 @@
 #listado {
   margin-right: 1%;
   overflow: auto;
+}
+
+// #menu {
+//   position: right;
+//   background: #efefef;
+//   padding: 1%;
+//   font-family: 'Open Sans', sans-serif;
+// }
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
+#opciones {
+  position: absolute; left: 380px; top: 150px;
+  background-color: #4f3e5a !important;
+  padding: 0.5%;
+  color: white;
+}
+#titulo {
+  color: #F7F9F9 !important;
+}
+
+#sub {
+  color: #F7DC6F;
 }

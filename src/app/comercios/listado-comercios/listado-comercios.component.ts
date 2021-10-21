@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Comercio } from './../../entidades/comercio';
 import { ComercioService } from 'src/app/services/comercio.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet.component';
 import { Mapa } from 'src/app/generarMapa';
 import { Router } from '@angular/router';
+import { MatRadioChange, MatRadioGroup } from '@angular/material/radio';
 
 @Component({
   selector: 'app-listado-comercios',
@@ -15,12 +16,17 @@ export class ListadoComerciosComponent implements OnInit {
 
   mapa: Mapa;
   listado: Comercio[] = [];
+  selected: string;
+  opciones: string[] = ['streets-v11', 'satellite-v9', 'light-v10', 'dark-v10', 'outdoors-v11'];
 
-  constructor(private service: ComercioService, private _bottomSheet: MatBottomSheet, private router: Router) { }
+  constructor(private service: ComercioService, private _bottomSheet: MatBottomSheet, private router: Router) {
+    this.selected = 'streets-v11';
+   }
 
   ngOnInit(): void {
     this.mapa = new Mapa();
     this.obtenerComercios();
+
   }
 
   obtenerComercios() {
@@ -57,5 +63,9 @@ export class ListadoComerciosComponent implements OnInit {
         this.obtenerComercios();
       })
     }
+  }
+  onRadioChange(event: MatRadioChange): void {
+    this.mapa.changeTema(event.value)
+
   }
 }
