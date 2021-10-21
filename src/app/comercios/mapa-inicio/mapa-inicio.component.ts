@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import * as Mapboxgl from 'mapbox-gl';
+import { Mapa } from 'src/app/generarMapa';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -10,21 +11,11 @@ import { environment } from 'src/environments/environment';
 })
 export class MapaInicioComponent implements OnInit {
 
-  mapa: Mapboxgl.Map;
+  mapa: Mapa;
 
   constructor() { }
 
   ngOnInit(): void {
-    (Mapboxgl as any).accessToken = environment.tokenmapa;
-    this.mapa = new Mapboxgl.Map({
-     container: 'map',
-     style: 'mapbox://styles/mapbox/streets-v11',
-     center:[-88.9368898, 14.0423539],
-     zoom:15
-    });
-  }
-
-  mostrarMapa() {
-
+    this.mapa = new Mapa();
   }
 }

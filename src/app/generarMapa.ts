@@ -12,6 +12,18 @@ export class Mapa extends Mapboxgl.Map {
       center: [-88.9368898, 14.0423539],
       zoom: 15,
     });
+
+    this.addControl(
+      new Mapboxgl.GeolocateControl({
+      positionOptions: {
+      enableHighAccuracy: true
+      },
+      // When active the map will receive updates to the device's location as it changes.
+      trackUserLocation: true,
+      // Draw an arrow next to the location dot to indicate which direction the device is heading.
+      showUserHeading: true
+      })
+    );
   }
 
   addMarcador(comercio: Comercio) {

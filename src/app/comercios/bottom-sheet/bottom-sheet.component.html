@@ -29,14 +29,14 @@
       ></star-rating>
         {{fecha}}
       <br/>
-      <div id="container" fxLayout="row">
-        <p class="info mt-4">¿Te resultó útil ésta información?</p>
-      </div>
-      <div id="puntos">
-        <button id="redondo" class="mt-3" mat-raised-button color="primary">Si</button>
-        <button id="redondo" class="mt-3" mat-raised-button color="accent">No</button>
-      </div>
     </span>
     <span mat-line></span>
   </a>
+  <div id="container" fxLayout="row">
+    <p class="info mt-4">¿Te resultó útil ésta opinión?</p>
+  </div>
+  <div class="button mt-3">
+    <mat-icon class="btn">thumb_up_alt</mat-icon>
+    <mat-icon class="btn">thumb_down_alt</mat-icon>
+  </div>
 </mat-nav-list>

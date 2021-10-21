@@ -6,14 +6,12 @@
         </button>
         <mat-form-field style="margin-left: 20px" appearance="legacy">
             <mat-label>Nombre del comercio</mat-label>
-            <input (keyup)="search($event)" matInput="matInput" placeholder="Nombre del comercio"/>
+            <input [(ngModel)]="nameCom" (keyup)="search($event)" matInput="matInput" placeholder="Nombre del comercio"/>
         </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Choose an option</mat-label>
-          <mat-select [disabled]="">
-            <mat-option value="option1">Option 1</mat-option>
-            <mat-option value="option2" disabled>Option 2 (disabled)</mat-option>
-            <mat-option value="option3">Option 3</mat-option>
+        <mat-form-field appearance="fill" style="margin-left: 20px">
+          <mat-label>Selecciona una categoria</mat-label>
+          <mat-select [(ngModel)]="selectedC" (selectionChange)="onSelectChange($event)">
+            <mat-option *ngFor="let c of categorias;" [value]="c">{{c}}</mat-option>
           </mat-select>
         </mat-form-field>
     </div>
@@ -55,11 +53,11 @@
                             <mat-icon>delete</mat-icon>
                         </button>
                         <button [routerLink]="['/editarComercio/:id']" color="primary" mat-icon-button="mat-icon-button" aria-label="Editar" matTooltip="Editar">
-                            <mat-icon>note_add</mat-icon>
+                          <mat-icon>create</mat-icon>
                         </button>
 
                         <button (click)="openBottomSheet()" color="accent" mat-icon-button="mat-icon-button" aria-label="Comentarios" matTooltip="Comentarios">
-                            <mat-icon>question_answer</mat-icon>
+                          <mat-icon>library_books</mat-icon>
                         </button>
                         <button (click)="seleccionarComercio(comercio)" color="" mat-icon-button="mat-icon-button" aria-label="Mapa" matTooltip="Ver en mapa">
                             <mat-icon>room</mat-icon>
