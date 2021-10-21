@@ -26,8 +26,10 @@
             <input [(ngModel)]="comercio.propietario" name="propietario" matInput formControlName="propietario">
           </mat-form-field>
           <mat-form-field>
-            <ngx-mat-file-input #removableInput formControlName="logo" placeholder="Elegir imagen">
+            <mat-label>Logo</mat-label>
+            <ngx-mat-file-input #removableInput formControlName="logo" accept=".jpg, .png">
             </ngx-mat-file-input>
+            <mat-icon matPrefix>folder</mat-icon>
             <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
               <mat-icon>clear</mat-icon>
             </button>
@@ -42,8 +44,8 @@
 
           <mat-form-field appearance="fill">
             <mat-label>Teléfono</mat-label>
-            <input [(ngModel)]="comercio.telefono" name="telefono" type="tel" matInput placeholder="5555-1234"
-              formControlName="telefono">
+            <input [(ngModel)]="comercio.telefono" name="telefono" type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+              matInput placeholder="5555-1234" formControlName="telefono">
           </mat-form-field>
 
 

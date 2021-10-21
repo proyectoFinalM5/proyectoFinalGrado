@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ComercioService } from 'src/app/services/comercio.service';
 import { Comercio } from 'src/app/entidades/comercio';
 import { Mapa } from 'src/app/generarMapa';
+import { FirebaseStorageService } from 'src/app/services/firebase-storage.service';
+import { finalize } from 'rxjs/operators';
 
 
 @Component({
@@ -19,7 +21,10 @@ export class RegistroComercioComponent implements OnInit {
   loading: boolean = false;
   mapa: Mapa;
 
-  constructor(private service: ComercioService, private activatedRouter: ActivatedRoute, private form: FormBuilder) { }
+  constructor(private service: ComercioService,
+    private activatedRouter: ActivatedRoute,
+    private form: FormBuilder,
+    private firebaseStorage: FirebaseStorageService) { }
 
   ngOnInit(): void {
     this.categorias = this.service.getCategorias();
@@ -65,7 +70,7 @@ export class RegistroComercioComponent implements OnInit {
   }
   editarComercio() {
     if (this.group.valid) {
-      console.log(this.comercio._id)
+
       this.service.actualizarComercio(this.comercio._id, this.comercio)
         .then(() => {
         })
@@ -73,5 +78,17 @@ export class RegistroComercioComponent implements OnInit {
   }
   comercioExist() {
     return this.comercio._id === undefined;
+  }
+  subirLogo() {
+    const { files, fileNames } = this.group.get('logo')?.value;
+    const ref = this.firebaseStorage.referenciaCloudStorage(fileNames);
+    let task = this.firebaseStorage.tareaCloudStorage(fileNames, files[0]);
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        ref.getDownloadURL().subscribe(url => {
+          this.comercio.logo = url;
+        })
+      })
+    ).subscribe();
   }
 }
