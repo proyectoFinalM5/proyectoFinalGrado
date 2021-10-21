@@ -20,8 +20,8 @@ export class ComercioService {
     return this.service.getData<Comercio>('comercio/search', params);
   }
 
-  getComercio(id: string): Promise<Comercio[]> {
-    return this.service.getData<Comercio>(`comercio/${id}`);
+  getComercio(id: string): Promise<Comercio> {
+    return this.service.getElement<Comercio>(`comercio/${id}`);
   }
 
   agregarComercio(comercio: Comercio) {

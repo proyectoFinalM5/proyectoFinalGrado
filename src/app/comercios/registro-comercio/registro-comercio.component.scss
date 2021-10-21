@@ -1,5 +1,6 @@
 .mat-card {
   width: 600px;
+  height: auto;
 }
 
 .mat-form-field {
@@ -8,4 +9,10 @@
 
 .size {
   width: 50%;
+}
+
+#mapa {
+  height: 80vh;
+  width: 55%;
+  margin-left: 20px;
 }

@@ -5,13 +5,13 @@ import { environment } from 'src/environments/environment';
 export class Mapa extends Mapboxgl.Map {
   constructor() {
     super({
-      container: 'map',
+      container: 'mapa',
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [-88.9368898, 14.0423539],
       zoom: 15
     });
-  }
 
+  }
   addMarcador(comercio: Comercio) {
     const [lon, lat] = comercio.coordinates;
     const globo = new Mapboxgl.Popup({ className: 'globito' })

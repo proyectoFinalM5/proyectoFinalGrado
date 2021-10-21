@@ -51,6 +51,11 @@ export class ListadoComerciosComponent implements OnInit {
   agregarUsuario() {
     this.router.navigateByUrl('/comercio/registro');
   }
+  editar(id: string) {
+    this.router.navigate(['/comercio/editar'], {
+      queryParams: { "id": id }
+    });
+  }
   eliminar(id: string) {
     if (confirm("estas seguro de eliminar este comercio?")) {
       this.service.deleteComercio(id).then(() => {
