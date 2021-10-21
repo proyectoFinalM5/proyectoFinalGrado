@@ -6,9 +6,7 @@ export class Mapa extends Mapboxgl.Map {
   opcion: string
   constructor() {
     super({
-
       container: 'mapa',
-
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [-88.9368898, 14.0423539],
       zoom: 15,
@@ -19,21 +17,22 @@ export class Mapa extends Mapboxgl.Map {
       positionOptions: {
       enableHighAccuracy: true
       },
-      // When active the map will receive updates to the device's location as it changes.
       trackUserLocation: true,
-      // Draw an arrow next to the location dot to indicate which direction the device is heading.
       showUserHeading: true
       })
     );
   }
 
-
-  
   addMarcador(comercio: Comercio) {
+    const estiloPopup = {'maxWidth': '300'}
     const [lon, lat] = comercio.coordinates;
     const globo = new Mapboxgl.Popup({ className: 'globito' }).setHTML(
-      `<p> ${comercio.nombre} </p>`
+      `
+      <h1 style="text-align: center; color: black !important;">${comercio.nombre}</h2><p style="font-size: 100%;">${comercio.propietario}</p><p style="font-size: 100%;">${comercio.descripcion}</p>
+      `
     );
+    console.log('Trae: ' + comercio.descripcion);
+
     const marca = new Mapboxgl.Marker({
       draggable: false,
       color: 'orange',
@@ -52,9 +51,6 @@ export class Mapa extends Mapboxgl.Map {
   }
 
   changeTema(opcion: string) {
-
     this.setStyle('mapbox://styles/mapbox/' + opcion);
-    console.log('optiene: ' + opcion);
-
   }
 }

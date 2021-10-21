@@ -12,6 +12,7 @@
 #listado {
   margin-right: 1%;
   overflow: auto;
+  max-width: 35%;
 }
 
 // #menu {
@@ -26,13 +27,14 @@
 }
 
 #opciones {
-  position: absolute; left: 380px; top: 150px;
+  position: absolute; left: 430px; top: 150px;
   background-color: #4f3e5a !important;
   padding: 0.5%;
   color: white;
 }
 #titulo {
   color: #F7F9F9 !important;
+
 }
 
 #sub {
