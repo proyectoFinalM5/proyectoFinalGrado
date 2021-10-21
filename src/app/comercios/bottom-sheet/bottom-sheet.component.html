@@ -1,15 +1,42 @@
-<mat-nav-list *ngFor="let item of comentarios">
+<mat-spinner *ngIf="showSpinner" style="margin:0 auto;"></mat-spinner>
+<mat-nav-list class="mb-5 mt-3" *ngFor="let item of comentarios">
   <a  mat-list-item>
     <span mat-line>
-      {{item.comentario}}
+      <Strong>{{item.comentario}}</Strong>
+      <button id="puntos" [matMenuTriggerFor]="menu" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>report_problem</mat-icon>
+          <span>Reportar</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>speaker_notes_off</mat-icon>
+          <span>Inapropiada</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>speaker_notes</mat-icon>
+          <span>Marcar Span</span>
+        </button>
+      </mat-menu>
       <star-rating
-        [value]="item.valoracion"
-        [totalstars]="5"
-        checkedcolor="yellow"
-        uncheckedcolor="black"
-        [readonly]="true"
+      [value]="item.valoracion"
+      [totalstars]="5"
+      checkedcolor="yellow"
+      uncheckedcolor="black"
+      [readonly]="true"
       ></star-rating>
+        {{fecha}}
+      <br/>
     </span>
     <span mat-line></span>
   </a>
+  <div id="container" fxLayout="row">
+    <p class="info mt-4">¿Te resultó útil ésta opinión?</p>
+  </div>
+  <div class="button mt-3">
+    <mat-icon class="btn">thumb_up_alt</mat-icon>
+    <mat-icon class="btn">thumb_down_alt</mat-icon>
+  </div>
 </mat-nav-list>

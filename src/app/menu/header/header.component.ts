@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Usuario } from 'src/app/entidades/usuario';
 import { AuthService } from 'src/app/services/auth.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
@@ -11,6 +12,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class HeaderComponent implements OnInit {
 
   @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter();
+  @Input() usuario: Usuario;
   nombreU: string;
   public show: boolean = false;
 
@@ -18,6 +20,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerNU();
+    this.usuario = this.authService.getUsuario();
   }
 
   toggleSidebar() {

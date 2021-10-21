@@ -16,9 +16,9 @@ const routes: Routes = [
       { path: 'usuario', component: UsuariosComponent },
       { path: 'comercio/registro', component: RegistroComercioComponent },
       { path: 'comercio/editar/:id', component: RegistroComercioComponent },
+      { path: 'inicio', component: MapaInicioComponent },
       { path: "", redirectTo: "/comercio", pathMatch: "full" },
       { path: '**', redirectTo: "/comercio" },
-      { path: 'inicio', component: MapaInicioComponent },
     ]
   },
   { path: '**', redirectTo: "/comercio" },

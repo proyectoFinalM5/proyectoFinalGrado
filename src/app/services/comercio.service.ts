@@ -15,8 +15,15 @@ export class ComercioService {
     return this.service.getData<Comercio>('comercio');
   }
 
-  getComercioNombre(nombre: string): Promise<Comercio[]> {
-    const params = new HttpParams().set('nombre', nombre);
+  getComercioNombre(nombre: string, categoria: string): Promise<Comercio[]> {
+    const params = new HttpParams().set('nombre', nombre).set('categoria', categoria === 'Todos'?'':categoria);
+    console.log('Params' + params);
+    return this.service.getData<Comercio>('comercio/search', params);
+
+  }
+
+  getComercioCat(nombre: string): Promise<Comercio[]> {
+    const params = new HttpParams().set('categoria', nombre);
     return this.service.getData<Comercio>('comercio/search', params);
   }
 
@@ -36,6 +43,6 @@ export class ComercioService {
     return this.service.delete<Comercio>('comercio', id);
   }
   getCategorias(): string[] {
-    return ['Comedor/Restaurante', 'Banco', 'Ropa', 'Zapatería', 'Juguetería', 'Panadería', 'Bazar', 'Ferretería', 'Farmacia', 'Electrónica', 'Comercial', 'Otro']
+    return ['Restaurante', 'Banco', 'Ropa', 'Zapatería', 'Juguetería', 'Panadería', 'Bazar', 'Ferretería', 'Farmacia', 'Electrónica', 'Comercial', 'Otro']
   }
 }

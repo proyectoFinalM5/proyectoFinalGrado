@@ -11,6 +11,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class SidenavComponent implements OnInit {
   @Input() usuario: Usuario;
 
+
   constructor(private userService: UsuarioService, private authService: AuthService) { }
 
   ngOnInit(): void {
