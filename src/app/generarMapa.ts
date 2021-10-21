@@ -22,6 +22,7 @@ export class Mapa extends Mapboxgl.Map {
       })
     );
   }
+
   addMarcador(comercio: Comercio) {
     const estiloPopup = {'maxWidth': '300'}
     const [lon, lat] = comercio.coordinates;
