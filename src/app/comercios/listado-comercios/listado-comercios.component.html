@@ -4,15 +4,15 @@
             <mat-icon>add</mat-icon>
             Agregar
         </button>
-        <mat-form-field style="margin-left: 20px" appearance="legacy">
-            <mat-label>Nombre del comercio</mat-label>
-            <input [(ngModel)]="nameCom" (keyup)="search($event)" matInput="matInput" placeholder="Nombre del comercio"/>
-        </mat-form-field>
         <mat-form-field appearance="fill" style="margin-left: 20px">
           <mat-label>Selecciona una categoria</mat-label>
           <mat-select [(ngModel)]="selectedC" (selectionChange)="onSelectChange($event)">
             <mat-option *ngFor="let c of categorias;" [value]="c">{{c}}</mat-option>
           </mat-select>
+        </mat-form-field>
+        <mat-form-field style="margin-left: 20px" appearance="legacy">
+            <mat-label>Nombre del comercio</mat-label>
+            <input [(ngModel)]="nameCom" (keyup)="search($event)" matInput="matInput" placeholder="Nombre del comercio"/>
         </mat-form-field>
     </div>
     <div id="datos" fxLayout="row">
@@ -52,7 +52,7 @@
                         <button (click)="eliminar(comercio._id)" color="warn" mat-icon-button="mat-icon-button" aria-label="Eliminar" matTooltip="Eliminar">
                             <mat-icon>delete</mat-icon>
                         </button>
-                        <button [routerLink]="['/editarComercio/:id']" color="primary" mat-icon-button="mat-icon-button" aria-label="Editar" matTooltip="Editar">
+                        <button [routerLink]="['editar/', comercio._id]" color="primary" mat-icon-button="mat-icon-button" aria-label="Editar" matTooltip="Editar">
                           <mat-icon>create</mat-icon>
                         </button>
 
@@ -79,7 +79,7 @@
             {{op}}
           </mat-radio-button>
         </mat-radio-group>
-        <div>Haz seleccionado: {{selected}}</div>
+        <!-- <div>Haz seleccionado: {{selected}}</div> -->
         </div>
     </div>
 </div>

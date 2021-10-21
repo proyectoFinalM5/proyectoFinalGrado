@@ -67,6 +67,7 @@ export class ListadoComerciosComponent implements OnInit {
     this.router.navigate(['/comercio/editar'], {
       queryParams: { "id": id }
     });
+    
   }
   eliminar(id: string) {
     if (confirm("estas seguro de eliminar este comercio?")) {
