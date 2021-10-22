@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
 
   @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter();
   @Input() usuario: Usuario;
+  @Input() title: string = ''
   nombreU: string;
   public show: boolean = false;
 
