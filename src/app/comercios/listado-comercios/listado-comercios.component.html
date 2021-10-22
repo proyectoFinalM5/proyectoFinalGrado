@@ -49,10 +49,10 @@
                     </mat-list>
 
                     <div>
-                        <button (click)="eliminar(comercio._id)" color="warn" mat-icon-button="mat-icon-button" aria-label="Eliminar" matTooltip="Eliminar">
+                        <button *ngIf="usuario.rol!==3" (click)="eliminar(comercio._id)" color="warn" mat-icon-button="mat-icon-button" aria-label="Eliminar" matTooltip="Eliminar">
                             <mat-icon>delete</mat-icon>
                         </button>
-                        <button [routerLink]="['editar/', comercio._id]" color="primary" mat-icon-button="mat-icon-button" aria-label="Editar" matTooltip="Editar">
+                        <button *ngIf="usuario.rol!==3" [routerLink]="['editar/', comercio._id]" color="primary" mat-icon-button="mat-icon-button" aria-label="Editar" matTooltip="Editar">
                           <mat-icon>create</mat-icon>
                         </button>
 
