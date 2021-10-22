@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router, NavigationEnd, NavigationStart, Event as NavigationEvent } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ComercioService } from 'src/app/services/comercio.service';
 import { Comercio } from 'src/app/entidades/comercio';
 import { Mapa } from 'src/app/generarMapa';
 import { FirebaseStorageService } from 'src/app/services/firebase-storage.service';
-import { filter, map } from 'rxjs/operators';
 
 
 @Component({
@@ -17,15 +16,14 @@ export class RegistroComercioComponent implements OnInit {
 
   group: FormGroup;
   hide: boolean = true;
-  comercio: Comercio = {} as Comercio;
   categorias: string[];
   loading: boolean = false;
+  comercio: Comercio = {} as Comercio;
   mapa: Mapa;
 
   constructor(private service: ComercioService,
     private activatedRouter: ActivatedRoute,
     private form: FormBuilder,
-    private router: Router,
     private firebaseStorage: FirebaseStorageService) { }
 
   ngOnInit(): void {
@@ -35,7 +33,7 @@ export class RegistroComercioComponent implements OnInit {
     this.mapa = new Mapa();
     this.mapa.on("click", (event) => {
       const { lng, lat } = event.lngLat;
-      this.comercio.coordinates = [lng, lat]
+      this.group.get("coordinates")?.setValue([lng, lat]);
     })
   }
   async getComercio() {
@@ -51,32 +49,42 @@ export class RegistroComercioComponent implements OnInit {
     this.group = this.form.group({
       nombre: ['', [Validators.required]],
       propietario: ['', [Validators.required]],
-      coordinates: [{ value: [], disabled: true }],
+      coordinates: [[], Validators.required],
       redes_sociales: '',
       telefono: ['', [Validators.required]],
       descripcion: '',
-      categoria: '',
+      categoria: this.categorias[0],
       logo: '',
     });
   }
   llenarform() {
+    console.log(this.comercio)
+    const values = Object.entries(this.comercio);
     Object.keys(this.group.value).forEach(x => {
-      const values = Object.entries(this.comercio);
-      this.group.controls[x].setValue(values.find(col => col[0] === x)?.[1] || "")
+      this.group.controls[x]?.setValue(values.find(col => col[0] === x)?.[1] || "")
     })
   }
   async enviarPost() {
     if (this.group.valid) {
       await this.subirLogo()
-      this.service.agregarComercio(this.comercio);
-      window.location.href = "/comercio"
+      this.llenarComercio()
+      console.log(this.comercio)
+      await this.service.agregarComercio(this.comercio).then(x => {
+        window.location.href = "/comercio"
+      })
     }
+  }
+  llenarComercio() {
+    const { nombre, propietario, coordinates, redes_sociales, telefono, descripcion, categoria } = this.group.value;
+    this.comercio = { ...this.comercio, nombre, propietario, coordinates, redes_sociales, telefono, descripcion, categoria };
   }
   async editarComercio() {
     if (this.group.valid) {
       await this.subirLogo()
-      this.service.actualizarComercio(this.comercio._id, this.comercio);
-      window.location.href = "/comercio"
+      this.llenarComercio()
+      this.service.actualizarComercio(this.comercio._id, this.comercio).then(x => {
+        window.location.href = "/comercio"
+      })
     }
   }
   comercioExist() {

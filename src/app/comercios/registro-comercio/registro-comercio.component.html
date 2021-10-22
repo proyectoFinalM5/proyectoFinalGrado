@@ -10,15 +10,16 @@
           <div fxLayout="column" class="size">
             <mat-form-field appearance="fill">
               <mat-label required>Nombre</mat-label>
-              <input [(ngModel)]="comercio.nombre" matInput formControlName="nombre">
+              <input matInput formControlName="nombre">
             </mat-form-field>
             <mat-form-field appearance="fill" (click)="hide=!hide">
               <mat-label>Coordenadas</mat-label>
-              <input matInput formControlName="coordinates" [value]="comercio?.coordinates?.join(', ')|| ''">
+              <input matInput formControlName="coordinates"
+                [value]="!group.disable? group.get('coordinates')?.value.join(', '): '' ">
             </mat-form-field>
             <mat-form-field appearance="fill">
               <mat-label>Propietario</mat-label>
-              <input [(ngModel)]="comercio.propietario" name="propietario" matInput formControlName="propietario">
+              <input name="propietario" matInput formControlName="propietario">
             </mat-form-field>
             <mat-form-field>
               <mat-label>Logo</mat-label>
@@ -33,22 +34,21 @@
           <div fxLayout="column" class="size">
             <mat-form-field appearance="fill">
               <mat-label>Redes sociales</mat-label>
-              <input [(ngModel)]="comercio.redes_sociales" matInput formControlName="redes_sociales"
-                placeholder="https://facebook.com">
+              <input matInput formControlName="redes_sociales" placeholder="https://facebook.com">
             </mat-form-field>
 
             <mat-form-field appearance="fill">
               <mat-label>Teléfono</mat-label>
-              <input [(ngModel)]="comercio.telefono" type="tel" matInput formControlName="telefono">
+              <input type="tel" matInput formControlName="telefono">
             </mat-form-field>
             <mat-form-field appearance="fill">
               <mat-label>Descripción</mat-label>
-              <textarea [(ngModel)]="comercio.descripcion" [rows]="4" matInput formControlName="descripcion"></textarea>
+              <textarea [rows]="4" matInput formControlName="descripcion"></textarea>
             </mat-form-field>
 
             <mat-form-field appearance="fill">
               <mat-label>Categoría</mat-label>
-              <mat-select [(ngModel)]="comercio.categoria" formControlName="categoria">
+              <mat-select formControlName="categoria">
                 <mat-option *ngFor="let categoria of categorias" [value]="categoria">
                   {{categoria}}
                 </mat-option>

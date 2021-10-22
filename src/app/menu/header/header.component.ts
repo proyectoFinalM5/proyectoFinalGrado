@@ -22,7 +22,6 @@ export class HeaderComponent implements OnInit {
     this.router.events.pipe(filter(x => x instanceof NavigationEnd), map(x => x as NavigationEnd)).subscribe(x => {
       const ruta = x.url;
       const [nulo, tag, subtag] = ruta.split('/');
-      console.log(tag)
       this.title = !subtag ? `LISTADO ${tag.toUpperCase()}` : `${subtag.toUpperCase()} ${tag.toUpperCase()}`
     })
   }
@@ -40,7 +39,6 @@ export class HeaderComponent implements OnInit {
   obtenerNU() {
     const name = this.authService.getUsuario();
     this.nombreU = name.nombre
-    // console.log('devuelve: ' + name.nombre);
   }
 
   onLogout(): void {
@@ -48,12 +46,8 @@ export class HeaderComponent implements OnInit {
   }
 
   deleteCuenta() {
-    // const _id = localStorage.getItem('usuario._id');
-
-    const ID = this.authService.getUsuario();
-    this.userService.deleteUsuario(ID._id);
-    console.log('devuelve: ' + ID._id);
-
+    const usuario = this.authService.getUsuario();
+    this.userService.deleteUsuario(usuario._id);
     this.onLogout();
   }
 }

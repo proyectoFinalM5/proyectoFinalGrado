@@ -74,7 +74,7 @@ export class ListadoComerciosComponent implements OnInit {
     }
   }
   navigate(path: string, id?: string) {
-    window.location.href = `/comercio/${path} ${id ? '/' + id : ''}`
+    window.location.href = `/comercio/${path}${id ? '/' + id : ''}`
   }
   onRadioChange(event: MatRadioChange): void {
     this.mapa.changeTema(event.value)

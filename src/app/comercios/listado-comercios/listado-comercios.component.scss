@@ -30,6 +30,12 @@
 
 }
 
+#social {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 #sub {
   color: #F7DC6F;
 }

@@ -12,7 +12,7 @@
     </mat-form-field>
     <mat-form-field style="margin-left: 20px" appearance="legacy">
       <mat-label>Nombre del comercio</mat-label>
-      <input [(ngModel)]="nameCom" (keyup)="search($event)" matInput="matInput" placeholder="Nombre del comercio" />
+      <input [(ngModel)]="nameCom" (keypress)="search($event)" matInput="matInput" placeholder="Nombre del comercio" />
     </mat-form-field>
   </div>
   <div id="datos" fxLayout="row">
@@ -37,10 +37,11 @@
               Teléfono:
               {{ comercio.telefono }}
             </mat-list-item>
-            <mat-list-item *ngIf="comercio.redes_sociales">
+            <mat-list-item *ngIf="comercio.redes_sociales!==''" id="social">
               Red social:
-              <a href="">
-                {{ comercio.redes_sociales }}</a>
+              <a [href]="comercio.redes_sociales" target="_blank">
+                {{ comercio.redes_sociales }}
+              </a>
             </mat-list-item>
             <mat-list-item>
               Descripción:
