@@ -14,24 +14,29 @@ export class Mapa extends Mapboxgl.Map {
 
     this.addControl(
       new Mapboxgl.GeolocateControl({
-      positionOptions: {
-      enableHighAccuracy: true
-      },
-      trackUserLocation: true,
-      showUserHeading: true
+        positionOptions: {
+          enableHighAccuracy: true
+        },
+        trackUserLocation: true,
+        showUserHeading: true
       })
     );
   }
 
   addMarcador(comercio: Comercio) {
-    const estiloPopup = {'maxWidth': '300'}
     const [lon, lat] = comercio.coordinates;
     const globo = new Mapboxgl.Popup({ className: 'globito' }).setHTML(
       `
-      <h1 style="text-align: center; color: black !important;">${comercio.nombre}</h2><p style="font-size: 100%;">${comercio.propietario}</p><p style="font-size: 100%;">${comercio.descripcion}</p>
-      `
+      <h1 style="text-align: center; color: black !important;">
+      ${comercio.nombre}
+      </h1>
+      <p style="font-size: 100%;">
+      ${comercio.propietario}
+      </p>
+      <p style="font-size: 100%;">
+      ${comercio.descripcion}
+      </p>`
     );
-    console.log('Trae: ' + comercio.descripcion);
 
     const marca = new Mapboxgl.Marker({
       draggable: false,

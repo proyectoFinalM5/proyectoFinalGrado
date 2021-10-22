@@ -29,9 +29,9 @@ export class RegistroComercioComponent implements OnInit {
 
   ngOnInit(): void {
     this.categorias = this.service.getCategorias();
-    this.mapa = new Mapa();
     this.getComercio();
     this.iniciarForm();
+    this.mapa = new Mapa();
     this.mapa.on("click", (event) => {
       const { lng, lat } = event.lngLat;
       this.comercio.coordinates = [lng, lat]

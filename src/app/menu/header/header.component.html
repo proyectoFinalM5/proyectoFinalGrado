@@ -1,42 +1,24 @@
 <mat-toolbar>
-    <mat-toolbar-row class="justify-content-between">
-        <button mat-icon-button="mat-icon-button" (click)="toggleSidebar()">
-            <mat-icon>menu</mat-icon>
+  <mat-toolbar-row class="justify-content-between">
+    <button mat-icon-button="mat-icon-button" (click)="toggleSidebar()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div *ngIf="show" fxLayoutAlign="center center" class="mb-1 mt-3">
+      <ngx-avatar size="50" [name]="usuario.nombre"></ngx-avatar>
+      <button mat-button [matMenuTriggerFor]="menu" style=" color: black; font-size: large;">
+        {{usuario.nombre}}
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </button>
+      <mat-menu #menu>
+        <button (click)="onLogout()" mat-menu-item>
+          <mat-icon>exit_to_app</mat-icon>
+          Cerrar Sesión
         </button>
-        <div *ngIf="show" fxLayoutAlign="center flex-end" class="mb-1 mt-3">
-          <ngx-avatar size="75" [name]="usuario.nombre"></ngx-avatar>
-          <button mat-button [matMenuTriggerFor]="menu" style=" color: black; font-size: large;">
-            {{usuario.nombre}}
-            <mat-icon>keyboard_arrow_down</mat-icon>
-          </button>
-          <mat-menu #menu>
-            <button (click)="onLogout()" mat-menu-item>
-              <mat-icon>exit_to_app</mat-icon>
-              Cerrar Sesión
-            </button>
-            <button *ngIf="usuario.rol!==1" (click)="deleteCuenta()" mat-menu-item>
-              <mat-icon>clear</mat-icon>
-              Eliminar Cuenta
-            </button>
-          </mat-menu>
-        </div>
-
-        <!-- <div fxLayoutAlign="center flex-end" class="mb-2">
-              <ngx-avatar size="75" [name]="usuario.nombre"></ngx-avatar>
-              <button mat-button [matMenuTriggerFor]="menu" style=" color: white; font-size: large;">
-                {{usuario.nombre}}
-                <mat-icon>keyboard_arrow_down</mat-icon>
-              </button>
-              <mat-menu #menu>
-                <button (click)="onLogout()" mat-menu-item>
-                  <mat-icon>exit_to_app</mat-icon>
-                  Cerrar Sesión
-                </button>
-                <button *ngIf="usuario.rol!==1" (click)="deleteCuenta()" mat-menu-item>
-                  <mat-icon>clear</mat-icon>
-                  Eliminar Cuenta
-                </button>
-              </mat-menu>
-            </div> -->
-    </mat-toolbar-row>
+        <button *ngIf="usuario.rol!==1" (click)="deleteCuenta()" mat-menu-item>
+          <mat-icon>clear</mat-icon>
+          Eliminar Cuenta
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar-row>
 </mat-toolbar>
