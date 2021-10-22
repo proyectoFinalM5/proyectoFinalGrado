@@ -29,9 +29,9 @@ export class ListadoComerciosComponent implements OnInit {
   nameCom: string = '';
   selectedC: string = '';
 
-  constructor(private service: ComercioService, private _bottomSheet: MatBottomSheet, private router: Router, private authService: AuthService) {
+  constructor(private service: ComercioService, private _bottomSheet: MatBottomSheet, private authService: AuthService) {
     this.selected = 'streets-v11';
-   }
+  }
 
   ngOnInit(): void {
     this.mapa = new Mapa();
@@ -66,15 +66,6 @@ export class ListadoComerciosComponent implements OnInit {
   openBottomSheet(): void {
     this._bottomSheet.open(BottomSheetComponent);
   }
-  agregarUsuario() {
-    this.router.navigateByUrl('/comercio/registro');
-  }
-  editar(id: string) {
-    this.router.navigate(['/comercio/editar'], {
-      queryParams: { "id": id }
-    });
-
-  }
   eliminar(id: string) {
     if (confirm("estas seguro de eliminar este comercio?")) {
       this.service.deleteComercio(id).then(() => {
@@ -82,15 +73,16 @@ export class ListadoComerciosComponent implements OnInit {
       })
     }
   }
+  navigate(path: string, id?: string) {
+    window.location.href = `/comercio/${path} ${id ? '/' + id : ''}`
+  }
   onRadioChange(event: MatRadioChange): void {
     this.mapa.changeTema(event.value)
   }
   onSelectChange(event: MatSelectChange): void {
     this.nameCat = event.value;
-     this.service.getComercioNombre(this.nameCom, this.nameCat).then((data) => {
+    this.service.getComercioNombre(this.nameCom, this.nameCat).then((data) => {
       this.listado = data;
-      console.log(data);
-
     });
   }
 }

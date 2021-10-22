@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd, NavigationStart, Event as NavigationEvent } from '@angular/router';
 import { ComercioService } from 'src/app/services/comercio.service';
 import { Comercio } from 'src/app/entidades/comercio';
 import { Mapa } from 'src/app/generarMapa';
 import { FirebaseStorageService } from 'src/app/services/firebase-storage.service';
+import { filter, map } from 'rxjs/operators';
 
 
 @Component({
@@ -68,14 +69,14 @@ export class RegistroComercioComponent implements OnInit {
     if (this.group.valid) {
       await this.subirLogo()
       this.service.agregarComercio(this.comercio);
-      this.router.navigateByUrl('/comercio');
+      window.location.href = "/comercio"
     }
   }
   async editarComercio() {
     if (this.group.valid) {
       await this.subirLogo()
       this.service.actualizarComercio(this.comercio._id, this.comercio);
-      this.router.navigateByUrl('/comercio');
+      window.location.href = "/comercio"
     }
   }
   comercioExist() {
@@ -83,7 +84,6 @@ export class RegistroComercioComponent implements OnInit {
   }
   async subirLogo() {
     const { files, fileNames } = this.group.get('logo')?.value;
-    console.log(files)
     if (files?.length > 0) {
       const ref = this.firebaseStorage.referenciaCloudStorage(fileNames);
       let task = this.firebaseStorage.tareaCloudStorage(fileNames, files[0]);

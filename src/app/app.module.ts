@@ -24,6 +24,7 @@ import { AutenticationService } from './services/autentication.service';
 import { environment } from '../environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire';
+import { MapResponseInterceptor } from './interceptores/map-response.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -50,6 +51,11 @@ import { AngularFireModule } from '@angular/fire';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MapResponseInterceptor,
       multi: true
     }
   ],

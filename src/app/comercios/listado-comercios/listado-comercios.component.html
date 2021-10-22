@@ -1,6 +1,6 @@
 <div class="m-3" fxLayout="column">
   <div>
-    <button mat-raised-button="mat-raised-button" color="primary" (click)="agregarUsuario()">
+    <button mat-raised-button="mat-raised-button" color="primary" (click)="navigate('registro')">
       <mat-icon>add</mat-icon>
       Agregar
     </button>
@@ -53,7 +53,7 @@
               mat-icon-button="mat-icon-button" aria-label="Eliminar" matTooltip="Eliminar">
               <mat-icon>delete</mat-icon>
             </button>
-            <button *ngIf="usuario.rol!==3" [routerLink]="['editar/', comercio._id]" color="primary"
+            <button *ngIf="usuario.rol!==3" (click)="navigate('editar',comercio._id)" color="primary"
               mat-icon-button="mat-icon-button" aria-label="Editar" matTooltip="Editar">
               <mat-icon>create</mat-icon>
             </button>

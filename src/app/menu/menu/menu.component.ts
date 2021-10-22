@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -6,9 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-
   sideBarOpen = true;
-  titulo = "LISTADO USUARIO";
 
   sideBarToggler() {
     this.sideBarOpen = !this.sideBarOpen;
@@ -16,15 +15,5 @@ export class MenuComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
-  ObtenerTitulo(){
-    this.titulo= this.titulo;
-
-    const ruta = "/usuario"
-    const s=["","usuario"];
-    const [nulo, tag, subtab, parametro]= ruta.split('/');
-    this.titulo= !subtab ? `LISTADO$(tag.toUpperCase())` : `$(subtab.toUpperCase()) $(tag.toUpperCase())`
-    }
+  ngOnInit(): void { }
 }
