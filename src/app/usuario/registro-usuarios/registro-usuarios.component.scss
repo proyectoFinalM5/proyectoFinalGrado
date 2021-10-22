@@ -13,11 +13,17 @@
 }
 
 .close-icon {
-  transition: 1s ease-in-out;
+  transition: 0.3s ease-in-out;
+  color: #4f2f5c;
 }
 
 ::ng-deep .icon-outside .close-button {
   float: right;
   top: -52px;
   right: -52px;
+}
+
+.mat-raised-button{
+  color: white;
+  background: #4f2f5c;
 }

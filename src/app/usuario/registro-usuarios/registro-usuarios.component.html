@@ -1,6 +1,6 @@
 <div class="contenido">
   <button mat-icon-button class="close-button" [mat-dialog-close]="false">
-    <mat-icon class="close-icon" color="warn">X</mat-icon>
+    <mat-icon class="close-icon" color="warn">cancel</mat-icon>
   </button>
   <div fxLayoutAlign="center">
     <h1>{{usuarioExist()?"Registro de usuario": "Editando usuario"}}</h1>
@@ -54,7 +54,7 @@
       </div>
     </div>
     <mat-dialog-actions fxLayoutAlign="center">
-      <button mat-raised-button color="primary">{{usuarioExist()?"Agregar":"Editar"}}</button>
+      <button class="mat-raised-button">{{usuarioExist()?"Agregar":"Editar"}}</button>
     </mat-dialog-actions>
   </form>
 </div>
