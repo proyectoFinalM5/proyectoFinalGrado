@@ -7,6 +7,8 @@ import { Mapa } from 'src/app/generarMapa';
 import { Router } from '@angular/router';
 import { MatRadioChange, MatRadioGroup } from '@angular/material/radio';
 import { MatSelectChange } from '@angular/material/select';
+import { Usuario } from 'src/app/entidades/usuario';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-listado-comercios',
@@ -16,6 +18,9 @@ import { MatSelectChange } from '@angular/material/select';
 export class ListadoComerciosComponent implements OnInit {
 
   mapa: Mapa;
+
+  @Input() usuario: Usuario;
+
   listado: Comercio[] = [];
   selected: string;
   opciones: string[] = ['streets-v11', 'satellite-v9', 'light-v10', 'dark-v10', 'outdoors-v11'];
@@ -24,12 +29,13 @@ export class ListadoComerciosComponent implements OnInit {
   nameCom: string = '';
   selectedC: string = '';
 
-  constructor(private service: ComercioService, private _bottomSheet: MatBottomSheet, private router: Router) {
+  constructor(private service: ComercioService, private _bottomSheet: MatBottomSheet, private router: Router, private authService: AuthService) {
     this.selected = 'streets-v11';
    }
 
   ngOnInit(): void {
     this.mapa = new Mapa();
+    this.usuario = this.authService.getUsuario();
     this.obtenerComercios();
     this.categorias = ['Todos', ...this.service.getCategorias()];
     this.selectedC = this.categorias[0];
@@ -67,7 +73,7 @@ export class ListadoComerciosComponent implements OnInit {
     this.router.navigate(['/comercio/editar'], {
       queryParams: { "id": id }
     });
-    
+
   }
   eliminar(id: string) {
     if (confirm("estas seguro de eliminar este comercio?")) {
