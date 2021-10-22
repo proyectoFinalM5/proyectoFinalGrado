@@ -34,7 +34,7 @@ export class Mapa extends Mapboxgl.Map {
       ${comercio.propietario}
       </p>
       <p style="font-size: 100%;">
-      ${comercio.descripcion}
+      "${comercio.descripcion}"
       </p>`
     );
 
