@@ -41,6 +41,7 @@ export class RegistroUsuariosComponent implements OnInit {
     this.service.agregarUsuario(this.usuario)
       .then(() => {
         this.dialogRef.close()
+        window.location.reload()
       })
   }
 
@@ -49,6 +50,7 @@ export class RegistroUsuariosComponent implements OnInit {
     this.service.actualizarUsuario(this.usuario._id, this.usuario)
       .then(() => {
         this.dialogRef.close()
+        window.location.reload()
       })
   }
   usuarioExist() {
