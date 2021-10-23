@@ -12,12 +12,12 @@ const routes: Routes = [
   { path: 'login', component: SignInComponent },
   {
     path: '', component: MenuComponent, canActivate: [AuthGuard], children: [
-      { path: 'inicio', component: MapaInicioComponent },
+      // { path: 'inicio', component: MapaInicioComponent },
       { path: 'comercio', component: ListadoComerciosComponent },
       { path: 'usuario', component: UsuariosComponent },
       { path: 'comercio/registro', component: RegistroComercioComponent },
       { path: 'comercio/editar/:id', component: RegistroComercioComponent },
-      { path: '**', redirectTo: "/inicio" },
+      { path: '**', redirectTo: "/comercio" },
     ]
   },
 ];
